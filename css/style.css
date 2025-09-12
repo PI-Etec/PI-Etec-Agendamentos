@@ -1,4 +1,31 @@
-#link_area a.button_quick_access img{
-  width: 20px;
+#link_area a.button_quick_access img.frasco_img{
+  width: 131px;
 
 }
+#link_area a.button_quick_access img.relogio_img{
+  width: 251px;
+
+}
+#link_area a.button_quick_access img.prancheta_img{
+  width: 168px;
+
+}
+ #link_area{
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+ }
+ button.button_agendar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  color: green;
+  width: 150px ;
+  height: 40px;
+  margin-left: 660px;
+ }
