@@ -1,28 +1,22 @@
  #materiais_e_reagentes a.frasco_img img{
   width: 100px;
   margin-top: 45px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+ 
+  
+  
   
 
 }
 #sala_e_horario a.relogio_img img{
   width: 221px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+ 
+  
   
 
 }
 #seleção_de_kits a.prancheta_img img{
   width: 138px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+ 
   margin-top: 45px;
 }
 
@@ -60,11 +54,17 @@
 
  }
  #materiais_e_reagentes{
+  padding-top: 50px;
+  padding-left: 100px;
   background-color: #F8F8F8;
  }
  #sala_e_horario{
+  padding-left: 40px;
+  padding-top: 50px;
   background-color: #F8F8F8;
  }
  #seleção_de_kits{
+  padding-left: 100px;
+  padding-top: 50px;
   background-color: #F8F8F8;
  }
