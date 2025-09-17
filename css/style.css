@@ -1,70 +1,83 @@
+ /* imagem frasco */
  #materiais_e_reagentes a.frasco_img img{
-  width: 100px;
-  margin-top: 45px;
+  width: 40%;
+  margin-top: 25%;
  
   
   
   
 
 }
+/* imagem relogio */
 #sala_e_horario a.relogio_img img{
-  width: 221px;
+  width: 50%;
  
   
   
 
 }
+/* imagem prancheta */
 #seleção_de_kits a.prancheta_img img{
-  width: 138px;
+  width: 45%;
  
-  margin-top: 45px;
+  margin-top: 25%;
 }
-
+/* botão */
  button.button_agendar{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 6%;
   color: black;
-  width: 150px ;
+  width: 10%;
   height: 40px;
-  margin-left: 660px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 45%;
   background-color: #80E96D;
   border-radius: 5%;
   border: 0cap;
  }
+ /* Titulo */
  #body h1.cadastrar_agendamento{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
-  margin-right: 20px;
+  margin-top: 5%;
+ 
  }
-
+/* imagens e letras */
  #link_area{
  
   display: flex;
   flex-direction: row;
-  gap: 200px;
+  gap:10%;
   justify-content: center;
   align-items: center;
-  margin-left: 310px;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 8%;
   
 
  }
+ /* imagem e letra frasco */
  #materiais_e_reagentes{
-  padding-top: 50px;
-  padding-left: 100px;
+  padding-top: 5%;
+  padding-left:1% ;
   background-color: #F8F8F8;
  }
+ /* imagem e letra relogio */
  #sala_e_horario{
-  padding-left: 40px;
-  padding-top: 50px;
+  
+  padding-top: 6%;
   background-color: #F8F8F8;
  }
+ /* imagem e letra prancheta */
  #seleção_de_kits{
-  padding-left: 100px;
-  padding-top: 50px;
+  padding-left: 1%;
+  padding-top: 5%;
   background-color: #F8F8F8;
  }
+ 
