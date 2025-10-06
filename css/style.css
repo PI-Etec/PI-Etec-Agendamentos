@@ -1,83 +1,139 @@
- /* imagem frasco */
- #materiais_e_reagentes a.frasco_img img{
-  width: 40%;
-  margin-top: 25%;
- 
-  
-  
-  
+/* Estilo para o corpo */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
 
+/* Container principal */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2%;
 }
-/* imagem relogio */
-#sala_e_horario a.relogio_img img{
-  width: 50%;
- 
-  
-  
 
+/* Título principal */
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #343a40;
+  margin-top: 2%;
 }
-/* imagem prancheta */
-#seleção_de_kits a.prancheta_img img{
-  width: 45%;
- 
-  margin-top: 25%;
+
+/* Área de agendamento */
+#agendamento_area {
+  margin-top: 4%;
+  padding: 2%;  
 }
-/* botão */
- button.button_agendar{
+
+/* Layout responsivo para os links */
+#link_area {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 6%;
-  color: black;
-  width: 10%;
-  height: 40px;
-  font-size: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2%;
+}
+
+/* Botões */
+#link_area .btn {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Organiza o conteúdo em coluna */
+  align-items: flex-start; /* Alinha o conteúdo à esquerda */
+  justify-content: flex-start; /* Alinha o conteúdo ao topo */
+  padding: 10%; /* Espaçamento interno do botão */
+  font-size: 1rem;
   font-weight: bold;
+  color: #000000;
+  background-color: #ebe9e9;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-bottom: 2%;
   cursor: pointer;
-  margin-left: 45%;
-  background-color: #80E96D;
-  border-radius: 5%;
-  border: 0cap;
- }
- /* Titulo */
- #body h1.cadastrar_agendamento{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5%;
- 
- }
-/* imagens e letras */
- #link_area{
- 
-  display: flex;
-  flex-direction: row;
-  gap:10%;
-  justify-content: center;
-  align-items: center;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-top: 8%;
-  
+  width: 10%; /* Largura relativa */
+  height: auto; /* Ajusta a altura automaticamente */
+}
 
- }
- /* imagem e letra frasco */
- #materiais_e_reagentes{
-  padding-top: 5%;
-  padding-left:1% ;
-  background-color: #F8F8F8;
- }
- /* imagem e letra relogio */
- #sala_e_horario{
-  
-  padding-top: 6%;
-  background-color: #F8F8F8;
- }
- /* imagem e letra prancheta */
- #seleção_de_kits{
-  padding-left: 1%;
-  padding-top: 5%;
-  background-color: #F8F8F8;
- }
- 
+/* Hover nos botões */
+#link_area .btn:hover {
+  background-color: #d6d6d6;
+}
+
+/* Imagens */
+.img-geral {
+  max-width: 50%; /* Tamanho relativo para todas as imagens */
+  margin: 0; /* Remove margens */
+  padding: 0; /* Remove espaçamentos */
+  align-self: center; /* Centraliza a imagem dentro do botão */
+}
+
+/* Alinhamento do texto */
+#link_area .btn span {
+  text-align: left; /* Alinha o texto à esquerda */
+  margin: 0; /* Remove qualquer margem */
+  padding: 0; /* Remove qualquer espaçamento */
+}
+
+.img-relogio {
+  /* Estilo específico para a imagem do relógio */
+  position: absolute;
+  max-width: 70%;
+  margin: 0;
+  padding: 0;
+  right: 0%;
+  bottom: 0%;
+}
+
+.img-frasco {
+  /* Estilo específico para a imagem do frasco */
+  position: absolute;
+  max-width: 40%;
+  margin: 0;
+  padding: 0;
+  right: 0%;
+  bottom: 0%;
+}
+
+.img-prancheta {
+  /* Estilo específico para a imagem da prancheta */
+  position: absolute;
+  max-width: 45%;
+  margin: 0;
+  padding: 0;
+  right: 0%;
+  bottom: 0%;
+}
+
+/* Botão de agendamento */
+#agendamento_button .btn-success {
+  display: inline-block;
+  padding: 1% 3%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #c22626;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#agendamento_button .btn-success:hover {
+  background-color: #630b0b;
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #link_area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #link_area .btn {
+    width: 80%; /* Botões ocupam mais espaço em telas menores */
+  }
+}
