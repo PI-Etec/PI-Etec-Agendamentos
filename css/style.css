@@ -53,7 +53,7 @@ h1 {
   text-decoration: none;
   margin-bottom: 2%;
   cursor: pointer;
-  width: 10%; /* Largura relativa */
+  width: 23%; /* Largura relativa */
   height: auto; /* Ajusta a altura automaticamente */
 }
 
@@ -80,7 +80,7 @@ h1 {
 .img-relogio {
   /* Estilo específico para a imagem do relógio */
   position: absolute;
-  max-width: 70%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
   right: 0%;
@@ -90,7 +90,7 @@ h1 {
 .img-frasco {
   /* Estilo específico para a imagem do frasco */
   position: absolute;
-  max-width: 40%;
+  max-width: 45%;
   margin: 0;
   padding: 0;
   right: 0%;
@@ -100,7 +100,7 @@ h1 {
 .img-prancheta {
   /* Estilo específico para a imagem da prancheta */
   position: absolute;
-  max-width: 45%;
+  max-width: 60%;
   margin: 0;
   padding: 0;
   right: 0%;
