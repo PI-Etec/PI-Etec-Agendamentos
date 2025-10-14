@@ -3,13 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style_sala_e_horario.css">
     <title>Sala e Horario</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style_sala_e_horario.css">
+    
 </head>
 <body>
-    <div>
-        <h1>Horarios</h1>
+    <div class="container mt-5">
+        <h1>Horários</h1>
+        <div class="dropdown mt-3">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Salas
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#">Sala 1</a></li>
+                <li><a class="dropdown-item" href="#">Sala 2</a></li>
+                <li><a class="dropdown-item" href="#">Sala 3</a></li>
+            </ul>
+        </div>
     </div>
     
+    <!-- Google Calendar Embed -->
+    <div class="mt-4">
+        <h2>Google Agenda</h2>
+        <div class="ratio ratio-16x9">
+            <iframe 
+                src="https://calendar.google.com/calendar/embed?src=seu_calendario_publico%40gmail.com&ctz=America%2FSao_Paulo" 
+                style="border: 0" 
+                width="800" 
+                height="600" 
+                frameborder="0" 
+                scrolling="no">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+     <!-- Lista de Horários -->
+     <div class="mt-4">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">08:00 - 09:00</a>
+            <a href="#" class="list-group-item list-group-item-action">09:00 - 10:00</a>
+            <button class="list-group-item list-group-item-action">10:00 - 11:00</button>
+            <button class="list-group-item list-group-item-action">11:00 - 12:00</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
