@@ -22,8 +22,8 @@ body {
 .container {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 2%;
+  margin: auto;
+  padding: 0%;
 }
 
 /* Título principal */
@@ -31,7 +31,6 @@ h1 {
   text-align: center;
   font-size: 3.5rem;
   color: #43545C;
-  margin-top: 2%;
   font-family: "Roboto Slab", serif;
 }
 
@@ -65,7 +64,8 @@ h1 {
   border: none;
   border-radius: 3%;
   text-decoration: none;
-  margin-bottom: 2%;
+  margin-bottom: 5%;
+  margin-top: 8%;
   cursor: pointer;
   width: 23%;
   min-height: 12rem;
