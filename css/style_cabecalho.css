@@ -1,0 +1,31 @@
+/* Container geral do cabeçalho */
+header {
+    background-color: white;
+    padding: 15px 20px;
+    border-bottom: 1px solid #000000; /* linha sutil embaixo */
+}
+
+/* Área que engloba as logos */
+.header-top {
+    display: flex;
+    align-items: center;  /* alinha verticalmente ao centro */
+    gap: 30px;            /* espaço entre as imagens */
+    /* outros estilos, tipo largura, margem, etc */
+}
+
+/* Deixa as duas imagens com mesma altura */
+.logo-frase,
+.logo-black {
+    max-height: 80px; /* mesma altura para as duas */
+    width: auto;
+    margin: 0;
+    padding: 0;
+    display: block;   /* evita espaçamento extra de inline */
+}
+
+.logo-etec{
+margin-left:82%;
+max-height: 90px ;
+
+}
+
