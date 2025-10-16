@@ -1,9 +1,73 @@
+/* Resetando estilos padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo do corpo da página */
+body {
+  font-family: 'Roboto Slab', serif; /* Usando a fonte personalizada para o corpo */
+  background-color: white;
+}
+
+/* Estilo do cabeçalho */
+header {
+  background-color: #003a6d;  /* Cor de fundo do cabeçalho */
+  color: white;
+  padding: 20px 0;
+}
+
+/* Barra superior (Governo de SP + Logo Etec) */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.logo-governo {
+  max-width: 10%;  /* Ajuste do tamanho do logo do Governo de SP */
+}
+
+.header-logo img {
+  max-width: 20%;  /* Ajuste do tamanho dos logos da Etec */
+}
+
+/* Barra de navegação */
+.header-bottom {
+  background-color: #43545C;
+  padding: 10px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav ul li {
+  list-style-type: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+
 /* Estilo para o corpo */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  background-color: white;
 }
 
 /* Container principal */
@@ -17,16 +81,16 @@ body {
 /* Título principal */
 h1 {
   text-align: center;
-  font-size: 350%;
+  font-size: 3.5rem;
   color: #43545C;
   margin-top: 2%;
-  font-family: roboto slab;
+  font-family: "Roboto Slab", serif;
 }
 
 /* Área de agendamento */
 #agendamento_area {
   margin-top: 4%;
-  padding: 2%;  
+  padding: 2%;
 }
 
 /* Layout responsivo para os links */
@@ -40,11 +104,11 @@ h1 {
 /* Botões */
 #link_area .btn {
   position: relative;
-  display: flex;
-  flex-direction: column; /* Organiza o conteúdo em coluna */
-  align-items: flex-start; /* Alinha o conteúdo à esquerda */
-  justify-content: flex-start; /* Alinha o conteúdo ao topo */
-  padding: 12%; /* Espaçamento interno do botão */
+  display: flex;               /* Flexbox para alinhar o conteúdo dentro do botão */
+  flex-direction: column;      /* Organiza o conteúdo em coluna */
+  align-items: center;         /* Centraliza o conteúdo horizontalmente */
+  justify-content: center;     /* Centraliza o conteúdo verticalmente */
+  padding: 3%;
   padding-bottom: 16%;
   font-size: 1rem;
   font-weight: bold;
@@ -55,8 +119,10 @@ h1 {
   text-decoration: none;
   margin-bottom: 2%;
   cursor: pointer;
-  width: 23%; /* Largura relativa */
-  
+  width: 23%;
+  min-height: 12rem;
+  overflow: hidden;
+  text-align: center;          /* Centraliza o texto no botão */
 }
 
 /* Hover nos botões */
@@ -66,50 +132,38 @@ h1 {
 
 /* Imagens */
 .img-geral {
-  max-width: 50%; /* Tamanho relativo para todas as imagens */
-  margin: 0; /* Remove margens */
-  padding: 0; /* Remove espaçamentos */
-  align-self: center; /* Centraliza a imagem dentro do botão */
+  max-width: 50%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  align-self: center; /* Garante que as imagens ficam no centro dentro do botão */
 }
 
 /* Alinhamento do texto */
 #link_area .btn span {
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  font-size: 200%;
-  font-family: roboto slab;
+  font-size: 2rem;
+  font-family: "Roboto Slab", serif;
   color: #43545C;
-
-
 }
 
+/* Imagens específicas */
 .img-relogio {
-  /* Estilo específico para a imagem do relógio */
   position: absolute;
   max-width: 95%;
-  margin: 0;
-  padding: 0;
   right: 0%;
   bottom: 0%;
 }
 
 .img-frasco {
-  /* Estilo específico para a imagem do frasco */
   position: absolute;
   max-width: 40%;
-  margin: 0;
-  padding: 0;
   right: 0%;
   bottom: 0%;
 }
 
 .img-prancheta {
-  /* Estilo específico para a imagem da prancheta */
   position: absolute;
   max-width: 55%;
-  margin: 0;
-  padding: 0;
   right: 0%;
   bottom: 0%;
 }
@@ -123,23 +177,91 @@ h1 {
   color: #ffffff;
   background-color: #c22626;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 #agendamento_button .btn-success:hover {
   background-color: #630b0b;
 }
 
-
-
 /* Responsividade */
 @media (max-width: 768px) {
   #link_area {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
   }
 
   #link_area .btn {
-    width: 80%; /* Botões ocupam mais espaço em telas menores */
+      width: 90%;
+      padding: 10% 12% 14% 12%;
+  }
+
+  #link_area .btn span {
+      font-size: 1.75rem;
   }
 }
+
+/* Responsividade de imagens */
+@media (max-width: 1116px) {
+  .img-relogio {
+      max-width: 100%;
+  }
+
+  .img-frasco {
+      max-width: 40%;
+  }
+
+  .img-prancheta {
+      max-width: 55%;
+  }
+}
+
+/* A partir de 861px */
+@media (max-width: 861px) {
+  .img-geral {
+      display: none; /* Oculta as imagens em telas menores que 861px */
+  }
+
+  #link_area {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #link_area .btn {
+      width: 90%;                /* Faz o botão ocupar 90% da largura da tela */
+      display: flex;             /* Usando flexbox para alinhar o conteúdo dentro do botão */
+      justify-content: center;   /* Centraliza o conteúdo verticalmente */
+      align-items: center;       /* Centraliza o conteúdo horizontalmente */
+      text-align: center;        /* Centraliza o texto dentro do botão */
+      height: auto;              /* Deixa a altura automática */
+  }
+
+  #link_area .btn span {
+      font-size: 1.75rem;         /* Ajuste de tamanho de fonte */
+  }
+}
+/* Responsividade */
+@media (max-width: 768px) {
+  .header-top {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .header-logo img {
+      max-width: 50%;
+      margin-bottom: 10px;
+  }
+
+  .logo-governo {
+      max-width: 30%;
+  }
+
+  nav ul {
+      flex-direction: column;
+      gap: 10px;
+  }
+}
+
