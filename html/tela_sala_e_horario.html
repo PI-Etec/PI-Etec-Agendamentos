@@ -7,12 +7,26 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style_sala_e_horario.css">
-    
+    <link rel="stylesheet" href="../css/style_cabecalho.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Horários</h1>
-        <div class="dropdown mt-3">
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-logo">
+            <!-- Logo preta e frase -->
+            <div class="logo-esquerda">
+                <img src="../img/logo-black.png" alt="Logo Black" class="logo-black">
+                <img src="../img/logo-frase.png" alt="Logo Frase" class="logo-frase">
+            </div>
+            <!-- Logo Etec -->
+            <img src="../img/logo-etec.png" alt="Logo Etec" class="logo-etec">
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Dropdown de Salas -->
+        <div class="dropdown salas">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Salas
             </button>
@@ -22,34 +36,18 @@
                 <li><a class="dropdown-item" href="#">Sala 3</a></li>
             </ul>
         </div>
-    </div>
-    
-    <!-- Google Calendar Embed -->
-    <div class="mt-4">
-        <h2>Google Agenda</h2>
-        <div class="ratio ratio-16x9">
-            <iframe 
-                src="https://calendar.google.com/calendar/embed?src=seu_calendario_publico%40gmail.com&ctz=America%2FSao_Paulo" 
-                style="border: 0" 
-                width="800" 
-                height="600" 
-                frameborder="0" 
-                scrolling="no">
-            </iframe>
-        </div>
-    </div>
-</div>
 
-     <!-- Lista de Horários -->
-     <div class="mt-4">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">08:00 - 09:00</a>
-            <a href="#" class="list-group-item list-group-item-action">09:00 - 10:00</a>
-            <button class="list-group-item list-group-item-action">10:00 - 11:00</button>
-            <button class="list-group-item list-group-item-action">11:00 - 12:00</button>
+        <!-- Título e Lista de Horários -->
+        <div class="horarios">
+            <h1 class="titulo-horarios">Horários</h1>
+            <div class="list-group lista-horarios">
+                <a href="#" class="list-group-item list-group-item-action">08:00 - 09:00</a>
+                <a href="#" class="list-group-item list-group-item-action">09:00 - 10:00</a>
+                <button class="list-group-item list-group-item-action">10:00 - 11:00</button>
+                <button class="list-group-item list-group-item-action">11:00 - 12:00</button>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
