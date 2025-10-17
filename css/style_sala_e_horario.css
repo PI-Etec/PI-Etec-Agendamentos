@@ -2,12 +2,21 @@
 #dropdownMenuButton {
     background-color: #f8f9fa; /* Cor de fundo semelhante à tela */
     border: 1px solid #ced4da; /* Borda leve */
-    border-radius: 5px; /* Bordas arredondadas */
+    border-radius: 10px; /* Bordas arredondadas */
     color: #000; /* Cor do texto */
-    font-size: 1rem; /* Tamanho da fonte */
-    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 108%; /* Tamanho da fonte */
+    padding: 15px -1%; /* Espaçamento interno */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    margin-top: 3%;
+    margin-left: -5%;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    width: 13%;
+    height: 50px;
+    
+    
+    
 }
 
 /* Estilo para os botões de horários */
@@ -21,12 +30,17 @@
     margin-bottom: 5px; /* Espaçamento entre os botões */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    width: 50%;
+    margin-left: 53%;
+    font-family: 'Roboto Slab', serif;
+    
 }
 
 /* Estilo para o botão de horários ao passar o mouse */
 .lista-horarios .list-group-item:hover {
     background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
     border-color: #adb5bd; /* Cor da borda ao passar o mouse */
+
 }
 
 /* Estilo para o título "Horários" */
@@ -34,7 +48,17 @@
     font-family: 'Roboto Slab', serif;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #000; /* Cor do texto */
-    text-align: center; /* Centraliza o texto */
+    color: #43545C; /* Cor do texto */
+    text-align: right; /* Centraliza o texto */
     margin-bottom: 20px; /* Espaçamento abaixo do título */
+    margin-right: 20%;
+    margin-top: -1%;
+    
+}
+
+i{
+    margin-left: 33%;
+    font-size: 130%;
+    
+    
 }
