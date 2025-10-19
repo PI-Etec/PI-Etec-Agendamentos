@@ -5,15 +5,17 @@
     border-radius: 10px; /* Bordas arredondadas */
     color: #000; /* Cor do texto */
     font-size: 108%; /* Tamanho da fonte */
-    padding: 15px -1%; /* Espaçamento interno */
+    padding: 15px -5%; /* Espaçamento interno */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
     margin-top: 3%;
-    margin-left: -5%;
+    margin-left: -15%;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
     width: 13%;
     height: 50px;
+    
+    
     
     
     
@@ -23,16 +25,17 @@
 .lista-horarios .list-group-item {
     background-color: #fff; /* Cor de fundo branca */
     border: 1px solid #ced4da; /* Borda leve */
-    border-radius: 5px; /* Bordas arredondadas */
+    border-radius: 0px; /* Bordas arredondadas */
     color: #000; /* Cor do texto */
-    font-size: 1rem; /* Tamanho da fonte */
+    font-size: 108%; /* Tamanho da fonte */
     padding: 10px; /* Espaçamento interno */
-    margin-bottom: 5px; /* Espaçamento entre os botões */
+    margin-bottom: 0px; /* Espaçamento entre os botões */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
     width: 50%;
-    margin-left: 53%;
+    margin-left: 60%;
     font-family: 'Roboto Slab', serif;
+    
     
 }
 
@@ -46,19 +49,31 @@
 /* Estilo para o título "Horários" */
 .titulo-horarios {
     font-family: 'Roboto Slab', serif;
-    font-size: 1.5rem;
+    font-size: 180%; /* Tamanho da fonte */
     font-weight: bold;
     color: #43545C; /* Cor do texto */
     text-align: right; /* Centraliza o texto */
     margin-bottom: 20px; /* Espaçamento abaixo do título */
-    margin-right: 20%;
-    margin-top: -1%;
+    margin-right: 10%;
+    margin-top: -2%;
     
 }
 
 i{
-    margin-left: 33%;
-    font-size: 130%;
+    margin-left: 35%;
+    font-size: 24px;
+    font-weight: bold;
     
-    
+}
+
+#primeio-da-lista {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 3%;
+
+
+}
+#ultimo-da-lista {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
