@@ -7,14 +7,7 @@
 
 /* Estilo do corpo da página */
 body {
-  font-family: 'Roboto Slab', serif; /* Usando a fonte personalizada para o corpo */
-  background-color: white;
-}
-/* Estilo para o corpo */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif; /* Usando a fonte Arial para o corpo */
   background-color: white;
 }
 
@@ -23,7 +16,7 @@ body {
   width: 90%;
   max-width: 1200px;
   margin: auto;
-  padding: 0%;
+  padding: 0;
 }
 
 /* Título principal */
@@ -76,6 +69,13 @@ h1 {
 /* Hover nos botões */
 #link_area .btn:hover {
   background-color: #d6d6d6;
+}
+
+/* Alinhamento do texto nos botões */
+#link_area .btn span {
+  font-size: 2rem;
+  font-family: "Roboto Slab", serif;
+  color: #43545C;
 }
 
 /* Imagens */
@@ -192,51 +192,6 @@ h1 {
   }
 }
 
-/* Estilização específica para os botões da tela_tecnico */
-#botoes_tecnico {
-  display: flex;
-  justify-content: space-between; /* distribui os botões com máximo espaço entre */
-  flex-wrap: nowrap;
-  padding: 0 2%; /* um pequeno padding nas laterais para não colar na borda da tela */
-  gap: 0; /* sem gap, porque justify-content já faz a distribuição */
-}
 
-#botoes_tecnico .btn {
-  width: 48%; /* cada botão ocupa quase metade do espaço */
-  margin-top: 8%;  /* mantém o espaçamento vertical igual */
-  margin-bottom: 5%;
-  /* mantém os outros estilos do botão da tela_professor */
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3%;
-  padding-bottom: 16%;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #000000;
-  background-color: #ebe9e9;
-  border: none;
-  border-radius: 3%;
-  text-decoration: none;
-  cursor: pointer;
-  min-height: 12rem;
-  overflow: hidden;
-  text-align: center;
-}
-
-/* Responsividade para telas pequenas */
-@media (max-width: 768px) {
-  #botoes_tecnico {
-    flex-direction: column;
-    padding: 0; /* remove o padding lateral para ficar melhor no móvel */
-  }
-
-  #botoes_tecnico .btn {
-    width: 100%;   /* botões empilham e ocupam largura total */
-    margin-top: 5%;
-  }
-}
 
 

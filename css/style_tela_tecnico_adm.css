@@ -1,0 +1,184 @@
+/* Resetando estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo da página */
+body {
+    font-family: 'Roboto Slab', serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal */
+.container {
+    width: 90%;
+    max-width: 100%;
+    margin: auto;
+    padding: 0;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 3.5rem;
+    color: #43545C;
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 2rem;
+}
+
+/* Área de agendamento */
+#agendamento_area {
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+/* Layout responsivo para os links */
+#link_area {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Container dos botões técnicos */
+#botoes_tecnico {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 23%;
+}
+
+/* Botões */
+#botoes_tecnico .btn {
+  position: relative;
+  display: flex;               /* Flexbox para alinhar o conteúdo dentro do botão */
+  flex-direction: column;      /* Organiza o conteúdo em coluna */
+  align-items: center;         /* Centraliza o conteúdo horizontalmente */
+  justify-content: center;     /* Centraliza o conteúdo verticalmente */
+  padding: 3%;
+  padding-bottom: 18%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+  background-color: #ebe9e9;
+  border: none;
+  border-radius: 3%;
+  text-decoration: none;
+  margin-top: 8%;
+  cursor: pointer;
+  width: 23%;
+  min-height: 12rem;
+  overflow: hidden;
+  text-align: center; 
+}
+
+/* Hover nos botões */
+#botoes_tecnico .btn:hover {
+    background-color: #d6d6d6;
+}
+
+/* Texto dentro do botão */
+#botoes_tecnico .btn span {
+    font-size: 2rem;
+  font-family: "Roboto Slab", serif;
+  color: #43545C;
+}
+
+/* Imagens dentro dos botões */
+.img-geral {
+        max-width: 60%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        align-self: center; /* Garante que as imagens ficam no centro dentro do botão */
+        right: 0%;
+        bottom: 0% ;
+        position: absolute;
+}
+.img-lupa{
+    max-width: 80%;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #link_area {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    #link_area .btn {
+        width: 90%;
+        padding: 10% 12% 14% 12%;
+    }
+  
+    #link_area .btn span {
+        font-size: 1.75rem;
+    }
+  }
+  
+  /* Responsividade de imagens */
+  @media (max-width: 1116px) {
+    .img-calendario {
+        max-width: 60%;
+    }
+  
+    .img-lupa {
+        max-width: 70%;
+    }
+  }
+  
+  /* A partir de 861px */
+  @media (max-width: 861px) {
+    .img-geral {
+        display: none; /* Oculta as imagens em telas menores que 861px */
+    }
+  
+    #link_area {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    #link_area .btn {
+        width: 90%;                /* Faz o botão ocupar 90% da largura da tela */
+        display: flex;             /* Usando flexbox para alinhar o conteúdo dentro do botão */
+        justify-content: center;   /* Centraliza o conteúdo verticalmente */
+        align-items: center;       /* Centraliza o conteúdo horizontalmente */
+        text-align: center;        /* Centraliza o texto dentro do botão */
+        height: auto;              /* Deixa a altura automática */
+    }
+  
+    #link_area .btn span {
+        font-size: 1.75rem;         /* Ajuste de tamanho de fonte */
+    }
+  }
+  @media (max-width: 998px) {
+    /* Ajuste no estilo dos botões */
+    #botoes_tecnico .btn {
+        width: 90%;                /* Faz o botão ocupar 90% da largura da tela */
+        max-width: 320px;          /* Limita a largura máxima do botão para não ficar muito largo */
+        display: flex;             /* Usando flexbox para alinhar o conteúdo dentro do botão */
+        justify-content: center;   /* Centraliza o conteúdo verticalmente */
+        align-items: center;       /* Centraliza o conteúdo horizontalmente */
+        text-align: center;        /* Centraliza o texto dentro do botão */
+        height: auto;              /* Ajuste automático para a altura do botão */
+        padding: 1%;              /* Ajuste o padding para garantir espaço suficiente */
+    }
+
+    /* Ajuste do texto dentro do botão */
+    #botoes_tecnico .btn span {
+        font-size: 1.5rem;         /* Tamanho de fonte ajustado para telas menores */
+    }
+
+    /* Oculta as imagens em telas menores que 998px */
+    .img-calendario, 
+    .img-lupa {
+        display: none;             /* As imagens de calendário e lupa desaparecem */
+    }
+}
