@@ -27,12 +27,12 @@ h1 {
     font-size: 3.5rem;
     color: #43545C;
     font-family: 'Roboto Slab', serif;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
 }
 
 /* Área de agendamento */
 #agendamento_area {
-    margin-top: 2rem;
+    margin-top: 0rem;
     padding: 1rem 0;
 }
 
@@ -50,6 +50,7 @@ h1 {
     gap: 2rem;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     width: 100%;
     gap: 23%;
 }
@@ -76,6 +77,7 @@ h1 {
   min-height: 12rem;
   overflow: hidden;
   text-align: center; 
+  margin-top: 3%;
 }
 
 /* Hover nos botões */
@@ -88,6 +90,7 @@ h1 {
     font-size: 2rem;
   font-family: "Roboto Slab", serif;
   color: #43545C;
+  
 }
 
 /* Imagens dentro dos botões */
@@ -104,7 +107,12 @@ h1 {
 .img-lupa{
     max-width: 80%;
 }
-
+.img-cadastrar{
+max-width: 77%;
+}
+.img-gerenciar-banco{
+   max-width:  60%;
+}
 
 /* Responsividade */
 @media (max-width: 768px) {
