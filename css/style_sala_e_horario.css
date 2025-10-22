@@ -9,10 +9,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
     margin-top: 5%;
-    margin-left: -15%;
+    margin-left: 10%;
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
-    width: 17%;
+    width: 15%;
     height: 60px;
     
     
@@ -20,6 +20,7 @@
     
     
 }
+
 
 /* Estilo para os botões de horários */
 .lista-horarios .list-group-item {
@@ -32,10 +33,9 @@
     margin-bottom: 0px; /* Espaçamento entre os botões */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-    width: 100%;
-    margin-left: 170%;
+    width: 500px;
     font-family: 'Roboto Slab', serif;
-    overflow-y: auto;
+    
 
     
     
@@ -56,9 +56,24 @@
     color: #43545C; /* Cor do texto */
     text-align: right; /* Centraliza o texto */
     margin-bottom: 20px; /* Espaçamento abaixo do título */
-    margin-right: 10%;
-    margin-top: -48%;
+    margin-top: -570px;
+    width: 10%;
+    margin-left: 71%;
     
+}
+
+.lista-horarios{
+    overflow-y: auto;
+    max-height: 498px;
+    width: 10%;
+    max-width: 520px;
+    margin-left: 65%;
+    
+    
+}
+
+.list-group{
+    width: 100%;
 }
 
 i{
@@ -79,6 +94,12 @@ i{
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
+.container{
+    margin: 0%;
+}
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
 
 :root {
@@ -107,7 +128,7 @@ i{
     min-width: 320px;
     background: var(--calendar-bg-color);
     color: var(--calendar-font-color);
-    margin-left: -15%;
+    margin-left: 10%;
     margin-top: 5%;
     box-sizing: border-box;
     overflow: hidden;
