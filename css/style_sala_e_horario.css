@@ -33,7 +33,7 @@
     margin-bottom: 0px; /* Espaçamento entre os botões */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-    width: 500px;
+    width: 535px;
     font-family: 'Roboto Slab', serif;
     
 
@@ -66,8 +66,8 @@
     overflow-y: auto;
     max-height: 498px;
     width: 10%;
-    max-width: 520px;
-    margin-left: 65%;
+    max-width: 550px;
+    margin-left: 63%;
     
     
 }
