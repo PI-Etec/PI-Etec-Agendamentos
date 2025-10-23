@@ -48,6 +48,13 @@
 
 }
 
+.lista-horarios .list-group-item:focus {
+    background-color: #2196f3; /* Cor de fundo ao focar */
+    
+}
+
+
+
 /* Estilo para o título "Horários" */
 .titulo-horarios {
     font-family: 'Roboto Slab', serif;
@@ -164,7 +171,6 @@ i{
     border: 1px solid transparent;
     border-bottom: 1px solid var(--weekdays-border-bottom-color);
 }
-
 .calendar .calendar-inner .calendar-body div>a {
     color: var(--calendar-font-color);
     text-decoration: none;
@@ -262,4 +268,3 @@ i{
   border: 1px solid transparent;
   pointer-events: none;
 }
-
