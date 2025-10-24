@@ -219,3 +219,16 @@ function CalendarControl() {
   }
   
   const calendarControl = new CalendarControl();
+
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
+  const dropdownButton = document.getElementById('dropdownMenuButton');
+
+  dropdownItems.forEach(item => {
+    item.addEventListener('click', () => {
+      dropdownButton.innerHTML = item.textContent + '<i class="bi bi-chevron-down"></i>';
+      });
+  });
+
+
+
+  

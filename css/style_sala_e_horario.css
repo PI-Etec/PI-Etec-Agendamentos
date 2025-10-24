@@ -90,7 +90,7 @@ i{
     
 }
 
-#primeio-da-lista {
+#primeiro-da-lista {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     margin-top: 3%;
@@ -115,7 +115,7 @@ i{
     --weekdays-border-bottom-color: #404040;
     --calendar-date-hover-color: #505050;
     --calendar-current-date-color: #ffffff;
-    --calendar-today-color: linear-gradient(to bottom, #03a9f4, #2196f3);
+    --calendar-today-color: linear-gradient(to bottom, #ff0000, #f32121);
     --calendar-today-innerborder-color: transparent;
     --calendar-nextprev-bg-color: transparent;
     --next-prev-arrow-color : #000000;
@@ -182,6 +182,7 @@ i{
     border: 1px solid var(--calendar-date-hover-color);
     border-radius: 4px;
 }
+
 
 .calendar .calendar-inner .calendar-body div.empty-dates:hover {
     border: 1px solid transparent;
