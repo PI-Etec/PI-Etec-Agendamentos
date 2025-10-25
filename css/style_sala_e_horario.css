@@ -14,13 +14,7 @@
     font-weight: bold;
     width: 15%;
     height: 60px;
-    
-    
-    
-    
-    
 }
-
 
 /* Estilo para os botões de horários */
 .lista-horarios .list-group-item {
@@ -35,25 +29,24 @@
     cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
     width: 535px;
     font-family: 'Roboto Slab', serif;
-    
-
-    
-    
 }
 
 /* Estilo para o botão de horários ao passar o mouse */
 .lista-horarios .list-group-item:hover {
     background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
     border-color: #adb5bd; /* Cor da borda ao passar o mouse */
-
 }
 
 .lista-horarios .list-group-item:focus {
     background-color: #2196f3; /* Cor de fundo ao focar */
-    
 }
 
-
+/* Destaque do horário selecionado */
+.lista-horarios .list-group-item.selecionado {
+    background-color: #2196f3;
+    color: #fff;
+    border-color: #2196f3;
+}
 
 /* Estilo para o título "Horários" */
 .titulo-horarios {
@@ -63,209 +56,215 @@
     color: #43545C; /* Cor do texto */
     text-align: right; /* Centraliza o texto */
     margin-bottom: 20px; /* Espaçamento abaixo do título */
-    margin-top: -570px;
+    margin-top: -515px;
     width: 10%;
     margin-left: 71%;
-    
 }
 
-.lista-horarios{
+.lista-horarios {
     overflow-y: auto;
-    max-height: 498px;
+    max-height: 595px;
     width: 10%;
     max-width: 550px;
     margin-left: 63%;
-    
-    
 }
 
-.list-group{
+.list-group {
     width: 100%;
 }
 
-i{
-    margin-left: 35%;
+i {
     font-size: 30px;
     font-weight: bold;
-    
 }
+button i {
+    margin-left: 35%;
+}
+
 
 #primeiro-da-lista {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     margin-top: 3%;
-
-
 }
+
 #ultimo-da-lista {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
-.container{
+
+.container {
     margin: 0%;
 }
 
-
-
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
-
-:root {
-    --calendar-bg-color: #f8f9fa;
-    --calendar-font-color: #000000;
-    --weekdays-border-bottom-color: #404040;
-    --calendar-date-hover-color: #505050;
-    --calendar-current-date-color: #ffffff;
-    --calendar-today-color: linear-gradient(to bottom, #ff0000, #f32121);
-    --calendar-today-innerborder-color: transparent;
-    --calendar-nextprev-bg-color: transparent;
-    --next-prev-arrow-color : #000000;
-    --calendar-border-radius: 16px;
-    --calendar-prevnext-date-color: #484848
-}
-
-* {
-    padding: 0;
-    margin: 0;
-}
-
+/* Calendário compacto */
 .calendar {
-    font-family: 'Roboto Slab', sans-serif;
-    position: relative;
-    max-width: 750px; /*change as per your design need */
-    min-width: 320px;
-    background: var(--calendar-bg-color);
-    color: var(--calendar-font-color);
+    margin-top: 2%;
     margin-left: 10%;
-    margin-top: 5%;
-    box-sizing: border-box;
-    overflow: hidden;
-    font-weight: normal;
-    border-radius: var(--calendar-border-radius);
-    height: 500px;
-}
-
-.calendar-inner {
-    padding: 10px 10px;
-}
-
-.calendar .calendar-inner .calendar-body {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-}
-
-.calendar .calendar-inner .calendar-body div {
-    padding: 4px;
-    min-height: 30px;
-    line-height: 30px;
-    border: 1px solid transparent;
-    margin: 10px 2px 0px;
-}
-
-.calendar .calendar-inner .calendar-body div:nth-child(-n+7) {
-    border: 1px solid transparent;
-    border-bottom: 1px solid var(--weekdays-border-bottom-color);
-}
-
-.calendar .calendar-inner .calendar-body div:nth-child(-n+7):hover {
-    border: 1px solid transparent;
-    border-bottom: 1px solid var(--weekdays-border-bottom-color);
-}
-.calendar .calendar-inner .calendar-body div>a {
-    color: var(--calendar-font-color);
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-}
-
-.calendar .calendar-inner .calendar-body div:hover {
-    border: 1px solid var(--calendar-date-hover-color);
-    border-radius: 4px;
-}
-
-
-.calendar .calendar-inner .calendar-body div.empty-dates:hover {
-    border: 1px solid transparent;
-}
-
-.calendar .calendar-inner .calendar-controls {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.calendar .calendar-inner .calendar-today-date {
-    display: grid;
-    text-align: center;
-    cursor: pointer;
-    margin: 3px 0px;
-    background: var(--calendar-current-date-color);
-    padding: 8px 0px;
-    border-radius: 10px;
-    width: 80%;
-    margin: auto;
+    max-width: 800px; /* controla o tamanho total */
+    font-family: 'Roboto Slab', serif;
     
 }
 
-.calendar .calendar-inner .calendar-controls .calendar-year-month {
+.calendar .calendar-inner {
+    background: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+    overflow: hidden;
+}
+
+.calendar .calendar-controls {
     display: flex;
-    min-width: 100px;
-    justify-content: space-evenly;
     align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
 }
 
-.calendar .calendar-inner .calendar-controls .calendar-next {
-    text-align: right;
+.calendar .calendar-year-month {
+    text-align: center;
+    line-height: 1.1;
 }
 
-.calendar .calendar-inner .calendar-controls .calendar-year-month .calendar-year-label,
-.calendar .calendar-inner .calendar-controls .calendar-year-month .calendar-month-label {
-    font-weight: 500;
+.calendar .calendar-month-label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #43545C;
+    text-transform: capitalize;
+}
+
+.calendar .calendar-year-label {
+    font-size: .85rem;
+    color: #6c757d;
+}
+
+.calendar .calendar-controls svg {
+    width: 20px;
+    height: 20px;
+    fill: #43545C;
+}
+
+.calendar .calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    padding: 8px 12px 12px;
+}
+
+/* Cabeçalho dos dias da semana (primeiros 7 itens) */
+.calendar .calendar-body > div:nth-child(-n+7) a {
+    background: transparent;
+    border: none;
+    color: #6c757d;
+    font-weight: 600;
+    cursor: default;
     font-size: 20px;
 }
 
-.calendar .calendar-inner .calendar-body .calendar-today {
-    background: var(--calendar-today-color);
-    border-radius: 4px;
+/* Células de dia */
+.calendar .calendar-body > div {
+    text-align: center;
 }
 
-.calendar .calendar-inner .calendar-body .calendar-today:hover {
-    border: 1px solid transparent;
-}
-
-.calendar .calendar-inner .calendar-body .calendar-today a {
-    outline: 2px solid var(--calendar-today-innerborder-color);
-}
-
-.calendar .calendar-inner .calendar-controls .calendar-next a,
-.calendar .calendar-inner .calendar-controls .calendar-prev a {
-    color: var(--calendar-font-color);
-    font-family: arial, consolas, sans-serif;
-    font-size: 26px;
+.calendar .calendar-body a {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background: #fff;
+    color: #000;
     text-decoration: none;
-    padding: 4px 12px;
-    display: inline-block;
-    background: var(--calendar-nextprev-bg-color);
-    margin: 10px 0 10px 0;
+    font-size: .9rem;
 }
 
-.calendar .calendar-inner .calendar-controls .calendar-next a svg,
-.calendar .calendar-inner .calendar-controls .calendar-prev a svg {
-    height: 20px;
-    width: 20px;
+.calendar .calendar-body a:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
 }
 
-.calendar .calendar-inner .calendar-controls .calendar-next a svg path,
-.calendar .calendar-inner .calendar-controls .calendar-prev a svg path{
-    fill: var(--next-prev-arrow-color);
+/* Dias fora do mês atual */
+.calendar .prev-dates a,
+.calendar .next-dates a {
+    opacity: .45;
+    border-style: dashed;
+    cursor: default;
 }
 
-.calendar .calendar-inner .calendar-body .prev-dates,
-.calendar .calendar-inner .calendar-body .next-dates {
-    color: var(--calendar-prevnext-date-color);
+/* Hoje */
+.calendar .calendar-today a {
+    border-color: #2196f3;
+    color: #2196f3;
+    font-weight: 700;
 }
 
-.calendar .calendar-inner .calendar-body .prev-dates:hover,
-.calendar .calendar-inner .calendar-body .next-dates:hover {
-  border: 1px solid transparent;
-  pointer-events: none;
+/* Selecionado (div recebe a classe) */
+.calendar .calendar-body .selected a {
+    background: #2196f3;
+    color: #fff;
+    border-color: #2196f3;
+}
+
+/* Pílula "Hoje" */
+.calendar .calendar-today-date {
+    margin: 6px 12px 12px;
+    padding: 6px 10px;
+    background: #f8f9fa;
+    border: 1px solid #e4e7ea;
+    border-radius: 999px;
+    color: #43545C;
+    font-size: .85rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Resumo no canto inferior esquerdo */
+.agendamento-resumo {
+    position: fixed;
+    left: 7.5%;
+    bottom: 120px;
+    background: #f8f9fa;
+    border: 1px solid #e4e7ea;
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: #43545C;
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.08);
+    max-width: 450px;
+    
+}
+
+/* Botão Confirmar no card de resumo */
+.agendamento-resumo .btn-confirmar {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background-color: #dc3545; /* vermelho */
+  color: #fff;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+.agendamento-resumo .btn-confirmar:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Responsivo: reduz células em telas pequenas */
+@media (max-width: 576px) {
+    .calendar {
+        max-width: 320px;
+    }
+
+    .calendar .calendar-body a {
+        width: 34px;
+        height: 34px;
+        font-size: .85rem;
+    }
 }
