@@ -22,6 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
     time: null            // horário selecionado
   };
 
+  // Janela permitida: mínimo = hoje + 2 dias, máximo = fim do próximo mês
+  const stripTime = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+  const minDate = stripTime(addDays(state.today, 2));
+  const nextMonthStart = new Date(state.today.getFullYear(), state.today.getMonth() + 1, 1);
+  const maxDate = new Date(nextMonthStart.getFullYear(), nextMonthStart.getMonth() + 1, 0); // fim do próximo mês
+  const inRange = (d) => {
+    const x = stripTime(d);
+    return x >= minDate && x <= maxDate;
+  };
+
   const updateResumo = () => {
     if (!resumoEl) return;
     const parts = [];
@@ -66,6 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const year = state.view.getFullYear();
     const month = state.view.getMonth();
 
+    // Limites de navegação por mês
+    const minMonth = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
+    const maxMonth = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
+    const canGoPrev = (year > minMonth.getFullYear()) || (year === minMonth.getFullYear() && month > minMonth.getMonth());
+    const canGoNext = (year < maxMonth.getFullYear()) || (year === maxMonth.getFullYear() && month < maxMonth.getMonth());
+
     const firstOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstWeekDay = firstOfMonth.getDay(); // 0=Dom, ..., 6=Sáb
@@ -82,14 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const controls = `
       <div class="calendar-controls">
         <div class="calendar-prev">
-          <a href="#" data-nav="prev"><i class="bi bi-chevron-left"></i></a>
+          <a href="#" data-nav="prev" class="${canGoPrev ? '' : 'is-disabled'}" aria-disabled="${!canGoPrev}">
+            <i class="bi bi-chevron-left"></i>
+          </a>
         </div>
         <div class="calendar-year-month">
           <div class="calendar-month-label">${monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1)}</div>
           <div class="calendar-year-label">${year}</div>
         </div>
         <div class="calendar-next">
-          <a href="#" data-nav="next"><i class="bi bi-chevron-right"></i></a>
+          <a href="#" data-nav="next" class="${canGoNext ? '' : 'is-disabled'}" aria-disabled="${!canGoNext}">
+            <i class="bi bi-chevron-right"></i>
+          </a>
         </div>
       </div>
     `;
@@ -108,16 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentDays = Array.from({ length: daysInMonth }, (_, i) => {
       const day = i + 1;
       const cellDate = new Date(year, month, day);
+      const enabled = inRange(cellDate);
       const isToday = isSameDay(cellDate, state.today);
       const isSelected = isSameDay(cellDate, state.selected);
       const classes = [
         isToday ? 'calendar-today' : '',
         isSelected ? 'selected' : ''
       ].filter(Boolean).join(' ');
+      const disabledClass = enabled ? '' : 'is-disabled';
 
       return `
         <div class="${classes}">
-          <a href="#" data-type="current" data-date="${isoDate(year, month, day)}" aria-label="${formatDateBR(cellDate)}">${day}</a>
+          <a href="#" class="${disabledClass}" data-type="current" data-date="${isoDate(year, month, day)}" aria-label="${formatDateBR(cellDate)}">${day}</a>
         </div>
       `;
     }).join('');
@@ -154,10 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // Navegação
+    // Navegação (respeita desabilitados)
     calendarRoot.querySelectorAll('[data-nav]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
+        if (btn.classList.contains('is-disabled')) return;
         const dir = btn.getAttribute('data-nav');
         const v = state.view;
         state.view = new Date(v.getFullYear(), v.getMonth() + (dir === 'next' ? 1 : -1), 1);
@@ -174,12 +198,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Seleção de dia (somente mês atual)
-    calendarRoot.querySelectorAll('.calendar-body a[data-type="current"]').forEach(a => {
+    // Seleção de dia (somente mês atual e dentro da janela)
+    calendarRoot.querySelectorAll('.calendar-body a[data-type="current"]:not(.is-disabled)').forEach(a => {
       a.addEventListener('click', (e) => {
         e.preventDefault();
         const [y, m, d] = a.getAttribute('data-date').split('-').map(Number);
-        state.selected = new Date(y, m - 1, d);
+        const picked = new Date(y, m - 1, d);
+        if (!inRange(picked)) return;
+        state.selected = picked;
         if (tituloHorarios) tituloHorarios.textContent = 'Horários';
         updateResumo();
         render();
