@@ -238,14 +238,14 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Selecione sala, data e horário antes de confirmar.');
         return;
       }
-      const d = state.selected;
-      const dd = String(d.getDate()).padStart(2, '0');
-      const mm = String(d.getMonth() + 1).padStart(2, '0');
-      const yyyy = d.getFullYear();
-      alert(`Agendamento confirmado:\nSala: ${state.room}\nData: ${dd}/${mm}/${yyyy}\nHorário: ${state.time}`);
+
+      // Voltar para a tela do professor sem salvar
+      const veioDoProfessor = document.referrer && new URL(document.referrer).pathname.includes('tela_professor');
+      if (veioDoProfessor) {
+        history.back();
+      } else {
+        window.location.href = 'tela_professor.html'; // ajuste o caminho se necessário
+      }
     });
   }
 });
-
-
-
