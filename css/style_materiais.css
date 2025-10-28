@@ -72,6 +72,7 @@ input[type="checkbox"]:checked::after {
     color: #fff;
     box-shadow: 0 6px 12px rgba(184,25,25,0.18);
     transition: background 0.15s, box-shadow 0.15s;
+    cursor: pointer;
   }
   .confirm-btn:hover {
     background-color: #981522;
@@ -81,5 +82,19 @@ input[type="checkbox"]:checked::after {
   }
   .grupo-botões{
     overflow-y: auto;
-    max-height: 360px;
+    max-height: 500px;
   }
+
+.grupo-botões button {
+  display: inline-flex;
+  align-items: center;     /* centraliza vertical */
+  gap: 8px;                /* espaço entre checkbox e texto (se houver) */
+  text-align: center;
+  padding: 10px 12px;
+  font-size: 20px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.grupo-botões button input[type="checkbox"] {
+  margin: 0;
+}
