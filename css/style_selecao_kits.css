@@ -1,0 +1,180 @@
+/* CSS para a página de seleção de kits - procura reproduzir o visual do anexo */
+body {
+  background-color: #f6f6f6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+h2.text-center {
+  color: #355055;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+}
+
+.container {
+  max-width: 820px;
+}
+
+.kits-box {
+  background: #ffffff;
+  border: 2px solid #dcdcdc;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.01);
+}
+
+.kits-list {
+  max-height: 450px; /* altura do painel com scroll */
+  overflow-y: auto;
+  padding-right: 6px; /* espaço para o scrollbar */
+}
+
+.kit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 30px; /* mais espaço à esquerda para caber o rádio */
+  border-bottom: 1px solid #eee;
+}
+
+.kit-item:last-child {
+  border-bottom: none;
+}
+
+/* Estilização do rádio: torná-lo maior e visualmente claro */
+.form-check-input {
+  width: 22px;
+  height: 22px;
+  margin: 0 20px 0 0; /* remover margem negativa/esquerda - usar espaço interno do item */
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid #bfbfbf;
+  border-radius: 50%;
+  background-color: #fff;
+  position: relative;
+  cursor: pointer;
+  flex: 0 0 auto;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  transition: border-color .12s ease, background-color .12s ease;
+}
+
+/* indicador interno quando selecionado */
+.form-check-input::after {
+  content: '';
+  width: 11px; /* ligeiramente maior para melhor visibilidade */
+  height: 11px;
+  background: transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background .12s ease, transform .12s ease;
+}
+
+.form-check-input:checked {
+  border-color: #b81919;
+  background-color: #b81919;
+}
+
+.form-check-input:checked::after {
+  background: #fff;
+}
+
+.form-check-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(184,25,25,0.12);
+}
+
+.form-check-label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+
+.kit-title {
+  font-weight: 600;
+  font-size: 1.6rem; /* aumentado conforme solicitado */
+  color: #222;
+}
+
+.kit-desc {
+  font-weight:600;
+  font-size: 0.9rem;
+  color: #9b9b9b;
+}
+
+.kit-spacer {
+  height: 700px; /* cria espaço em branco como no mockup; ajuste conforme necessário */
+}
+
+/* Botão confirmar centralizado e com aparência de pílula vermelha */
+.confirm-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto 0;
+  background: #b81919;
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+  width: 210px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.confirm-btn:hover {
+  background: #a31515; /* tom mais escuro para o hover */
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(184,25,25,0.18);
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.confirm-btn:hover {
+  background-color: #981522;
+  border-color: #bd2130;
+
+  
+}
+
+/* Personalização da barra de rolagem para WebKit (Chrome, Edge) */
+.kits-list::-webkit-scrollbar {
+  width: 8px;
+}
+.kits-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+.kits-list::-webkit-scrollbar-thumb {
+  background: #777;
+  border-radius: 6px;
+}
+
+
+
+/* Ajustes responsivos */
+@media (max-width: 576px) {
+  .container { padding-left: 12px; padding-right: 12px; }
+  .kits-list { max-height: 260px; }
+  .confirm-btn { width: 180px; font-size: 1rem; }
+}
+/* Responsividade */
+@media (max-width: 768px) {
+  #link_area {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #link_area .btn {
+      width: 90%;
+      padding: 10% 12% 14% 12%;
+  }
+
+  #link_area .btn span {
+      font-size: 1.75rem;
+  }
+}
