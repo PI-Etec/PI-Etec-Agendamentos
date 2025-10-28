@@ -9,6 +9,7 @@
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="../css/style_selecao_kits.css">
     <link rel="stylesheet" href="../css/style_cabecalho.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -27,19 +28,47 @@
       </header>
       <div class="container mt-5">
         <h2 class="text-center mb-4">Seleção de "kits"</h2>
-        <div class="form-check mb-3">
-          <input class="form-check-input" type="radio" name="kit" id="kitMaca" value="maca">
-          <label class="form-check-label" for="kitMaca">
-            Kit Maçã (Maçã, Banana, Manga)
-          </label>
+
+        <!-- Cabeçalho 1 -->
+        <div class="kits-box">
+          <div class="kits-list">
+            <div class="form-check kit-item">
+              <input class="form-check-input" type="radio" name="kit" id="kitMaca" value="maca">
+              <label class="form-check-label" for="kitMaca">
+                <span class="kit-title">Kit Maçã</span>
+                <span class="kit-desc">(Maçã, Banana, Manga)</span>
+              </label>
+            </div>
+            <!-- Cabeçalho 2 -->
+            <div class="form-check kit-item">
+              <input class="form-check-input" type="radio" name="kit" id="kitBanana" value="banana">
+              <label class="form-check-label" for="kitBanana">
+                <span class="kit-title">Kit Banana</span>
+                <span class="kit-desc">(Maçã, Banana, Manga)</span>
+              </label>
+            </div> 
+            <!-- Cabeçalho 3 -->
+            <div class="form-check kit-item">
+              <input class="form-check-input" type="radio" name="kit" id="kitAbacate" value="Abacate">
+              <label class="form-check-label" for="kitBanana">
+                <span class="kit-title">Kit Abacate</span>
+                <span class="kit-desc">(Abacate, limão, mamão)</span>
+              </label>
+            </div>
+            <!-- Cabeçalho 4 -->
+            <div class="form-check kit-item">
+              <input class="form-check-input" type="radio" name="kit" id="kit Laranja" value="laranja">
+              <label class="form-check-label" for="KItLaranja">
+                <span class="kit-title">Kit Laranja</span>
+                <span class="kit-desc">(Laranja, pera, abacaxi)</span>
+              </label>
+            </div>
+
+            <!-- Espaço extra para simular o conteúdo vazio abaixo, ajustável via HTML/JS -->
+            <div class="kit-spacer"></div>
+          </div>
         </div>
-        <div class="form-check mb-4">
-          <input class="form-check-input" type="radio" name="kit" id="kitBanana" value="banana">
-          <label class="form-check-label" for="kitBanana">
-            Kit Banana (Maçã, Banana, Manga)
-          </label>
-        </div>
-        <button type="button" class="btn btn-danger w-100">Confirmar</button>
+        <button type="button" class="btn confirm-btn">Confirmar</button>
       </div>
     
       <!-- Bootstrap JS (opcional) -->
