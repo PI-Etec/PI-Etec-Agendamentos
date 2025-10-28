@@ -1,0 +1,122 @@
+/* Reset básico */
+html, body {
+    /* Mantido: Garante 100% da altura e remove margens padrão */
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+
+    /* Mantido: Centralização perfeita usando Flexbox e 100vh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#login {
+    background-color: #fff;
+    /* Ajuste para responsividade:
+       Em telas grandes: padding 30px 40px
+       Em telas pequenas: padding 20px 20px (ou use uma media query mais específica)
+       Vamos deixar o padding um pouco mais adaptável.
+    */
+    padding: 30px 40px; 
+    
+    border-radius: 50px;
+    box-shadow: 1px 1px 10px rgba(194, 38, 38, 0.2);
+    text-align: center;
+    
+    /* Importante para a responsividade em conjunto com o max-width */
+    width: 90%; /* Usa 90% da largura do viewport para não 'colar' nas bordas */
+    max-width: 400px; /* Limita o tamanho em telas grandes */
+    
+    /* Garante que o box não suma se a largura for muito pequena, adicionando um padding interno mínimo */
+    min-width: 280px; 
+}
+
+/* --- Estilos de Ícones e Campos (Manter o que já estava ótimo) --- */
+
+.campo-email, .campo-senha {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.icone-email, .icone-senha {
+    width: 37px;
+    height: 37px;
+    background-color: #c22626;
+    border-radius: 20%;
+    object-fit: contain;
+    padding: 5px;
+    /* Garantir que os ícones não encolham em telas pequenas */
+    flex-shrink: 0;
+}
+
+/* O form-control do Bootstrap lida com a largura do input, mas ajustamos o estilo: */
+.campo-email input, .campo-senha input {
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    padding: 10px 12px;
+    transition: border-color 0.3s ease;
+    /* Ajuste de responsividade: remove a borda para não ter borda dupla com a do Bootstrap */
+    border: none; 
+}
+
+/* Garante que o input preencha o espaço restante ao lado do ícone */
+.campo-email input.form-control, .campo-senha input.form-control {
+    /* O flex-grow garante que o input use todo o espaço disponível no container flex */
+    flex-grow: 1; 
+    /* Remove a cor de fundo padrão do Bootstrap se estiver definida */
+    background-color: transparent; 
+}
+
+.campo-email input:focus,
+.campo-senha input:focus {
+    /* Mantido: Efeito de foco visual */
+    border-color: #c22626; 
+    box-shadow: 0 0 5px rgba(194, 38, 38, 0.5); /* Sombra mais sutil e adaptada */
+}
+
+/* Botão (Manter os estilos, o Bootstrap w-100 garante a largura total) */
+.Botao {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff !important;
+    border-radius: 5px;
+    padding: 12px 0;
+    transition: background-color 0.3s ease;
+}
+
+.Botao:hover {
+    background-color: #9e1b1b !important;
+}
+
+/* --- Media Queries (Para Ajustes Específicos em Mobile) --- */
+@media (max-width: 450px) {
+    /* Em telas muito pequenas, arredonde menos o container principal */
+    #Cadastrar {
+        border-radius: 20px;
+        padding: 20px 20px; /* Reduz o padding para ganhar espaço */
+        width: 95%; /* Use mais da largura em mobile */
+    }
+
+    /* Reduz um pouco o tamanho da fonte do botão em mobile */
+    .Botao {
+        font-size: 1.3rem;
+    }
+    
+    /* Reduz o tamanho da fonte dos inputs em mobile */
+    .campo-email input, .campo-senha input {
+        font-size: 1rem;
+    }
+
+    /* Ajusta o tamanho dos ícones para serem menos agressivos */
+    .icone-email, .icone-senha {
+        width: 30px;
+        height: 30px;
+    }
+}
