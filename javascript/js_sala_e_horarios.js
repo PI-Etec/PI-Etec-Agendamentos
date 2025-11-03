@@ -233,18 +233,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // Clique do botão Confirmar
   const btnConfirmar = document.getElementById('btnConfirmarAgendamento');
   if (btnConfirmar) {
-    btnConfirmar.addEventListener('click', () => {
+    btnConfirmar.addEventListener('click', async () => {
       if (!state.room || !state.selected || !state.time) {
         alert('Selecione sala, data e horário antes de confirmar.');
         return;
       }
 
-      // Voltar para a tela do professor sem salvar
-      const veioDoProfessor = document.referrer && new URL(document.referrer).pathname.includes('tela_professor');
-      if (veioDoProfessor) {
-        history.back();
-      } else {
-        window.location.href = 'tela_professor.html'; // ajuste o caminho se necessário
+      try {
+        const body = {
+          data: new Date(state.selected),   // garanta que state.selected é uma data válida
+          horario: state.time,
+          sala: state.room,
+        };
+
+        const res = await fetch('http://localhost:3000/agendamentos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          alert('Erro ao salvar: ' + (err.error || res.statusText));
+          return;
+        }
+
+        // Salvo com sucesso: voltar ou redirecionar
+        const veioDoProfessor = document.referrer && new URL(document.referrer).pathname.includes('tela_professor');
+        if (veioDoProfessor) {
+          history.back();
+        } else {
+          window.location.href = 'tela_professor.html';
+        }
+      } catch (e) {
+        console.error(e);
+        alert('Falha ao conectar com o servidor.');
       }
     });
   }

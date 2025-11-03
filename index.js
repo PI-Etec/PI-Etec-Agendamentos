@@ -1,27 +1,24 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 require('dotenv').config();
-const conectarBanco = require('./conexao_db');
 
-// Importa rotas
-const authRoutes = require('./routes/auth');
+const authRouter = require('./routes/auth');
+const agendamentosRouter = require('./routes/agendamentos');
 
 const app = express();
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'http://localhost:5500', credentials: true }));
 app.use(express.json());
 
-// Usa as rotas de autenticação
-app.use('/api/auth', authRoutes);
+// Conexão Mongo (use MONGODB_URI se tiver no .env)
+const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/Etec-BD';
+mongoose.connect(uri)
+  .then(() => console.log('Conectado ao MongoDB'))
+  .catch(err => console.error('Erro MongoDB:', err));
+
+app.use('/auth', authRouter);
+app.use('/agendamentos', agendamentosRouter);
 
 app.get('/', (req, res) => res.send('Servidor rodando!'));
 
-async function startServer() {
-  try {
-    await conectarBanco();
-    app.listen(3000, () => console.log('🚀 Servidor rodando na porta 3000'));
-  } catch (err) {
-    console.error('Erro ao iniciar servidor:', err.message);
-  }
-}
-
-startServer();
+app.listen(3000, () => console.log('🚀 Servidor rodando na porta 3000'));
