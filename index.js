@@ -7,18 +7,28 @@ const authRouter = require('./routes/auth');
 const agendamentosRouter = require('./routes/agendamentos');
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5500', credentials: true }));
+
+const allowedOrigins = ['http://127.0.0.1:5500', 'http://localhost:5500'];
+
+app.use(cors({
+  origin: '*',
+  credentials: true
+}));
+
+
 app.use(express.json());
 
-// Conexão Mongo (use MONGODB_URI se tiver no .env)
-const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/Etec-BD';
-mongoose.connect(uri)
-  .then(() => console.log('Conectado ao MongoDB'))
-  .catch(err => console.error('Erro MongoDB:', err));
+// 🔹 Conexão MongoDB
+const uri = process.env.MONGO_URI; // Use a variável correta
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('✅ Conectado ao MongoDB Atlas'))
+  .catch(err => console.error('❌ Erro MongoDB:', err.message));
 
+// Rotas
 app.use('/auth', authRouter);
 app.use('/agendamentos', agendamentosRouter);
 
 app.get('/', (req, res) => res.send('Servidor rodando!'));
 
+// 🔹 Subir servidor após conexão (opcional para segurança)
 app.listen(3000, () => console.log('🚀 Servidor rodando na porta 3000'));

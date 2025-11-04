@@ -29,50 +29,65 @@
   <script>
     const form = document.querySelector('form');
     const msg = document.getElementById('mensagem');
-
+    
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
+    
       const email = document.getElementById('email').value.trim();
       const senha = document.getElementById('senha').value.trim();
-
+      msg.textContent = ''; // limpa mensagem anterior
+    
+      if (!email || !senha) {
+        msg.style.color = 'red';
+        msg.textContent = 'Preencha todos os campos!';
+        return;
+      }
+    
       try {
-        const res = await fetch('http://localhost:3000/api/auth/login', {
+        const res = await fetch('http://localhost:3000/auth/login', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email, senha })
         });
-
+    
         const data = await res.json();
-
+    
         if (res.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('role', data.role);
+    
           msg.style.color = 'green';
           msg.textContent = 'Login efetuado com sucesso!';
-
-          // 🧠 Armazena token no navegador (opcional)
-          localStorage.setItem('token', data.token);
-
-          // 🔍 Verifica o sufixo do e-mail e redireciona para a tela correta
+    
           setTimeout(() => {
-            if (email.endsWith('@professor.com')) {
-              window.location.href = '../html/tela_professor.html';
-            } else if (email.endsWith('@adm.com')) {
-              window.location.href = '../html/tela_adiministrador.html';
-            } else if (email.endsWith('@tecnico.com')) {
-              window.location.href = '../html/tela_tecnico.html';
-            } else {
-              msg.textContent = 'Domínio de e-mail inválido.';
+            switch (data.role) {
+              case 'professor.com':
+                window.location.href = '../html/tela_professor.html';
+                break;
+              case 'adm.com':
+                window.location.href = '../html/tela_adiministrador.html';
+                break;
+              case 'tecnico.com':
+                window.location.href = '../html/tela_tecnico.html';
+                break;
+              default:
+                msg.style.color = 'red';
+                msg.textContent = 'Domínio de e-mail inválido.';
             }
-          }, 1000);
+          }, 800);
         } else {
+          msg.style.color = 'red';
           msg.textContent = data.message || 'Erro ao fazer login.';
         }
       } catch (err) {
-        console.error(err);
+        console.error('Erro ao conectar com backend:', err);
+        msg.style.color = 'red';
         msg.textContent = '❌ Erro ao conectar com o servidor.';
       }
     });
-  </script>
+    </script>
+    
+    
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
