@@ -1,3 +1,8 @@
+const toIsoDateOnly = (d) => {
+  if (!d) return null;
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   // Dropdown salas
   const dropdownButton = document.getElementById('dropdownMenuButton');
@@ -241,20 +246,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const body = {
-          data: new Date(state.selected),   // garanta que state.selected é uma data válida
+          data: toIsoDateOnly(state.selected),
           horario: state.time,
           sala: state.room,
         };
 
-        const res = await fetch('http://localhost:3000/agendamentos', {
+        // Confirme que a URL está no PLURAL
+        const apiUrl = `${location.protocol}//${location.hostname}:3000/agendamentos`;
+
+        const res = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
         });
 
         if (!res.ok) {
-          const err = await res.json().catch(() => ({}));
-          alert('Erro ao salvar: ' + (err.error || res.statusText));
+          const err = await res.json().catch(() => ({ error: 'Resposta inválida do servidor.' }));
+          console.error('Erro do servidor:', res.status, err);
+          alert('Erro ao salvar: ' + (err.message || err.error || res.statusText));
           return;
         }
 

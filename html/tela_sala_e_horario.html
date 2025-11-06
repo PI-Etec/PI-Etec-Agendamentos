@@ -52,6 +52,13 @@
           <button id="btnConfirmarAgendamento" type="button" class="btn-confirmar">Confirmar</button>
         </div>
 
+        <!-- SCRIPT PARA CORRIGIR CORS: Redireciona 127.0.0.1 para localhost -->
+        <script>
+          if (location.hostname === '127.0.0.1') {
+            location.href = location.href.replace('127.0.0.1', 'localhost');
+          }
+        </script>
+        
         <script src="../javascript/js_sala_e_horarios.js"></script>
 
       </div>
