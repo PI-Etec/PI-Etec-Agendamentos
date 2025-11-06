@@ -263,9 +263,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!res.ok) {
           const err = await res.json().catch(() => ({ error: 'Resposta inválida do servidor.' }));
           console.error('Erro do servidor:', res.status, err);
-          alert('Erro ao salvar: ' + (err.message || err.error || res.statusText));
+          if (res.status === 409) {
+            alert(err.message || 'Este horário já está agendado.');
+          } else {
+            alert('Erro ao salvar: ' + (err.message || err.error || res.statusText));
+          }
           return;
         }
+
+        // Se chegou aqui, o agendamento foi salvo com sucesso.
+        // Mostra a mensagem de sucesso para o usuário.
+        alert('Sala, data e horário cadastrados com sucesso!');
 
         // Salvo com sucesso: voltar ou redirecionar
         const veioDoProfessor = document.referrer && new URL(document.referrer).pathname.includes('tela_professor');

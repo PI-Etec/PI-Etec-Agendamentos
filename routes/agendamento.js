@@ -21,8 +21,7 @@ const agendamentoSchema = new mongoose.Schema({
     trim: true,
     match: [/^([01]\d|2[0-3]):([0-5]\d)$/, 'O formato do horário deve ser HH:MM']
   },
-  // Adicione um campo para o usuário, se aplicável
-  // usuarioId: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' }
+
 }, {
   timestamps: true // Adiciona createdAt e updatedAt automaticamente
 });
