@@ -8,10 +8,8 @@ const agendamentosRouter = require('./routes/agendamento');
 
 const app = express();
 
-<<<<<<< HEAD
 // Use a configuração CORS mais simples. Isso aceita qualquer origem.
 app.use(cors());
-=======
 const allowedOrigins = ['http://127.0.0.1:5500', 'http://localhost:5500'];
 
 app.use(cors({
@@ -19,7 +17,6 @@ app.use(cors({
   credentials: true
 }));
 
->>>>>>> 4fd5e0d390172bb4faac5295b8b1330fbed8376c
 
 app.use(express.json());
 
@@ -50,7 +47,6 @@ app.use('/agendamentos', agendamentosRouter);
 
 app.get('/', (req, res) => res.send('Servidor rodando!'));
 
-<<<<<<< HEAD
 // Middleware de tratamento de erros. Coloque no final, antes do app.listen.
 app.use((err, req, res, next) => {
   console.error('--- ERRO NÃO TRATADO ---');
@@ -59,7 +55,5 @@ app.use((err, req, res, next) => {
   res.status(500).send({ error: 'Algo quebrou no servidor!', details: err.message });
 });
 
-=======
 // 🔹 Subir servidor após conexão (opcional para segurança)
->>>>>>> 4fd5e0d390172bb4faac5295b8b1330fbed8376c
 app.listen(3000, () => console.log('🚀 Servidor rodando na porta 3000'));
