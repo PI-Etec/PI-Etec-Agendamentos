@@ -39,9 +39,31 @@
 
   <button type="button" class="btn confirm-btn" id="confirmar-selecao">Confirmar</button>
 
+  <!-- Modal custom para entrada de quantidade (substitui prompt) -->
+  <div id="quant-modal" class="quant-modal hidden">
+    <div class="quant-modal-content">
+      <h3 id="modal-title">Quantidade</h3>
+      <p id="modal-available">Quantidade disponível: 0 g</p>
+      <div class="quant-input-row">
+        <input id="modal-quant-input" type="number" min="1" value="1">
+        <span class="unit">g</span>
+      </div>
+      <div class="modal-actions">
+        <button id="modal-cancel" type="button">Cancelar</button>
+        <button id="modal-confirm" type="button">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const container = document.getElementById('materiais-container');
     const mensagem = document.getElementById('mensagem');
+
+    // formata a quantidade para exibição (adiciona unidade 'g')
+    function formatQuantidade(q) {
+      const num = Number(q || 0);
+      return `${num} g`;
+    }
 
     async function carregarMateriais() {
       try {
@@ -75,9 +97,18 @@
         const btn = document.createElement('button');
         btn.className = 'material-btn';
         btn.style.margin = '6px';
-        btn.textContent = `${m.material} — ${m.quantidade}`;
+        // mostrar somente o nome do material no botão
+        btn.textContent = m.material;
         btn.dataset.id = m._id || m.id || '';
         btn.dataset.quantidade = m.quantidade;
+
+        // desabilitar botão se não há estoque
+        const qtdNum = Number(m.quantidade || 0);
+        if (qtdNum <= 0) {
+          btn.disabled = true;
+          btn.title = 'Sem estoque';
+        }
+
         btn.addEventListener('click', () => onClickMaterial(m, btn));
         container.appendChild(btn);
       });
@@ -91,10 +122,11 @@
         return;
       }
 
-      const entrada = prompt(`Material: ${material.material}\nQuantidade disponível: ${max}\nDigite a quantidade que deseja selecionar:` , '1');
-      if (entrada === null) return; // cancelou
+  // abrir modal customizado para entrada (mostra unidade 'g' junto ao input)
+  const entrada = await showQuantModal(material, max);
+  if (entrada === null) return; // cancelou
 
-      const q = parseInt(entrada, 10);
+  const q = parseInt(entrada, 10);
       if (Number.isNaN(q) || q <= 0) {
         mensagem.style.color = 'red';
         mensagem.textContent = 'Quantidade inválida.';
@@ -107,32 +139,124 @@
         return;
       }
 
-      // enviar seleção para backend
-      try {
-        const res = await fetch('http://localhost:3000/selecionar/selecionar', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ materialId: material._id || material.id, quantidade: q })
+      // registrar seleção localmente para envio ao confirmar (não decrementamos no backend ainda)
+      window.selectedItems = window.selectedItems || [];
+      const existing = window.selectedItems.find(it => it.materialId === (material._id || material.id));
+      if (existing) {
+        existing.quantidade = Number(existing.quantidade || 0) + q;
+      } else {
+        window.selectedItems.push({
+          materialId: material._id || material.id,
+          material: material.material,
+          quantidade: q
         });
-
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.message || 'Erro ao selecionar');
-
-        mensagem.style.color = 'green';
-        mensagem.textContent = `Selecionado ${q} x ${material.material}. Estoque restante: ${data.material.quantidade}`;
-
-        // atualizar botão com nova quantidade
-        btnEl.textContent = `${material.material} — ${data.material.quantidade}`;
-        btnEl.dataset.quantidade = data.material.quantidade;
-
-      } catch (err) {
-        mensagem.style.color = 'red';
-        mensagem.textContent = 'Erro ao processar seleção: ' + err.message;
       }
+
+      // atualizar dataset localmente para refletir a seleção (apenas visual)
+      const current = Number(btnEl.dataset.quantidade || max);
+      const novoLocal = Math.max(0, current - q);
+      btnEl.dataset.quantidade = novoLocal;
+      btnEl.textContent = material.material; // manter apenas o nome
+
+      // desabilitar/ativar botão conforme novo estoque local
+      if (novoLocal <= 0) {
+        btnEl.disabled = true;
+        btnEl.title = 'Sem estoque';
+      } else {
+        btnEl.disabled = false;
+        btnEl.title = '';
+      }
+
+      mensagem.style.color = 'green';
+      mensagem.textContent = `Adicionado ${q} x ${material.material} à seleção local. Clique em Confirmar para finalizar.`;
     }
 
     // carregar na inicialização
     carregarMateriais();
+
+    // confirmar seleção: enviar todas as seleções locais para o backend
+    const confirmarBtn = document.getElementById('confirmar-selecao');
+    confirmarBtn.addEventListener('click', async () => {
+      const selections = window.selectedItems || [];
+      if (!selections.length) {
+        mensagem.style.color = 'red';
+        mensagem.textContent = 'Nenhuma seleção para confirmar.';
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/selecionar/kits', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ selections })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Erro ao salvar seleção');
+
+        mensagem.style.color = 'green';
+        mensagem.textContent = 'Seleção salva com sucesso (kit id: ' + data.kitId + ')';
+        // limpar seleção local
+        window.selectedItems = [];
+      } catch (err) {
+        mensagem.style.color = 'red';
+        mensagem.textContent = 'Erro ao salvar seleção: ' + err.message;
+      }
+    });
+
+    // --- Modal logic ---
+    const quantModal = document.getElementById('quant-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalAvailable = document.getElementById('modal-available');
+    const modalInput = document.getElementById('modal-quant-input');
+    const modalCancel = document.getElementById('modal-cancel');
+    const modalConfirm = document.getElementById('modal-confirm');
+
+    function showModalOverlay() {
+      quantModal.classList.remove('hidden');
+      modalInput.focus();
+      modalInput.select();
+    }
+
+    function hideModalOverlay() {
+      quantModal.classList.add('hidden');
+    }
+
+    function showQuantModal(material, max) {
+      return new Promise(resolve => {
+        modalTitle.textContent = material.material;
+        modalAvailable.textContent = 'Quantidade disponível: ' + formatQuantidade(max);
+        modalInput.value = '1';
+        showModalOverlay();
+
+        function cleanup() {
+          modalCancel.removeEventListener('click', onCancel);
+          modalConfirm.removeEventListener('click', onConfirm);
+          quantModal.removeEventListener('keydown', onKey);
+        }
+
+        function onCancel() {
+          cleanup();
+          hideModalOverlay();
+          resolve(null);
+        }
+
+        function onConfirm() {
+          const val = modalInput.value;
+          cleanup();
+          hideModalOverlay();
+          resolve(val);
+        }
+
+        function onKey(e) {
+          if (e.key === 'Escape') onCancel();
+          if (e.key === 'Enter') onConfirm();
+        }
+
+        modalCancel.addEventListener('click', onCancel);
+        modalConfirm.addEventListener('click', onConfirm);
+        quantModal.addEventListener('keydown', onKey);
+      });
+    }
   </script>
 
 </body>
