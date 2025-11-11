@@ -5,8 +5,12 @@ require('dotenv').config();
 
 const authRouter = require('./routes/auth');
 const agendamentosRouter = require('./routes/agendamento');
+const selecionarRouter = require('./routes/selecionar');
 
 const app = express();
+
+const path = require('path');
+const http = require('http');
 
 // Use a configuração CORS mais simples. Isso aceita qualquer origem.
 app.use(cors());
@@ -20,6 +24,9 @@ app.use(cors({
 
 app.use(express.json());
 
+// Servir arquivos estáticos (HTML/CSS/JS) a partir da pasta html
+app.use(express.static(path.join(__dirname, 'html')));
+
 // 🔹 Conexão MongoDB
 const uri = process.env.MONGO_URI; // Use a variável correta
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -28,6 +35,9 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Rotas
 app.use('/auth', authRouter);
+
+// rota para selecionar materiais
+app.use('/selecionar', selecionarRouter);
 
 // --- INÍCIO DO TESTE DE DIAGNÓSTICO FINAL ---
 // Este middleware vai rodar para TODAS as requisições que chegarem.
@@ -45,6 +55,9 @@ app.use((req, res, next) => {
 // A URL deve ser no plural para bater com o que o frontend chama.
 app.use('/agendamentos', agendamentosRouter);
 
+// Simple health endpoint for diagnostics
+app.get('/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
+
 app.get('/', (req, res) => res.send('Servidor rodando!'));
 
 // Middleware de tratamento de erros. Coloque no final, antes do app.listen.
@@ -56,4 +69,30 @@ app.use((err, req, res, next) => {
 });
 
 // 🔹 Subir servidor após conexão (opcional para segurança)
-app.listen(3000, () => console.log('🚀 Servidor rodando na porta 3000'));
+const PORT = process.env.PORT || 3000;
+const HOST = '127.0.0.1';
+console.log('>> About to listen:', { host: HOST, port: PORT });
+const server = app.listen(PORT, HOST);
+
+server.on('listening', () => {
+  const addr = server.address();
+  console.log(`🚀 Servidor rodando em http://${addr.address}:${addr.port}`);
+
+  // Self-check: try to call the server from the same process after a short delay
+  setTimeout(() => {
+    const checkUrl = `http://${HOST}:${PORT}/selecionar/materials`;
+    console.log('[self-check] attempting', checkUrl);
+    http.get(checkUrl, (res) => {
+      console.log('[self-check] statusCode =', res.statusCode);
+      let body = '';
+      res.on('data', (chunk) => body += chunk.toString());
+      res.on('end', () => console.log('[self-check] body (start):', body.slice(0, 400)));
+    }).on('error', (err) => {
+      console.error('[self-check] error connecting to', checkUrl, err && err.message);
+    });
+  }, 1500);
+});
+
+server.on('error', (err) => {
+  console.error('*** Server error during listen:', err && err.message);
+});
