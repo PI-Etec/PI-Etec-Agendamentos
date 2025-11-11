@@ -1,3 +1,7 @@
+// Adicione esta linha no topo do arquivo para depuração
+console.log('Origem da página de agendamento:', window.location.origin);
+console.log('Verificando localStorage na página de agendamento:', localStorage.getItem('nomeUsuario'));
+
 const toIsoDateOnly = (d) => {
   if (!d) return null;
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -245,13 +249,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
+        // Pega o nome do professor do localStorage
+        const nomeProfessor = localStorage.getItem('nomeUsuario');
+        if (!nomeProfessor) {
+          alert('Professor não identificado. Por favor, faça o login novamente.');
+          return;
+        }
+
         const body = {
           data: toIsoDateOnly(state.selected),
           horario: state.time,
           sala: state.room,
+          nome_professor: nomeProfessor, 
         };
 
-        // Confirme que a URL está no PLURAL
         const apiUrl = `${location.protocol}//${location.hostname}:3000/agendamentos`;
 
         const res = await fetch(apiUrl, {
@@ -270,8 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           return;
         }
-
-        // Se chegou aqui, o agendamento foi salvo com sucesso.
         // Mostra a mensagem de sucesso para o usuário.
         alert('Sala, data e horário cadastrados com sucesso!');
 
