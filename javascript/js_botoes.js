@@ -19,8 +19,8 @@ function irParaTela_cadastrar(){
     window.location.href='tela_cadastrar.html';
 }
 // Botão para tela Gerenciar Banco De Materiais 
-function irParaTela_gerenciar_banco(){
-    window.location.href='tela_gerenciar_banco_de_materiais.html';
+function irParaTela_tecnico(){
+    window.location.href='tela_tecnico.html';
 }
 // Botão para tela Visualizar Agendamento 
 function irParaTela_visualizar_agendamento(){
