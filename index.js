@@ -6,6 +6,7 @@ require('dotenv').config();
 const authRouter = require('./routes/auth');
 const agendamentosRouter = require('./routes/agendamento');
 const selecionarRouter = require('./routes/selecionar');
+const reagentesRouter = require('./routes/reagentes');
 
 const app = express();
 
@@ -27,6 +28,11 @@ app.use(express.json());
 // Servir arquivos estáticos (HTML/CSS/JS) a partir da pasta html
 app.use(express.static(path.join(__dirname, 'html')));
 
+// Servir também outros assets estáticos (CSS, JS e imagens) que ficam fora da pasta `html`
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/javascript', express.static(path.join(__dirname, 'javascript')));
+app.use('/img', express.static(path.join(__dirname, 'img')));
+
 // 🔹 Conexão MongoDB
 const uri = process.env.MONGO_URI; // Use a variável correta
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -38,6 +44,9 @@ app.use('/auth', authRouter);
 
 // rota para selecionar materiais
 app.use('/selecionar', selecionarRouter);
+
+// rotas para reagentes
+app.use('/reagentes', reagentesRouter);
 
 // --- INÍCIO DO TESTE DE DIAGNÓSTICO FINAL ---
 // Este middleware vai rodar para TODAS as requisições que chegarem.

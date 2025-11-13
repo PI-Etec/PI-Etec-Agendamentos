@@ -29,7 +29,7 @@
 
   <h1>Reagentes</h1>
   
-  <div class="grupo-botões">
+  <div class="grupo-botões" id="grupo-botoes">
     <button><input type="checkbox">Sódio</button>
     <button><input type="checkbox">Cloro</button>
     <button><input type="checkbox"></button>
@@ -62,11 +62,30 @@
     <button><input type="checkbox"></button>
   </div>
 
-<div class="botoes">
-  <button type="button" class="btn confirm-btn">Confirmar</button>
-  <button type="button" class="btn create-btn">Criar Kit</button>
-</div>
+  <div id="mensagem" style="margin:10px 0;color:green;display:none"></div>
 
+  <div class="botoes">
+    <button type="button" class="btn confirm-btn" id="confirmar-selecao">Confirmar</button>
+    <button type="button" class="btn create-btn">Criar Kit</button>
+  </div>
+
+  <!-- Modal invisível por padrão; necessário para entrada de quantidade pelo JS -->
+  <div id="quant-modal" class="quant-modal hidden" style="display:none;">
+    <div class="quant-modal-content">
+      <h3 id="modal-title">Quantidade</h3>
+      <p id="modal-available">Quantidade disponível: 0</p>
+      <div class="quant-input-row">
+        <input id="modal-quant-input" type="number" min="1" value="1">
+        <span class="unit">un</span>
+      </div>
+      <div class="modal-actions">
+        <button id="modal-cancel" type="button">Cancelar</button>
+        <button id="modal-confirm" type="button">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../javascript/js_reagentes.js"></script>
 
 
 
