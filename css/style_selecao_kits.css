@@ -191,8 +191,9 @@ h2.text-center {
   .kit-item {
     padding: 8px 2px;
     gap: 8px;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
+    margin-left: 25px;
   }
   .kit-title {
     font-size: 1.05rem;
@@ -212,4 +213,9 @@ h2.text-center {
     margin-bottom: 12px;
   }
 
+}
+@media(max-width: 400px){
+  .container{
+    padding-left: 60px;
+  }
 }
