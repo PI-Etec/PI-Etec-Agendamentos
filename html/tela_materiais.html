@@ -27,34 +27,35 @@
     </div>
   </header>
 
-</body>
-</html>
-  <h1>Materiais</h1>
+  <main>
+    <h1>Materiais</h1>
 
-  <div id="mensagem" style="margin:10px 0;color:green"></div>
+    <div id="mensagem" style="margin:10px 0;color:green"></div>
 
-  <div class="grupo-botões" id="materiais-container">
-    <!-- Materiais serão renderizados aqui dinamicamente -->
-  </div>
+    <div class="grupo-botões" id="materiais-container">
+      <!-- Materiais serão renderizados aqui dinamicamente -->
+    </div>
 
-  <button type="button" class="btn confirm-btn" id="confirmar-selecao">Confirmar</button>
+    <button type="button" class="btn confirm-btn" id="confirmar-selecao">Confirmar</button>
 
-  <!-- Modal custom para entrada de quantidade (substitui prompt) -->
-  <div id="quant-modal" class="quant-modal hidden">
-    <div class="quant-modal-content">
-      <h3 id="modal-title">Quantidade</h3>
-      <p id="modal-available">Quantidade disponível: 0 g</p>
-      <div class="quant-input-row">
-        <input id="modal-quant-input" type="number" min="1" value="1">
-        <span class="unit">g</span>
-      </div>
-      <div class="modal-actions">
-        <button id="modal-cancel" type="button">Cancelar</button>
-        <button id="modal-confirm" type="button">Confirmar</button>
+    <!-- Modal custom para entrada de quantidade (substitui prompt) -->
+    <div id="quant-modal" class="quant-modal hidden">
+      <div class="quant-modal-content">
+        <h3 id="modal-title">Quantidade</h3>
+        <p id="modal-available">Quantidade disponível: 0 g</p>
+        <div class="quant-input-row">
+          <input id="modal-quant-input" type="number" min="1" value="1">
+          <span class="unit">g</span>
+        </div>
+        <div class="modal-actions">
+          <button id="modal-cancel" type="button">Cancelar</button>
+          <button id="modal-confirm" type="button">Confirmar</button>
+        </div>
       </div>
     </div>
-  </div>
-  <scripts src="../javascript/js_materiais.js"></script>
+  </main>
+
+  <script src="../javascript/js_materiais.js"></script>
 </body>
 
 </html>

@@ -39,8 +39,18 @@ function renderMateriais(materials) {
     const btn = document.createElement('button');
     btn.className = 'material-btn';
     btn.style.margin = '6px';
-    // mostrar somente o nome do material no botão
-    btn.textContent = m.material;
+
+    // construir estrutura: nome + quantidade (como em js_reagentes)
+    const label = document.createElement('span');
+    label.textContent = m.material;
+
+    const qty = document.createElement('small');
+    qty.style.marginLeft = '6px';
+    qty.textContent = `(${formatQuantidade(m.quantidade)})`;
+
+    btn.appendChild(label);
+    btn.appendChild(qty);
+
     btn.dataset.id = m._id || m.id || '';
     btn.dataset.quantidade = m.quantidade;
 
@@ -51,6 +61,7 @@ function renderMateriais(materials) {
       btn.title = 'Sem estoque';
     }
 
+    // substituir listener por clonagem segura para evitar múltiplas binds
     btn.addEventListener('click', () => onClickMaterial(m, btn));
     container.appendChild(btn);
   });
@@ -98,7 +109,13 @@ const q = parseInt(entrada, 10);
   const current = Number(btnEl.dataset.quantidade || max);
   const novoLocal = Math.max(0, current - q);
   btnEl.dataset.quantidade = novoLocal;
-  btnEl.textContent = material.material; // manter apenas o nome
+  // atualizar apenas o pequeno que mostra a quantidade
+  const small = btnEl.querySelector('small');
+  if (small) small.textContent = `(${formatQuantidade(novoLocal)})`;
+
+  // manter o nome visível (se alguém usou textContent anteriormente)
+  const labelSpan = btnEl.querySelector('span');
+  if (labelSpan) labelSpan.textContent = material.material;
 
   // desabilitar/ativar botão conforme novo estoque local
   if (novoLocal <= 0) {
@@ -120,28 +137,27 @@ carregarMateriais();
 const confirmarBtn = document.getElementById('confirmar-selecao');
 confirmarBtn.addEventListener('click', async () => {
   const selections = window.selectedItems || [];
-  if (!selections.length) {
+  const reagentsRaw = localStorage.getItem('transferSelectionsReagents');
+  const reagents = reagentsRaw ? JSON.parse(reagentsRaw) : [];
+
+  if (!selections.length && !reagents.length) {
     mensagem.style.color = 'red';
-    mensagem.textContent = 'Nenhuma seleção para confirmar.';
+    mensagem.textContent = 'Nenhuma seleção de materiais ou reagentes para confirmar.';
     return;
   }
 
   try {
-    const res = await fetch('http://localhost:3000/selecionar/kits', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ selections })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'Erro ao salvar seleção');
-
+    // salvar as seleções de materiais e redirecionar para tela_reagentes
+    localStorage.setItem('transferSelectionsMaterials', JSON.stringify(selections));
     mensagem.style.color = 'green';
-    mensagem.textContent = 'Seleção salva com sucesso (kit id: ' + data.kitId + ')';
-    // limpar seleção local
-    window.selectedItems = [];
+    mensagem.textContent = 'Seleções salvas. Redirecionando para Reagentes...';
+    // pequena pausa para mostrar mensagem, depois redireciona
+    setTimeout(() => {
+      window.location.href = 'tela_reagentes.html';
+    }, 300);
   } catch (err) {
     mensagem.style.color = 'red';
-    mensagem.textContent = 'Erro ao salvar seleção: ' + err.message;
+    mensagem.textContent = 'Erro ao preparar seleção: ' + err.message;
   }
 });
 

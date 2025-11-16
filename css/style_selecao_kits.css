@@ -34,6 +34,24 @@ h2.text-center {
   padding-right: 6px; /* espaço para o scrollbar */
 }
 
+/* mover o rádio/checkbox para a direita e deixar o texto à esquerda */
+.kits-list .form-check.list-group-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding-left: 12px; /* espaço da borda esquerda */
+}
+.kits-list .form-check-label {
+  margin: 0;
+  flex: 1 1 auto;
+}
+.kits-list .form-check-input {
+  /* rádio à esquerda com espaçamento para o texto */
+  margin: 0 12px 0 0 !important;
+  order: 0;
+}
+
 .kit-item {
   display: flex;
   align-items: center;
@@ -119,6 +137,7 @@ h2.text-center {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* centralizar o botão novamente */
   margin: 30px auto 0;
   background: #b81919;
   color: #fff;
@@ -194,6 +213,13 @@ h2.text-center {
     width: 90%;
     box-sizing: border-box;
     margin-left: 25px;
+  }
+  /* em telas pequenas, manter o botão à esquerda com espaçamento */
+  .kits-list .form-check.list-group-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 8px;
   }
   .kit-title {
     font-size: 1.05rem;
