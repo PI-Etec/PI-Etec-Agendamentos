@@ -1,27 +1,41 @@
+/* Resetando */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+/* Estilo base da página */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
 
+/* Estilizando as cores e borda da tabela */
 .table-responsive.table-rounded {
 	border-radius: 8px;
 	overflow: auto; 
 	border: 1px solid #dee2e6;
-	background: #fff;
+	background: #ffffff;
 }
 
+/*	Zerando espaçamento das linhas da tabela */
 .table-responsive.table-rounded .table {
 	margin-bottom: 0;
 	border-radius: 0;
 	width: 100%;
-	table-layout: auto; /* allow columns to size to content so text isn't forced to truncate */
+	table-layout: auto; 
 }
 
+/* Garante que as linhas apareçam por extenso */
 .table-responsive.table-rounded .table th,
 .table-responsive.table-rounded .table td {
-	white-space: normal; /* allow wrapping */
-	overflow: visible; /* show full content (wrapper will scroll if needed) */
+	white-space: normal; 
+	overflow: visible; 
 	text-overflow: clip;
-	word-break: break-word; /* break long words/URLs to avoid overflow */
+	word-break: break-word; 
 	hyphens: auto;
 }
 
+/* Ajuste do tamanho da tabela, margin e padding */
 .table-responsive.table-centered {
 	max-width: min(1100px, 96vw);
 	margin: 0 auto;
@@ -29,17 +43,18 @@
 	padding-right: 8px;
 }
 
-
 .table-responsive.table-centered .table {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+/* Alinhando o conteúdo ao centro da página*/
 .table-responsive.table-centered .table th,
 .table-responsive.table-centered .table td {
 	text-align: center;
 }
 
-
+/* Ajustes de responsividade para as imagens */
 @media (max-width: 576px) {
 	.table-responsive.table-rounded {
 		overflow: auto; 
