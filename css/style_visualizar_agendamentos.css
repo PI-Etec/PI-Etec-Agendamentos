@@ -3,10 +3,10 @@ html, body {
     height: 100%;
     margin: 0;
 }
-/* Estilo base da página */
+/* Estilo base da página e fonte*/
 body {
     background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto Slab', serif;
 }
 
 /* Estilizando as cores e borda da tabela */
