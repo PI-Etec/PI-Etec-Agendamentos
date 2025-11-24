@@ -30,3 +30,23 @@ function irParaTela_visualizar_agendamento(){
 function irParaTela_controle_de_estoque(){
     window.location.href='tela_controle_de_estoque.html';
 }
+// Botão para tela principal do professor
+function irParaTelaProfessor() {
+    window.location.href = 'tela_professor.html';
+}
+// Botão para tela principal do professor
+function irParaTelaProfessor() {
+    window.location.href = 'tela_professor.html';
+}
+// Botão para tela principal do professor
+function irParaTelaProfessor() {
+    window.location.href = 'tela_professor.html';
+}
+// Botão para tela principal do técnico
+function irParaTelaTecnico() {
+    window.location.href = 'tela_tecnico.html';
+}
+// Botão para tela principal do técnico
+function irParaTelaTecnico() {
+    window.location.href = 'tela_tecnico.html';
+}
