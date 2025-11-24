@@ -5,15 +5,35 @@ h1 {
 
 }
 
+/* Botões dinâmicos */
 button {
     width: 200px;
     height: 65px;
     margin-left: 2.7%;
     border-radius: 20px;
     margin-top: 2%;
-    background-color: #F8FAFD;
+    background-color: #F8FAFD; /* Cor de fundo padrão */
     box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.12);
     border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Remover qualquer estilo de seleção */
+button:focus,
+button:active {
+    background-color: #F8FAFD !important; /* Mesma cor do estado padrão */
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.12); /* Mesma sombra do estado padrão */
+    outline: none; /* Remove a borda de foco */
+}
+
+/* Botão desabilitado (sem estoque) */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: #e9e9e9;
+    color: #777;
+    box-shadow: none;
 }
 
 input {
@@ -87,30 +107,55 @@ input[type="checkbox"]:checked::after {
     border-color: #bd2130;
 }
 
+/* Estilo para o grupo de botões */
 .grupo-botões {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaçamento entre os botões */
+    justify-content: center;
+    margin: 20px 0;
     overflow-y: auto;
     max-height: 500px;
 }
 
+/* Estilo para os botões dinâmicos */
 .grupo-botões button {
-    display: inline-flex;
-    align-items: center;
-    /* centraliza vertical */
-    gap: 8px;
-    /* espaço entre checkbox e texto (se houver) */
-    text-align: center;
-    padding: 10px 12px;
-    font-size: 20px;
-    font-family: 'Roboto Slab', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaço entre o texto e a quantidade */
+  text-align: center;
+  cursor: pointer;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: 'Roboto Slab', serif;
+  width: 100%; /* Botão ocupa 100% do espaço disponível */
+  max-width: 200px; /* Tamanho máximo do botão */
+  height: auto; /* Altura ajustável */
+  background-color: #F8FAFD; /* Cor de fundo padrão */
+  border: 1px solid #ccc; /* Borda padrão */
+  border-radius: 20px;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Estilo para o texto dentro do botão */
+.grupo-botões button span {
+    font-size: 1rem;
+    color: #000;
+    margin-left: 5px; /* Espaço entre o checkbox e o texto */
+}
+
+/* Checkbox dentro dos botões */
 .grupo-botões button input[type="checkbox"] {
     margin: 0;
+    width: 20px;
+    height: 20px;
 }
 
-/* estilo visual para botões desabilitados (sem estoque) */
+/* Botão desabilitado (sem estoque) */
 .grupo-botões button:disabled {
-    cursor: default;
+    cursor: not-allowed;
     opacity: 0.6;
     background-color: #e9e9e9;
     color: #777;
@@ -118,10 +163,24 @@ input[type="checkbox"]:checked::after {
     pointer-events: none;
 }
 
-/* estilo para botão selecionado (visual) */
+/* Botão selecionado */
 .grupo-botões button.selected {
-    border: 2px solid #28a745;
-    background-color: #e6ffed;
+  background-color: #F8FAFD; /* Mesma cor do estado padrão */
+  border: 1px solid #ccc; /* Mesma borda do estado padrão */
+}
+
+/* Hover effect for buttons */
+.grupo-botões button:hover {
+    background-color: #e9ecef;
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .grupo-botões button {
+    font-size: 0.9rem; /* Texto menor em telas pequenas */
+    max-width: 100%; /* Botões ocupam toda a largura */
+  }
 }
 
 /* estilos do modal de quantidade (copiados de style_materiais.css) */
@@ -168,7 +227,20 @@ input[type="checkbox"]:checked::after {
 .modal-actions #modal-cancel{ background:#eee; }
 .modal-actions #modal-confirm{ background:#b81919; color:white; }
 
+/* Botão "Confirmar" no modal Nome do Kit */
+#kit-name-modal .modal-actions #kit-name-confirm {
+    background-color: #b81919; /* Cor vermelha */
+    color: #fff; /* Texto branco */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+#kit-name-modal .modal-actions #kit-name-confirm:hover {
+    background-color: #a31616; /* Tom mais escuro de vermelho no hover */
+}
 
 .create-btn {
     background: green;
@@ -194,4 +266,8 @@ input[type="checkbox"]:checked::after {
 .create-btn:hover {
     background-color: rgb(0, 90, 0);
     border-color: rgb(0, 90, 0);
+}
+
+#transferred-list {
+    display: none; /* Torna o div invisível */
 }

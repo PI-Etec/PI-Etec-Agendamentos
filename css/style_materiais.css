@@ -93,7 +93,7 @@ input[type="checkbox"]:checked::after {
   text-align: center;
   cursor: pointer; /* mostra a 'mãozinha' ao passar o mouse */
   padding: 10px 12px;
-  font-size: 20px;
+  font-size: 1rem !important;
   font-family: 'Roboto Slab', serif;
 }
 

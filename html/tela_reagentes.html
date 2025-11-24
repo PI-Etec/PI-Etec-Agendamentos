@@ -30,36 +30,14 @@
   <h1>Reagentes</h1>
   
   <div class="grupo-botões" id="grupo-botoes">
-    <button><input type="checkbox">Sódio</button>
-    <button><input type="checkbox">Cloro</button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
-    <button><input type="checkbox"></button>
+    <button>
+      <input type="checkbox">
+      <span>Sódio (g)</span>
+    </button>
+    <button>
+      <input type="checkbox">
+      <span>Cloro (g)</span>
+    </button>
   </div>
 
   <div id="mensagem" style="margin:10px 0;color:green;display:none"></div>
@@ -73,10 +51,10 @@
   <div id="quant-modal" class="quant-modal hidden" style="display:none;">
     <div class="quant-modal-content">
       <h3 id="modal-title">Quantidade</h3>
-      <p id="modal-available">Quantidade disponível: 0</p>
+      <p id="modal-available">Quantidade disponível: 0  </p>
       <div class="quant-input-row">
         <input id="modal-quant-input" type="number" min="1" value="1">
-        <span class="unit">un</span>
+        <span class="unit">g</span>
       </div>
       <div class="modal-actions">
         <button id="modal-cancel" type="button">Cancelar</button>
@@ -91,7 +69,7 @@
       <h3>Nome do Kit</h3>
       <p>Digite um nome para este kit (opcional):</p>
       <div style="margin:8px 0;">
-        <input id="kit-name-input" type="text" placeholder="Ex: Kit Aula 01" style="width:100%;padding:6px;">
+        <input id="kit-name-input" type="text" placeholder="Ex: Kit Aula 01" style="width:100%;padding: 6px;margin-left: 0px;">
       </div>
       <div class="modal-actions">
         <button id="kit-name-cancel" type="button">Cancelar</button>

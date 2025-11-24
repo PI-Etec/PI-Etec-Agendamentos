@@ -35,10 +35,8 @@ async function carregarReagentes() {
 
 function renderReagentes(reagentes) {
   if (!reagentes.length) {
-    // manter os botões visíveis, mas mostrar mensagem
     mensagem.style.color = 'green';
     mensagem.textContent = 'Nenhum reagente cadastrado.';
-    // ocultar todos os botões
     const allBtns = Array.from(container.querySelectorAll('button'));
     allBtns.forEach(b => { b.style.display = 'none'; });
     return;
@@ -57,21 +55,15 @@ function renderReagentes(reagentes) {
       buttons.push(btn);
     }
 
-    // limpar conteúdo e construir estrutura: checkbox + label + qty
+    // Limpar conteúdo e construir estrutura: texto + quantidade
     btn.innerHTML = '';
-    const chk = document.createElement('input');
-    chk.type = 'checkbox';
-    chk.disabled = true; // checkbox visual (selection via modal)
-    chk.style.marginRight = '6px';
-
     const label = document.createElement('span');
-    label.textContent = m.reagente;
+    label.textContent = `${m.reagente}`; // Nome do reagente
 
     const qty = document.createElement('small');
     qty.style.marginLeft = '6px';
-    qty.textContent = `(${m.quantidade})`;
+    qty.textContent = `(${formatQuantidade(m.quantidade)} g)`; // Quantidade com máscara "g"
 
-    btn.appendChild(chk);
     btn.appendChild(label);
     btn.appendChild(qty);
 
@@ -87,16 +79,14 @@ function renderReagentes(reagentes) {
       btn.title = '';
     }
 
-    // remover listeners antigos (prático: replace with a clone)
+    // Substituir listeners antigos (prático: replace with a clone)
     const newBtn = btn.cloneNode(true);
     btn.parentNode.replaceChild(newBtn, btn);
-    // attach click to the newly inserted node
     newBtn.addEventListener('click', () => onClickReagente(m, newBtn));
-    // update reference in buttons array
     buttons[idx] = newBtn;
   });
 
-  // hide any leftover static buttons beyond reagentes.length
+  // Ocultar botões estáticos além do número de reagentes
   for (let i = reagentes.length; i < buttons.length; i++) {
     const b = buttons[i];
     if (b) b.style.display = 'none';

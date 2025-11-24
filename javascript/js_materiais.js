@@ -1,10 +1,10 @@
 const container = document.getElementById('materiais-container');
 const mensagem = document.getElementById('mensagem');
 
-// formata a quantidade para exibição (adiciona unidade 'g')
+// formata a quantidade para exibição (adiciona unidade 'un')
 function formatQuantidade(q) {
   const num = Number(q || 0);
-  return `${num} g`;
+  return `${num} un`; // Alterado para 'un'
 }
 
 async function carregarMateriais() {
