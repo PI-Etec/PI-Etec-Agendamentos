@@ -43,7 +43,7 @@
                         <th>Hora</th>
                         <th>Sala</th>
                         <th>Professor</th>
-                        <th>Material</th>
+                        <th>Kit</th>
                     </tr>
                 </thead>
                 <tbody id="agendamentos-tbody">
@@ -93,7 +93,7 @@
                 }
 
                 agendamentos.forEach((agendamento, index) => {
-                    const materialText = agendamento.material || '';
+                    const kitText = agendamento.kitDisplay || '';
                     const row = document.createElement("tr");
                     row.innerHTML = `
                         <td>${index + 1}</td>
@@ -101,7 +101,7 @@
                         <td>${agendamento.hora}</td>
                         <td>${agendamento.sala}</td>
                         <td>${agendamento.professor}</td>
-                        <td>${materialText}</td>
+                        <td>${kitText}</td>
                     `;
                     tbody.appendChild(row);
                 });

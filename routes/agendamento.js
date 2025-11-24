@@ -5,6 +5,53 @@ const Agendamento = require('../model/Agendamentos');
 
 console.log('Schema de Agendamento em uso:', Agendamento.schema.paths);
 
+// ROTA GET: retorna lista de agendamentos (mapeada para o formato esperado pelo frontend)
+router.get('/', async (req, res) => {
+  console.log('>>> ROTA GET /agendamentos FOI ACIONADA <<<', 'from', req.ip);
+  try {
+    const docs = await Agendamento.find().lean().exec();
+
+    const agendamentos = docs.map(doc => {
+      const kitName = doc.kitName || '';
+
+      const materialsList = Array.isArray(doc.materials) && doc.materials.length
+        ? doc.materials.map(m => (m.material || '').trim()).filter(Boolean).join(', ')
+        : '';
+
+      const reagentsList = Array.isArray(doc.reagents) && doc.reagents.length
+        ? doc.reagents.map(r => (r.material || '').trim()).filter(Boolean).join(', ')
+        : '';
+
+      const detailsParts = [];
+      if (materialsList) detailsParts.push(materialsList);
+      if (reagentsList) detailsParts.push(reagentsList);
+      const combined = detailsParts.join('; ');
+
+      // Novo formato pedido: "Nome do kit (material1, material2, ...)"
+      let kitDisplay;
+      if (kitName) {
+        kitDisplay = combined ? `${kitName} (${combined})` : `${kitName}`;
+      } else {
+        kitDisplay = combined || '';
+      }
+
+      return {
+        data: doc.data ? new Date(doc.data).toLocaleDateString('pt-BR') : '',
+        hora: doc.horario || '',
+        sala: doc.sala || '',
+        professor: doc.nome_professor || '',
+        kit: kitName,
+        kitDisplay
+      };
+    });
+
+    return res.json({ agendamentos });
+  } catch (error) {
+    console.error('FALHA AO BUSCAR AGENDAMENTOS:', error);
+    return res.status(500).json({ message: 'Erro ao buscar agendamentos', details: error.message });
+  }
+});
+
 // ROTA ORIGINAL: cria apenas agendamento simples
 router.post('/', async (req, res) => {
   console.log('>>> ROTA POST /agendamentos FOI ACIONADA <<<');
