@@ -1,1 +1,1 @@
-// Arquivo de teste removido de logs
+console.log("teste") 

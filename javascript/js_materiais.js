@@ -1,5 +1,5 @@
-const container = document.getElementById("materiais-container");
-const mensagem = document.getElementById("mensagem");
+const container = document.getElementById('materiais-container');
+const mensagem = document.getElementById('mensagem');
 
 // formata a quantidade para exibição (adiciona unidade 'un')
 function formatQuantidade(q) {
@@ -9,62 +9,60 @@ function formatQuantidade(q) {
 
 async function carregarMateriais() {
   try {
-    const res = await fetch("http://localhost:3000/selecionar/materials");
+    const res = await fetch('http://localhost:3000/selecionar/materials');
 
     // Checar content-type antes de tentar parsear como JSON
-    const contentType = res.headers.get("content-type") || "";
-    if (!contentType.includes("application/json")) {
+    const contentType = res.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
       const text = await res.text();
-      console.error("Resposta inesperada (não JSON):", text.slice(0, 1000));
-      throw new Error(
-        "Resposta do servidor não é JSON. Verifique se a URL/rota está correta.",
-      );
+      console.error('Resposta inesperada (não JSON):', text.slice(0, 1000));
+      throw new Error('Resposta do servidor não é JSON. Verifique se a URL/rota está correta.');
     }
 
     const json = await res.json();
-    if (!res.ok) throw new Error(json.message || "Erro ao buscar materiais");
+    if (!res.ok) throw new Error(json.message || 'Erro ao buscar materiais');
     renderMateriais(json.materials || []);
   } catch (err) {
-    mensagem.style.color = "red";
-    mensagem.textContent = "Erro ao carregar materiais: " + err.message;
+    mensagem.style.color = 'red';
+    mensagem.textContent = 'Erro ao carregar materiais: ' + err.message;
   }
 }
 
 function renderMateriais(materials) {
-  container.innerHTML = "";
+  container.innerHTML = '';
   if (!materials.length) {
-    container.innerHTML = "<p>Nenhum material cadastrado.</p>";
+    container.innerHTML = '<p>Nenhum material cadastrado.</p>';
     return;
   }
 
-  materials.forEach((m) => {
-    const btn = document.createElement("button");
-    btn.className = "material-btn";
-    btn.style.margin = "6px";
+  materials.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'material-btn';
+    btn.style.margin = '6px';
 
     // construir estrutura: nome + quantidade (como em js_reagentes)
-    const label = document.createElement("span");
+    const label = document.createElement('span');
     label.textContent = m.material;
 
-    const qty = document.createElement("small");
-    qty.style.marginLeft = "6px";
+    const qty = document.createElement('small');
+    qty.style.marginLeft = '6px';
     qty.textContent = `(${formatQuantidade(m.quantidade)})`;
 
     btn.appendChild(label);
     btn.appendChild(qty);
 
-    btn.dataset.id = m._id || m.id || "";
+    btn.dataset.id = m._id || m.id || '';
     btn.dataset.quantidade = m.quantidade;
 
     // desabilitar botão se não há estoque
     const qtdNum = Number(m.quantidade || 0);
     if (qtdNum <= 0) {
       btn.disabled = true;
-      btn.title = "Sem estoque";
+      btn.title = 'Sem estoque';
     }
 
     // substituir listener por clonagem segura para evitar múltiplas binds
-    btn.addEventListener("click", () => onClickMaterial(m, btn));
+    btn.addEventListener('click', () => onClickMaterial(m, btn));
     container.appendChild(btn);
   });
 }
@@ -72,40 +70,38 @@ function renderMateriais(materials) {
 async function onClickMaterial(material, btnEl) {
   const max = Number(material.quantidade || btnEl.dataset.quantidade || 0);
   if (max <= 0) {
-    mensagem.style.color = "red";
-    mensagem.textContent = "Material sem estoque.";
+    mensagem.style.color = 'red';
+    mensagem.textContent = 'Material sem estoque.';
     return;
   }
 
-  // abrir modal customizado para entrada (mostra unidade 'g' junto ao input)
-  const entrada = await showQuantModal(material, max);
-  if (entrada === null) return; // cancelou
+// abrir modal customizado para entrada (mostra unidade 'g' junto ao input)
+const entrada = await showQuantModal(material, max);
+if (entrada === null) return; // cancelou
 
-  const q = parseInt(entrada, 10);
+const q = parseInt(entrada, 10);
   if (Number.isNaN(q) || q <= 0) {
-    mensagem.style.color = "red";
-    mensagem.textContent = "Quantidade inválida.";
+    mensagem.style.color = 'red';
+    mensagem.textContent = 'Quantidade inválida.';
     return;
   }
 
   if (q > max) {
-    mensagem.style.color = "red";
-    mensagem.textContent = "Quantidade solicitada maior que o disponível.";
+    mensagem.style.color = 'red';
+    mensagem.textContent = 'Quantidade solicitada maior que o disponível.';
     return;
   }
 
   // registrar seleção localmente para envio ao confirmar (não decrementamos no backend ainda)
   window.selectedItems = window.selectedItems || [];
-  const existing = window.selectedItems.find(
-    (it) => it.materialId === (material._id || material.id),
-  );
+  const existing = window.selectedItems.find(it => it.materialId === (material._id || material.id));
   if (existing) {
     existing.quantidade = Number(existing.quantidade || 0) + q;
   } else {
     window.selectedItems.push({
       materialId: material._id || material.id,
       material: material.material,
-      quantidade: q,
+      quantidade: q
     });
   }
 
@@ -114,24 +110,23 @@ async function onClickMaterial(material, btnEl) {
   const novoLocal = Math.max(0, current - q);
   btnEl.dataset.quantidade = novoLocal;
   // atualizar apenas o pequeno que mostra a quantidade
-  const small = btnEl.querySelector("small");
+  const small = btnEl.querySelector('small');
   if (small) small.textContent = `(${formatQuantidade(novoLocal)})`;
 
   // manter o nome visível (se alguém usou textContent anteriormente)
-  const labelSpan = btnEl.querySelector("span");
+  const labelSpan = btnEl.querySelector('span');
   if (labelSpan) labelSpan.textContent = material.material;
 
   // desabilitar/ativar botão conforme novo estoque local
   if (novoLocal <= 0) {
     btnEl.disabled = true;
-    btnEl.title = "Sem estoque";
+    btnEl.title = 'Sem estoque';
   } else {
     btnEl.disabled = false;
-    btnEl.title = "";
+    btnEl.title = '';
   }
 
-  mensagem.style.color = "green";
-  mensagem.style.display = "";
+  mensagem.style.color = 'green';
   mensagem.textContent = `Adicionado ${q} x ${material.material} à seleção local. Clique em Confirmar para finalizar.`;
 }
 
@@ -139,67 +134,62 @@ async function onClickMaterial(material, btnEl) {
 carregarMateriais();
 
 // confirmar seleção: enviar todas as seleções locais para o backend
-const confirmarBtn = document.getElementById("confirmar-selecao");
-confirmarBtn.addEventListener("click", async () => {
+const confirmarBtn = document.getElementById('confirmar-selecao');
+confirmarBtn.addEventListener('click', async () => {
   const selections = window.selectedItems || [];
-  const reagentsRaw = localStorage.getItem("transferSelectionsReagents");
+  const reagentsRaw = localStorage.getItem('transferSelectionsReagents');
   const reagents = reagentsRaw ? JSON.parse(reagentsRaw) : [];
 
   if (!selections.length && !reagents.length) {
-    mensagem.style.color = "red";
-    mensagem.textContent =
-      "Nenhuma seleção de materiais ou reagentes para confirmar.";
+    mensagem.style.color = 'red';
+    mensagem.textContent = 'Nenhuma seleção de materiais ou reagentes para confirmar.';
     return;
   }
 
   try {
     // salvar as seleções de materiais e redirecionar para tela_reagentes
-    localStorage.setItem(
-      "transferSelectionsMaterials",
-      JSON.stringify(selections),
-    );
-    mensagem.style.color = "green";
-    mensagem.textContent = "Seleções salvas. Redirecionando para Reagentes...";
+    localStorage.setItem('transferSelectionsMaterials', JSON.stringify(selections));
+    mensagem.style.color = 'green';
+    mensagem.textContent = 'Seleções salvas. Redirecionando para Reagentes...';
     // pequena pausa para mostrar mensagem, depois redireciona
     setTimeout(() => {
-      window.location.href = "tela_reagentes.html";
+      window.location.href = 'tela_reagentes.html';
     }, 300);
   } catch (err) {
-    mensagem.style.color = "red";
-    mensagem.textContent = "Erro ao preparar seleção: " + err.message;
+    mensagem.style.color = 'red';
+    mensagem.textContent = 'Erro ao preparar seleção: ' + err.message;
   }
 });
 
-// Lógica do modal de quantidade
-const quantModal = document.getElementById("quant-modal");
-const modalTitle = document.getElementById("modal-title");
-const modalAvailable = document.getElementById("modal-available");
-const modalInput = document.getElementById("modal-quant-input");
-const modalCancel = document.getElementById("modal-cancel");
-const modalConfirm = document.getElementById("modal-confirm");
+// --- Modal logic ---
+const quantModal = document.getElementById('quant-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalAvailable = document.getElementById('modal-available');
+const modalInput = document.getElementById('modal-quant-input');
+const modalCancel = document.getElementById('modal-cancel');
+const modalConfirm = document.getElementById('modal-confirm');
 
 function showModalOverlay() {
-  quantModal.classList.remove("hidden");
+  quantModal.classList.remove('hidden');
   modalInput.focus();
   modalInput.select();
 }
 
 function hideModalOverlay() {
-  quantModal.classList.add("hidden");
+  quantModal.classList.add('hidden');
 }
 
 function showQuantModal(material, max) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     modalTitle.textContent = material.material;
-    modalAvailable.textContent =
-      "Quantidade disponível: " + formatQuantidade(max);
-    modalInput.value = "1";
+    modalAvailable.textContent = 'Quantidade disponível: ' + formatQuantidade(max);
+    modalInput.value = '1';
     showModalOverlay();
 
     function cleanup() {
-      modalCancel.removeEventListener("click", onCancel);
-      modalConfirm.removeEventListener("click", onConfirm);
-      quantModal.removeEventListener("keydown", onKey);
+      modalCancel.removeEventListener('click', onCancel);
+      modalConfirm.removeEventListener('click', onConfirm);
+      quantModal.removeEventListener('keydown', onKey);
     }
 
     function onCancel() {
@@ -216,12 +206,12 @@ function showQuantModal(material, max) {
     }
 
     function onKey(e) {
-      if (e.key === "Escape") onCancel();
-      if (e.key === "Enter") onConfirm();
+      if (e.key === 'Escape') onCancel();
+      if (e.key === 'Enter') onConfirm();
     }
 
-    modalCancel.addEventListener("click", onCancel);
-    modalConfirm.addEventListener("click", onConfirm);
-    quantModal.addEventListener("keydown", onKey);
+    modalCancel.addEventListener('click', onCancel);
+    modalConfirm.addEventListener('click', onConfirm);
+    quantModal.addEventListener('keydown', onKey);
   });
 }

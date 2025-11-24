@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const AgendamentosSchema = new mongoose.Schema(
-  {
+const AgendamentosSchema = new mongoose.Schema({
     data: Date,
     horario: String,
     sala: String,
@@ -9,22 +8,16 @@ const AgendamentosSchema = new mongoose.Schema(
 
     // NOVOS CAMPOS
     kitName: { type: String },
-    materials: [
-      {
+    materials: [{
         materialId: String,
         material: String,
-        quantidade: Number,
-      },
-    ],
-    reagents: [
-      {
+        quantidade: Number
+    }],
+    reagents: [{
         materialId: String,
         material: String,
-        quantidade: Number,
-      },
-    ],
-  },
-  { collection: "Agendamentos" },
-);
+        quantidade: Number
+    }]
+}, { collection: 'Agendamentos' });
 
-module.exports = mongoose.model("Agendamentos", AgendamentosSchema);
+module.exports = mongoose.model('Agendamentos', AgendamentosSchema);
