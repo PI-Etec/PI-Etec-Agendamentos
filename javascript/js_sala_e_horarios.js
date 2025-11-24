@@ -242,58 +242,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // Clique do botão Confirmar
   const btnConfirmar = document.getElementById('btnConfirmarAgendamento');
   if (btnConfirmar) {
-    btnConfirmar.addEventListener('click', async () => {
+    btnConfirmar.addEventListener('click', () => {
       if (!state.room || !state.selected || !state.time) {
         alert('Selecione sala, data e horário antes de confirmar.');
         return;
       }
 
+      const nomeProfessor = localStorage.getItem('nomeUsuario');
+      if (!nomeProfessor) {
+        alert('Professor não identificado. Faça login novamente.');
+        return;
+      }
+
+      const agendamentoSala = {
+        data: toIsoDateOnly(state.selected),
+        horario: state.time,
+        sala: state.room,
+        nome_professor: nomeProfessor,
+      };
+
       try {
-        // Pega o nome do professor do localStorage
-        const nomeProfessor = localStorage.getItem('nomeUsuario');
-        if (!nomeProfessor) {
-          alert('Professor não identificado. Por favor, faça o login novamente.');
-          return;
-        }
-
-        const body = {
-          data: toIsoDateOnly(state.selected),
-          horario: state.time,
-          sala: state.room,
-          nome_professor: nomeProfessor, 
-        };
-
-        const apiUrl = `${location.protocol}//${location.hostname}:3000/agendamentos`;
-
-        const res = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-
-        if (!res.ok) {
-          const err = await res.json().catch(() => ({ error: 'Resposta inválida do servidor.' }));
-          console.error('Erro do servidor:', res.status, err);
-          if (res.status === 409) {
-            alert(err.message || 'Este horário já está agendado.');
-          } else {
-            alert('Erro ao salvar: ' + (err.message || err.error || res.statusText));
-          }
-          return;
-        }
-        // Mostra a mensagem de sucesso para o usuário.
-        alert('Sala, data e horário cadastrados com sucesso!');
-
-        // Salvo com sucesso: voltar ou redirecionar
-        const veioDoProfessor = document.referrer && new URL(document.referrer).pathname.includes('tela_professor');
-        if (veioDoProfessor) {
-          history.back();
-        } else {
-          window.location.href = 'tela_materiais.html';
-        }
+        localStorage.setItem('agendamentoSalaHorario', JSON.stringify(agendamentoSala));
+        alert('Sala, data e horário salvos. Agora selecione materiais/reagentes.');
+        window.location.href = 'tela_materiais.html';
       } catch (e) {
         console.error(e);
-        alert('Falha ao conectar com o servidor.');
+        alert('Erro ao salvar dados localmente.');
       }
     });
   }
