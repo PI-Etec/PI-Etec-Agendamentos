@@ -1,68 +1,67 @@
 /* Resetando estilos padrão */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Estilo do corpo da página */
 body {
-    font-family: 'Roboto Slab', serif;
-    background-color: white;
-    margin: 0;
-    padding: 0;
+  font-family: "Roboto Slab", serif;
+  background-color: white;
+  margin: 0;
+  padding: 0;
 }
 
 /* Container principal */
 .container {
-    width: 90%;
-    max-width: 100%;
-    margin: auto;
-    padding: 0;
+  width: 90%;
+  max-width: 100%;
+  margin: auto;
+  padding: 0;
 }
 
 /* Título principal */
 h1 {
-    text-align: center;
-    font-size: 3.5rem;
-    color: #43545C;
-    font-family: 'Roboto Slab', serif;
-    margin-bottom: 0rem;
+  text-align: center;
+  font-size: 3.5rem;
+  color: #43545c;
+  font-family: "Roboto Slab", serif;
+  margin-bottom: 0rem;
 }
 
 /* Área de agendamento */
 #agendamento_area {
-    margin-top: 0rem;
-    padding: 1rem 0;
+  margin-top: 0rem;
+  padding: 1rem 0;
 }
 
 /* Layout responsivo para os links */
 #link_area {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 /* Container dos botões técnicos */
 #botoes_tecnico {
-    display: flex;
-    gap: 20rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 5%;
+  display: flex;
+  gap: 20rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5%;
 }
-
 
 /* Botões */
 #botoes_tecnico .btn {
   position: relative;
-  display: flex;               /* Flexbox para alinhar o conteúdo dentro do botão */
-  flex-direction: column;      /* Organiza o conteúdo em coluna */
-  align-items: center;         /* Centraliza o conteúdo horizontalmente */
-  justify-content: center;     /* Centraliza o conteúdo verticalmente */
+  display: flex; /* Flexbox para alinhar o conteúdo dentro do botão */
+  flex-direction: column; /* Organiza o conteúdo em coluna */
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
   padding: 3%;
   padding-bottom: 18%;
   font-size: 1rem;
@@ -77,118 +76,115 @@ h1 {
   width: 23%;
   min-height: 12rem;
   overflow: hidden;
-  text-align: center; 
+  text-align: center;
   margin-top: 3%;
 }
 
 /* Hover nos botões */
 #botoes_tecnico .btn:hover {
-    background-color: #d6d6d6;
+  background-color: #d6d6d6;
 }
 
 /* Texto dentro do botão */
 #botoes_tecnico .btn span {
-    font-size: 2rem;
+  font-size: 2rem;
   font-family: "Roboto Slab", serif;
-  color: #43545C;
-  
+  color: #43545c;
 }
 
 /* Imagens dentro dos botões */
 .img-geral {
-        max-width: 60%;
-        height: auto;
-        margin: 0;
-        padding: 0;
-        align-self: center; /* Garante que as imagens ficam no centro dentro do botão */
-        right: 0%;
-        bottom: 0% ;
-        position: absolute;
+  max-width: 60%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  align-self: center; /* Garante que as imagens ficam no centro dentro do botão */
+  right: 0%;
+  bottom: 0%;
+  position: absolute;
 }
-.img-lupa{
-    max-width: 80%;
+.img-lupa {
+  max-width: 80%;
 }
-.img-cadastrar{
-max-width: 67%;
+.img-cadastrar {
+  max-width: 67%;
 }
-.img-gerenciar-banco{
-   max-width:  60%;
+.img-gerenciar-banco {
+  max-width: 60%;
 }
 #botoes_tecnico .btn.cadastrar {
-padding-top: 0%;
-padding-bottom: 16.9%;
+  padding-top: 0%;
+  padding-bottom: 16.9%;
 }
-#botoes_tecnico .btn.cadastrar span{
-    margin-top: 10% ;
+#botoes_tecnico .btn.cadastrar span {
+  margin-top: 10%;
 }
-
 
 /* Responsividade */
 @media (max-width: 768px) {
-    #link_area {
-        flex-direction: column;
-        align-items: center;
-    }
-  
-    #link_area .btn {
-        width: 90%;
-        padding: 10% 12% 14% 12%;
-    }
-  
-    #link_area .btn span {
-        font-size: 1.75rem;
-    }
+  #link_area {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  /* Responsividade de imagens */
-  @media (max-width: 1116px) {
-    .img-calendario {
-        max-width: 60%;
-    }
-  
-    .img-lupa {
-        max-width: 70%;
-    }
+
+  #link_area .btn {
+    width: 90%;
+    padding: 10% 12% 14% 12%;
   }
-  
-  /* A partir de 861px */
-  @media (max-width: 861px) {
-    .img-geral {
-        display: none; /* Oculta as imagens em telas menores que 861px */
-    }
-  
-    #link_area {
-        flex-direction: column;
-        align-items: center;
-    }
-  
-    #link_area .btn {
-        width: 90%;                /* Faz o botão ocupar 90% da largura da tela */
-        display: flex;             /* Usando flexbox para alinhar o conteúdo dentro do botão */
-        justify-content: center;   /* Centraliza o conteúdo verticalmente */
-        align-items: center;       /* Centraliza o conteúdo horizontalmente */
-        text-align: center;        /* Centraliza o texto dentro do botão */
-        height: auto;              /* Deixa a altura automática */
-    }
-  
-    #link_area .btn span {
-        font-size: 1.75rem;         /* Ajuste de tamanho de fonte */
-    }
+
+  #link_area .btn span {
+    font-size: 1.75rem;
   }
-  @media (max-width: 998px) {
-    /* Ajuste no estilo dos botões */
-    #botoes_tecnico .btn {
-        width: 90%;                /* Faz o botão ocupar 90% da largura da tela */
-        max-width: 320px;          /* Limita a largura máxima do botão para não ficar muito largo */
-        display: flex;             /* Usando flexbox para alinhar o conteúdo dentro do botão */
-        justify-content: center;   /* Centraliza o conteúdo verticalmente */
-        align-items: center;       /* Centraliza o conteúdo horizontalmente */
-        text-align: center;        /* Centraliza o texto dentro do botão */
-        height: auto;              /* Ajuste automático para a altura do botão */
-        padding: 1%;              /* Ajuste o padding para garantir espaço suficiente */
-    }
-    #botoes_tecnico .btn
- {
+}
+
+/* Responsividade de imagens */
+@media (max-width: 1116px) {
+  .img-calendario {
+    max-width: 60%;
+  }
+
+  .img-lupa {
+    max-width: 70%;
+  }
+}
+
+/* A partir de 861px */
+@media (max-width: 861px) {
+  .img-geral {
+    display: none; /* Oculta as imagens em telas menores que 861px */
+  }
+
+  #link_area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #link_area .btn {
+    width: 90%; /* Faz o botão ocupar 90% da largura da tela */
+    display: flex; /* Usando flexbox para alinhar o conteúdo dentro do botão */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    text-align: center; /* Centraliza o texto dentro do botão */
+    height: auto; /* Deixa a altura automática */
+  }
+
+  #link_area .btn span {
+    font-size: 1.75rem; /* Ajuste de tamanho de fonte */
+  }
+}
+@media (max-width: 998px) {
+  /* Ajuste no estilo dos botões */
+  #botoes_tecnico .btn {
+    width: 90%; /* Faz o botão ocupar 90% da largura da tela */
+    max-width: 320px; /* Limita a largura máxima do botão para não ficar muito largo */
+    display: flex; /* Usando flexbox para alinhar o conteúdo dentro do botão */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    text-align: center; /* Centraliza o texto dentro do botão */
+    height: auto; /* Ajuste automático para a altura do botão */
+    padding: 1%; /* Ajuste o padding para garantir espaço suficiente */
+  }
+  #botoes_tecnico .btn {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,55 +192,52 @@ padding-bottom: 16.9%;
     text-align: center;
     padding-top: 3%;
     padding-bottom: 3%; /* Ajuste conforme necessário */
-    min-height: 12rem;    
-}
-#botoes_tecnico .btn.banco_de_dados{
+    min-height: 12rem;
+  }
+  #botoes_tecnico .btn.banco_de_dados {
     padding: 0 !important;
     margin: 0 !important;
-     
-}
-#botoes_tecnico .btn.cadastrar{
+  }
+  #botoes_tecnico .btn.cadastrar {
     padding: 0% !important;
     margin: 0% !important;
-}
+  }
 
-#botoes_tecnico .btn.cadastrar span{
+  #botoes_tecnico .btn.cadastrar span {
     margin-top: 0%;
     text-align: center;
     font-size: 1.5rem; /* ou o tamanho desejado */
-}
-#botoes_tecnico .btn.banco_de_dados span {
+  }
+  #botoes_tecnico .btn.banco_de_dados span {
     padding: 0%;
     margin-bottom: 10%;
     text-align: center;
     font-size: 1.5rem; /* ou o tamanho desejado */
+  }
+
+  /* Ajuste do texto dentro do botão */
+  #botoes_tecnico .btn span {
+    font-size: 1.5rem; /* Tamanho de fonte ajustado para telas menores */
+  }
+
+  /* Oculta as imagens em telas menores que 998px */
+  .img-calendario,
+  .img-lupa,
+  .img-cadastrar,
+  .img-gerenciar-banco {
+    display: none; /* As imagens de calendário e lupa desaparecem */
+  }
+  #botoes_tecnico {
+    gap: 5rem;
+    margin-top: 25%;
+  }
 }
-
-
-    /* Ajuste do texto dentro do botão */
-    #botoes_tecnico .btn span {
-        font-size: 1.5rem;         /* Tamanho de fonte ajustado para telas menores */
-    }
-
-    /* Oculta as imagens em telas menores que 998px */
-    .img-calendario, 
-    .img-lupa, .img-cadastrar, .img-gerenciar-banco {
-        display: none;             /* As imagens de calendário e lupa desaparecem */
-    }
-    #botoes_tecnico {
-        gap: 5rem;
-        margin-top: 25%;
-       
-    }
+@media (max-width: 1600px) {
+  #botoes_tecnico .btn.banco_de_dados {
+    padding-top: 0%;
+    padding-bottom: 16.5%;
+  }
+  #botoes_tecnico .btn.banco_de_dados span {
+    margin-top: 10%;
+  }
 }
-@media(max-width:1600px){
-    #botoes_tecnico .btn.banco_de_dados {
-        padding-top: 0%;
-        padding-bottom: 16.5%;
-        }
-        #botoes_tecnico .btn.banco_de_dados span{
-            margin-top: 10% ;
-        }
-}
-
-

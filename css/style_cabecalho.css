@@ -1,78 +1,77 @@
 /* Cabeçalho */
 header {
-    display: flex;
-    align-items: center;
-    height: 120px;                
-    border-bottom: 1px solid #000;
-    padding-left: 0;                
+  display: flex;
+  align-items: center;
+  height: 120px;
+  border-bottom: 1px solid #000;
+  padding-left: 0;
 }
 
 /* Container das logos */
 .header-logo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    width: 100%;
-    height: 100%;
-    padding: 0;               
-    gap: 30px;                     
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  gap: 30px;
 }
 
 /* Container da esquerda (logo-black + logo-frase) */
 .logo-esquerda {
-    position: relative;           
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin: 0;                     
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
 }
 
 /* Logo preta colada no canto esquerdo */
 .logo-black {
-    display: block;
-    height: 100%;                 
-    width: auto;                  
-    margin-left: 0;               
+  display: block;
+  height: 100%;
+  width: auto;
+  margin-left: 0;
 }
 
 /* Logo-frase sobreposta à logo-black */
 .logo-frase {
-    position: absolute;
-    top: 25%;
-    left: 20%;
-    max-height: 50%;             
-    width: auto;
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  max-height: 50%;
+  width: auto;
 }
 
 /* Logo da direita */
 .logo-etec {
-    max-height: 70%;              
-    width: auto;
-    margin-right: 2%;
+  max-height: 70%;
+  width: auto;
+  margin-right: 2%;
 }
 
 /* RESPONSIVO: telas pequenas */
 @media (max-width: 768px) {
-    header {
-        height: 80px;
-    }
+  header {
+    height: 80px;
+  }
 
-    .logo-black {
-        height: 100%;
-    }
+  .logo-black {
+    height: 100%;
+  }
 
-    .logo-frase { 
-        max-height: 50%;
-        top: 25%;
-        left: 20%;
-        
-    }
+  .logo-frase {
+    max-height: 50%;
+    top: 25%;
+    left: 20%;
+  }
 
-    .logo-etec {
-        max-height: 60%;
-    }
+  .logo-etec {
+    max-height: 60%;
+  }
 
-    .header-logo {
-        gap: 20px;
-    }
+  .header-logo {
+    gap: 20px;
+  }
 }

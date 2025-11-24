@@ -1,26 +1,24 @@
-h1{
-    text-align: center;
-    font-family: 'Roboto Slab', serif;
-    color: #43545C;
-
+h1 {
+  text-align: center;
+  font-family: "Roboto Slab", serif;
+  color: #43545c;
 }
-button{
-    width: 200px;
-    height: 65px;
-    margin-left: 2.7%;
-    border-radius: 20px;
-    margin-top: 2%;
-    background-color: #F8FAFD;
-    box-shadow: 0px 4px 0px rgba(0,0,0,0.12);
-    border: none;
+button {
+  width: 200px;
+  height: 65px;
+  margin-left: 2.7%;
+  border-radius: 20px;
+  margin-top: 2%;
+  background-color: #f8fafd;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.12);
+  border: none;
 }
-input{
-    width: 20px;
-    height: 20px;
-    margin-left: -65%;
-    
+input {
+  width: 20px;
+  height: 20px;
+  margin-left: -65%;
 }
-input[type='checkbox'] {
+input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   background-color: #f0f0f0;
@@ -32,69 +30,69 @@ input[type='checkbox'] {
   transition: all 0.2s ease;
   position: relative;
 }
-input[type='checkbox']:checked {
+input[type="checkbox"]:checked {
   background-color: #b81919;
   border-color: #b81919;
 }
 input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 6px;
-    width: 6px;
-    height: 12px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-  }
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
 
 .confirm-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px auto 0;
-    background: #b81919;
-    color: #fff;
-    border: none;
-    padding: 12px 40px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 1.75rem;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.12);
-    width: 210px;
-    text-align: center;
-    font-family: "Roboto Slab", sans-serif;
-    margin-top: 5.5%;
-  }
-  
-  .confirm-btn:hover {
-    background: #a31515; /* tom mais escuro para o hover */
-    color: #fff;
-    box-shadow: 0 6px 12px rgba(184,25,25,0.18);
-    transition: background 0.15s, box-shadow 0.15s;
-    cursor: pointer;
-  }
-  .confirm-btn:hover {
-    background-color: #981522;
-    border-color: #bd2130;
-  
-    
-  }
-  .grupo-botões{
-    overflow-y: auto;
-    max-height: 500px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto 0;
+  background: #b81919;
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.75rem;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+  width: 210px;
+  text-align: center;
+  font-family: "Roboto Slab", sans-serif;
+  margin-top: 5.5%;
+}
+
+.confirm-btn:hover {
+  background: #a31515; /* tom mais escuro para o hover */
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(184, 25, 25, 0.18);
+  transition:
+    background 0.15s,
+    box-shadow 0.15s;
+  cursor: pointer;
+}
+.confirm-btn:hover {
+  background-color: #981522;
+  border-color: #bd2130;
+}
+.grupo-botões {
+  overflow-y: auto;
+  max-height: 500px;
+}
 
 .grupo-botões button {
   display: inline-flex;
-  align-items: center;     /* centraliza vertical */
+  align-items: center; /* centraliza vertical */
   justify-content: center; /* centraliza horizontalmente o conteúdo do botão */
-  gap: 8px;                /* espaço entre checkbox e texto (se houver) */
+  gap: 8px; /* espaço entre checkbox e texto (se houver) */
   text-align: center;
   cursor: pointer; /* mostra a 'mãozinha' ao passar o mouse */
   padding: 10px 12px;
   font-size: 1rem !important;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
 }
 
 .grupo-botões button input[type="checkbox"] {
@@ -112,17 +110,19 @@ input[type="checkbox"]:checked::after {
 }
 
 /* estilos do modal de quantidade */
-.quant-modal.hidden { display: none; }
+.quant-modal.hidden {
+  display: none;
+}
 .quant-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
-.quant-modal-content{
+.quant-modal-content {
   background: white;
   padding: 12px; /* reduzir padding */
   border-radius: 8px;
@@ -130,8 +130,10 @@ input[type="checkbox"]:checked::after {
   width: 90%;
   max-width: 420px;
   box-sizing: border-box;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  transition: transform 0.18s ease, opacity 0.18s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
 }
 .back-btn {
   position: fixed;
@@ -144,7 +146,7 @@ input[type="checkbox"]:checked::after {
   border-radius: 50px;
   cursor: pointer;
   font-size: 14px;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
@@ -152,28 +154,94 @@ input[type="checkbox"]:checked::after {
 .back-btn:hover {
   background-color: #00c1cf;
 }
-.quant-modal-content{ display:flex; flex-direction:column; align-items:center; }
-.quant-input-row{ display:flex; gap:8px; align-items:center; margin:6px 0; justify-content:center; width:100%; padding:0; transform: none; }
-.quant-input-row input[type="number"]{ flex: 0 1 min(240px, 60%); width: min(240px, 60%); padding:0; margin:0; font-size:1rem; min-width:0; box-sizing:border-box; max-width:100%; text-align:center; transition: width 0.18s ease; }
-.quant-input-row .unit{ padding:0 6px; background:#f0f0f0; border-radius:6px; white-space:nowrap; display:inline-flex; align-items:center; }
-.modal-actions{ display:flex; justify-content:flex-end; gap:8px; width:100%; }
+.quant-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quant-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 6px 0;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  transform: none;
+}
+.quant-input-row input[type="number"] {
+  flex: 0 1 min(240px, 60%);
+  width: min(240px, 60%);
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  min-width: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: center;
+  transition: width 0.18s ease;
+}
+.quant-input-row .unit {
+  padding: 0 6px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+}
 
 /* adaptações para telas pequenas */
 @media (max-width: 480px) {
-  .quant-modal-content { padding: 16px; }
-  .quant-input-row input[type="number"] { flex: 0 1 55%; width:55%; }
-  .modal-actions { justify-content: center; }
+  .quant-modal-content {
+    padding: 16px;
+  }
+  .quant-input-row input[type="number"] {
+    flex: 0 1 55%;
+    width: 55%;
+  }
+  .modal-actions {
+    justify-content: center;
+  }
 }
 
 @media (min-width: 768px) {
   /* desktop/tablet: input ocupa menos espaço (mais elegante) */
-  .quant-input-row input[type="number"] { flex: 0 1 40%; width:40%; }
-  .modal-actions { justify-content: flex-end; }
+  .quant-input-row input[type="number"] {
+    flex: 0 1 40%;
+    width: 40%;
+  }
+  .modal-actions {
+    justify-content: flex-end;
+  }
 }
 
 /* centralizar título e info do modal */
-.quant-modal-content h3, .quant-modal-content p { text-align: center; margin: 6px 0; }
-.modal-actions{ display:flex; justify-content:flex-end; gap:8px; }
-.modal-actions button{ padding:8px 12px; border-radius:6px; border:none; cursor:pointer; }
-.modal-actions #modal-cancel{ background:#eee; }
-.modal-actions #modal-confirm{ background:#b81919; color:white; }
+.quant-modal-content h3,
+.quant-modal-content p {
+  text-align: center;
+  margin: 6px 0;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.modal-actions button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.modal-actions #modal-cancel {
+  background: #eee;
+}
+.modal-actions #modal-confirm {
+  background: #b81919;
+  color: white;
+}
