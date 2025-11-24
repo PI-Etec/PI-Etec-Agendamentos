@@ -1,255 +1,252 @@
 /* Estilo para o botão de dropdown de salas */
 #dropdownMenuButton {
-    background-color: #f8f9fa; /* Cor de fundo semelhante à tela */
-    border: 1px solid #ced4da; /* Borda leve */
-    border-radius: 10px; /* Bordas arredondadas */
-    color: #000; /* Cor do texto */
-    font-size: 140%; /* Tamanho da fonte */
-    padding: 15px -5%; /* Espaçamento interno */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-    margin-top: 5%;
-    margin-left: 10%;
-    font-family: 'Roboto Slab', serif;
-    font-weight: bold;
-    width: 15%;
-    height: 60px;
+  background-color: #f8f9fa; /* Cor de fundo semelhante à tela */
+  border: 1px solid #ced4da; /* Borda leve */
+  border-radius: 10px; /* Bordas arredondadas */
+  color: #000; /* Cor do texto */
+  font-size: 140%; /* Tamanho da fonte */
+  padding: 15px -5%; /* Espaçamento interno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  margin-top: 5%;
+  margin-left: 10%;
+  font-family: "Roboto Slab", serif;
+  font-weight: bold;
+  width: 15%;
+  height: 60px;
 }
 
 /* Estilo para os botões de horários */
 .lista-horarios .list-group-item {
-    background-color: #fff; /* Cor de fundo branca */
-    border: 1px solid #ced4da; /* Borda leve */
-    border-radius: 0px; /* Bordas arredondadas */
-    color: #000; /* Cor do texto */
-    font-size: 108%; /* Tamanho da fonte */
-    padding: 10px; /* Espaçamento interno */
-    margin-bottom: 0px; /* Espaçamento entre os botões */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-    width: 535px;
-    font-family: 'Roboto Slab', serif;
+  background-color: #fff; /* Cor de fundo branca */
+  border: 1px solid #ced4da; /* Borda leve */
+  border-radius: 0px; /* Bordas arredondadas */
+  color: #000; /* Cor do texto */
+  font-size: 108%; /* Tamanho da fonte */
+  padding: 10px; /* Espaçamento interno */
+  margin-bottom: 0px; /* Espaçamento entre os botões */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  width: 535px;
+  font-family: "Roboto Slab", serif;
 }
 
 /* Estilo para o botão de horários ao passar o mouse */
 .lista-horarios .list-group-item:hover {
-    background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
-    border-color: #adb5bd; /* Cor da borda ao passar o mouse */
+  background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
+  border-color: #adb5bd; /* Cor da borda ao passar o mouse */
 }
 
 .lista-horarios .list-group-item:focus {
-    background-color: #2196f3; /* Cor de fundo ao focar */
+  background-color: #2196f3; /* Cor de fundo ao focar */
 }
 
 /* Destaque do horário selecionado */
 .lista-horarios .list-group-item.selecionado {
-    background-color: #2196f3;
-    color: #fff;
-    border-color: #2196f3;
+  background-color: #2196f3;
+  color: #fff;
+  border-color: #2196f3;
 }
 
 /* Estilo para o título "Horários" */
 .titulo-horarios {
-    font-family: 'Roboto Slab', serif;
-    font-size: 180%; /* Tamanho da fonte */
-    font-weight: bold;
-    color: #43545C; /* Cor do texto */
-    text-align: right; /* Centraliza o texto */
-    margin-bottom: 20px; /* Espaçamento abaixo do título */
-    margin-top: -515px;
-    width: 10%;
-    margin-left: 71%;
+  font-family: "Roboto Slab", serif;
+  font-size: 180%; /* Tamanho da fonte */
+  font-weight: bold;
+  color: #43545c; /* Cor do texto */
+  text-align: right; /* Centraliza o texto */
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
+  margin-top: -515px;
+  width: 10%;
+  margin-left: 71%;
 }
 
 .lista-horarios {
-    overflow-y: auto;
-    max-height: 595px;
-    width: 10%;
-    max-width: 550px;
-    margin-left: 63%;
+  overflow-y: auto;
+  max-height: 595px;
+  width: 10%;
+  max-width: 550px;
+  margin-left: 63%;
 }
 
 .list-group {
-    width: 100%;
+  width: 100%;
 }
 
 i {
-    font-size: 30px;
-    font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
 }
 button i {
-    margin-left: 35%;
+  margin-left: 35%;
 }
 
-
 #primeiro-da-lista {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    margin-top: 3%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-top: 3%;
 }
 
 #ultimo-da-lista {
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .container {
-    margin: 0%;
+  margin: 0%;
 }
 
 /* Calendário compacto */
 .calendar {
-    margin-top: 2%;
-    margin-left: 10%;
-    max-width: 800px; /* controla o tamanho total */
-    font-family: 'Roboto Slab', serif;
-    
+  margin-top: 2%;
+  margin-left: 10%;
+  max-width: 800px; /* controla o tamanho total */
+  font-family: "Roboto Slab", serif;
 }
 
 .calendar .calendar-inner {
-    background: #fff;
-    border: 1px solid #ced4da;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
-    overflow: hidden;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 .calendar .calendar-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
 }
 
 .calendar .calendar-year-month {
-    text-align: center;
-    line-height: 1.1;
+  text-align: center;
+  line-height: 1.1;
 }
 
 .calendar .calendar-month-label {
-    font-weight: 700;
-    font-size: 1rem;
-    color: #43545C;
-    text-transform: capitalize;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #43545c;
+  text-transform: capitalize;
 }
 
 .calendar .calendar-year-label {
-    font-size: .85rem;
-    color: #6c757d;
+  font-size: 0.85rem;
+  color: #6c757d;
 }
 
 .calendar .calendar-controls svg {
-    width: 20px;
-    height: 20px;
-    fill: #43545C;
+  width: 20px;
+  height: 20px;
+  fill: #43545c;
 }
 
 /* Controles desabilitados */
 .calendar .calendar-controls a.is-disabled {
-  opacity: .35;
+  opacity: 0.35;
   pointer-events: none;
   cursor: not-allowed;
 }
 
 .calendar .calendar-body {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-    padding: 8px 12px 12px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  padding: 8px 12px 12px;
 }
 
 /* Cabeçalho dos dias da semana (primeiros 7 itens) */
-.calendar .calendar-body > div:nth-child(-n+7) a {
-    background: transparent;
-    border: none;
-    color: #6c757d;
-    font-weight: 600;
-    cursor: default;
-    font-size: 20px;
+.calendar .calendar-body > div:nth-child(-n + 7) a {
+  background: transparent;
+  border: none;
+  color: #6c757d;
+  font-weight: 600;
+  cursor: default;
+  font-size: 20px;
 }
 
 /* Células de dia */
 .calendar .calendar-body > div {
-    text-align: center;
+  text-align: center;
 }
 
 .calendar .calendar-body a {
-    display: inline-flex;
-    width: 40px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-    background: #fff;
-    color: #000;
-    text-decoration: none;
-    font-size: .9rem;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9rem;
 }
 
 /* Dias desabilitados (fora da janela permitida) */
 .calendar .calendar-body a.is-disabled {
-  opacity: .45;
+  opacity: 0.45;
   cursor: not-allowed;
   pointer-events: none;
   border-style: dashed;
 }
 
 .calendar .calendar-body a:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
+  background: #e9ecef;
+  border-color: #adb5bd;
 }
 
 /* Dias fora do mês atual */
 .calendar .prev-dates a,
 .calendar .next-dates a {
-    opacity: .45;
-    border-style: dashed;
-    cursor: default;
+  opacity: 0.45;
+  border-style: dashed;
+  cursor: default;
 }
 
 /* Hoje */
 .calendar .calendar-today a {
-    border-color: #2196f3;
-    color: #2196f3;
-    font-weight: 700;
+  border-color: #2196f3;
+  color: #2196f3;
+  font-weight: 700;
 }
 
 /* Selecionado (div recebe a classe) */
 .calendar .calendar-body .selected a {
-    background: #2196f3;
-    color: #fff;
-    border-color: #2196f3;
+  background: #2196f3;
+  color: #fff;
+  border-color: #2196f3;
 }
 
 /* Pílula "Hoje" */
 .calendar .calendar-today-date {
-    margin: 6px 12px 12px;
-    padding: 6px 10px;
-    background: #f8f9fa;
-    border: 1px solid #e4e7ea;
-    border-radius: 999px;
-    color: #43545C;
-    font-size: .85rem;
-    text-align: center;
-    cursor: pointer;
+  margin: 6px 12px 12px;
+  padding: 6px 10px;
+  background: #f8f9fa;
+  border: 1px solid #e4e7ea;
+  border-radius: 999px;
+  color: #43545c;
+  font-size: 0.85rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 /* Resumo no canto inferior esquerdo */
 .agendamento-resumo {
-    position: fixed;
-    left: 7.5%;
-    bottom: 120px;
-    background: #f8f9fa;
-    border: 1px solid #e4e7ea;
-    border-radius: 12px;
-    padding: 10px 14px;
-    color: #43545C;
-    font-family: 'Roboto Slab', serif;
-    font-size: 1.2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,.08);
-    max-width: 450px;
-    
+  position: fixed;
+  left: 7.5%;
+  bottom: 120px;
+  background: #f8f9fa;
+  border: 1px solid #e4e7ea;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: #43545c;
+  font-family: "Roboto Slab", serif;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  max-width: 450px;
 }
 
 /* Botão Confirmar no card de resumo */
@@ -262,7 +259,7 @@ button i {
   color: #fff;
   border: 1px solid #dc3545;
   border-radius: 8px;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-weight: 700;
   cursor: pointer;
 }
@@ -281,7 +278,7 @@ button i {
   border-radius: 50px;
   cursor: pointer;
   font-size: 14px;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
@@ -292,63 +289,59 @@ button i {
 
 /* Responsivo: reduz células em telas pequenas */
 @media (max-width: 1500px) {
-    .calendar {
-        max-width: 50%;
-    }
-   
-
-
+  .calendar {
+    max-width: 50%;
+  }
 }
 @media (max-width: 1480px) {
-    .lista-horarios {
-        margin-left: 55%;
-    }
+  .lista-horarios {
+    margin-left: 55%;
+  }
 }
 @media (max-width: 1280px) {
-    .calendar {
-        max-width: 40%;
-    }
-}    
+  .calendar {
+    max-width: 40%;
+  }
+}
 @media (max-width: 1200px) {
-    .lista-horarios {
-        max-width: 47%;
-        margin-left: 44%;
-        overflow-x: hidden;
-    }
-    #dropdownMenuButton{
-        margin-left: 5%;
-        font-size: 120%;
-    }
-    i{
-        font-size: 120%;
-    }
-    .titulo-horarios{
-        margin-left: 60%;
-    }
-    .calendar {
-        margin-left: 5%;
-    }
-    .agendamento-resumo {
-        left: 5%;
-    }
+  .lista-horarios {
+    max-width: 47%;
+    margin-left: 44%;
+    overflow-x: hidden;
+  }
+  #dropdownMenuButton {
+    margin-left: 5%;
+    font-size: 120%;
+  }
+  i {
+    font-size: 120%;
+  }
+  .titulo-horarios {
+    margin-left: 60%;
+  }
+  .calendar {
+    margin-left: 5%;
+  }
+  .agendamento-resumo {
+    left: 5%;
+  }
 }
 @media (max-width: 1150px) {
-    .lista-horarios {
-        max-width: 48%;
-        margin-left: 40%;
-        overflow-x: hidden;
-    }
+  .lista-horarios {
+    max-width: 48%;
+    margin-left: 40%;
+    overflow-x: hidden;
+  }
 }
 @media (max-width: 1090px) {
-    .lista-horarios {
-        max-width: 45%;
-        margin-left: 40%;
-        overflow-x: hidden;
-    }
-    .calendar {
-        max-width: 35%;
-    }
-    
+  .lista-horarios {
+    max-width: 45%;
+    margin-left: 40%;
+    overflow-x: hidden;
+  }
+  .calendar {
+    max-width: 35%;
+  }
 }
 
 /* Tablet: começa a reduzir e alinhar melhor */
@@ -360,7 +353,9 @@ button i {
     height: 54px;
     font-size: 110%;
   }
-  i { font-size: 110%; }
+  i {
+    font-size: 110%;
+  }
 
   /* Calendário full width, sem deslocar para a esquerda */
   .calendar {
@@ -407,10 +402,10 @@ button i {
   .calendar .calendar-body a {
     width: 34px;
     height: 34px;
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
-  .calendar .calendar-body > div:nth-child(-n+7) a {
-    font-size: .85rem; /* nomes dos dias menores */
+  .calendar .calendar-body > div:nth-child(-n + 7) a {
+    font-size: 0.85rem; /* nomes dos dias menores */
   }
 
   #dropdownMenuButton {
@@ -438,7 +433,7 @@ button i {
     left: 12px;
     right: 12px;
     bottom: max(12px, env(safe-area-inset-bottom));
-    font-size: .95rem;
+    font-size: 0.95rem;
     padding: 10px 12px;
   }
   .agendamento-resumo .btn-confirmar {
@@ -452,10 +447,10 @@ button i {
   .calendar .calendar-body a {
     width: 30px;
     height: 30px;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
   .agendamento-resumo {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 }
 

@@ -1,7 +1,7 @@
 /* CSS para a página de seleção de kits - procura reproduzir o visual do anexo */
 body {
   background-color: #f6f6f6;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
 
@@ -23,7 +23,7 @@ h2.text-center {
   border: 2px solid #dcdcdc;
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.01);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.01);
   max-width: 780px;
   margin: 0 auto; /* garantir centralização da caixa dentro do container */
 }
@@ -77,13 +77,15 @@ h2.text-center {
   position: relative;
   cursor: pointer;
   flex: 0 0 auto;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
-  transition: border-color .12s ease, background-color .12s ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+  transition:
+    border-color 0.12s ease,
+    background-color 0.12s ease;
 }
 
 /* indicador interno quando selecionado */
 .form-check-input::after {
-  content: '';
+  content: "";
   width: 11px; /* ligeiramente maior para melhor visibilidade */
   height: 11px;
   background: transparent;
@@ -92,7 +94,9 @@ h2.text-center {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: background .12s ease, transform .12s ease;
+  transition:
+    background 0.12s ease,
+    transform 0.12s ease;
 }
 
 .form-check-input:checked {
@@ -106,7 +110,7 @@ h2.text-center {
 
 .form-check-input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(184,25,25,0.12);
+  box-shadow: 0 0 0 3px rgba(184, 25, 25, 0.12);
 }
 
 .form-check-label {
@@ -115,7 +119,6 @@ h2.text-center {
   gap: 8px;
 }
 
-
 .kit-title {
   font-weight: 600;
   font-size: 1.6rem; /* aumentado conforme solicitado */
@@ -123,7 +126,7 @@ h2.text-center {
 }
 
 .kit-desc {
-  font-weight:600;
+  font-weight: 600;
   font-size: 0.9rem;
   color: #9b9b9b;
 }
@@ -146,7 +149,7 @@ h2.text-center {
   border-radius: 10px;
   font-weight: 700;
   font-size: 1.15rem;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
   width: 210px;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -155,14 +158,14 @@ h2.text-center {
 .confirm-btn:hover {
   background: #a31515; /* tom mais escuro para o hover */
   color: #fff;
-  box-shadow: 0 6px 12px rgba(184,25,25,0.18);
-  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: 0 6px 12px rgba(184, 25, 25, 0.18);
+  transition:
+    background 0.15s,
+    box-shadow 0.15s;
 }
 .confirm-btn:hover {
   background-color: #981522;
   border-color: #bd2130;
-
-  
 }
 
 /* Personalização da barra de rolagem para WebKit (Chrome, Edge) */
@@ -188,7 +191,7 @@ h2.text-center {
   border-radius: 50px;
   cursor: pointer;
   font-size: 14px;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
@@ -196,8 +199,6 @@ h2.text-center {
 .back-btn:hover {
   background-color: #00c1cf;
 }
-
-
 
 /* Ajustes responsivos */
 
@@ -257,10 +258,9 @@ h2.text-center {
     font-size: 1.1rem;
     margin-bottom: 12px;
   }
-
 }
-@media(max-width: 400px){
-  .container{
+@media (max-width: 400px) {
+  .container {
     padding-left: 60px;
   }
 }

@@ -1,103 +1,116 @@
 /* Reset básico */
-html, body {
-    height: 100%;
-    margin: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 body {
-    background-color: white;
-    font-family: Arial, sans-serif;
+  background-color: white;
+  font-family: Arial, sans-serif;
 
-    /* Centralização com Flexbox */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  /* Centralização com Flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 #login {
-    background-color: #fff;
-    padding: 30px 40px; 
-    border-radius: 50px;
-    box-shadow: 1px 1px 10px rgba(194, 38, 38, 0.2);
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    min-width: 280px;
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 50px;
+  box-shadow: 1px 1px 10px rgba(194, 38, 38, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  min-width: 280px;
 }
 
 /* Estilos de Ícones e Campos */
-.campo-email, .campo-senha, .campo-nome {
-    background-color: white;
-    border-radius: 10px;
-    margin-bottom: 15px; /* Adicionado para espaçamento entre os campos */
+.campo-email,
+.campo-senha,
+.campo-nome {
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 15px; /* Adicionado para espaçamento entre os campos */
 }
 
-.icone-email, .icone-senha, .icone-nome {
-    width: 37px;
-    height: 37px;
-    background-color: #c22626;
-    border-radius: 20%;
-    object-fit: contain;
-    padding: 5px;
-    flex-shrink: 0;
+.icone-email,
+.icone-senha,
+.icone-nome {
+  width: 37px;
+  height: 37px;
+  background-color: #c22626;
+  border-radius: 20%;
+  object-fit: contain;
+  padding: 5px;
+  flex-shrink: 0;
 }
 
-.campo-email input, .campo-senha input, .campo-nome input {
-    font-size: 1.1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    padding: 10px 12px;
-    transition: border-color 0.3s ease;
-    border: none;
+.campo-email input,
+.campo-senha input,
+.campo-nome input {
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  padding: 10px 12px;
+  transition: border-color 0.3s ease;
+  border: none;
 }
 
-.campo-email input.form-control, .campo-senha input.form-control, .campo-nome input.form-control {
-    flex-grow: 1; 
-    background-color: transparent; 
+.campo-email input.form-control,
+.campo-senha input.form-control,
+.campo-nome input.form-control {
+  flex-grow: 1;
+  background-color: transparent;
 }
 
 .campo-email input:focus,
-.campo-senha input:focus, 
+.campo-senha input:focus,
 .campo-nome input:focus {
-    border-color: #c22626; 
-    box-shadow: 0 0 5px rgba(194, 38, 38, 0.5); /* Efeito de foco */
+  border-color: #c22626;
+  box-shadow: 0 0 5px rgba(194, 38, 38, 0.5); /* Efeito de foco */
 }
 
 /* Botão de Ação */
 .Botao {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff !important;
-    border-radius: 5px;
-    padding: 12px 0;
-    transition: background-color 0.3s ease;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff !important;
+  border-radius: 5px;
+  padding: 12px 0;
+  transition: background-color 0.3s ease;
 }
 
 .Botao:hover {
-    background-color: #9e1b1b !important;
+  background-color: #9e1b1b !important;
 }
 
 /* Media Queries (Responsividade) */
 @media (max-width: 450px) {
-    /* Ajustes para telas pequenas */
-    #login {
-        border-radius: 20px;
-        padding: 20px 20px;
-        width: 95%;
-    }
+  /* Ajustes para telas pequenas */
+  #login {
+    border-radius: 20px;
+    padding: 20px 20px;
+    width: 95%;
+  }
 
-    .Botao {
-        font-size: 1.3rem;
-    }
+  .Botao {
+    font-size: 1.3rem;
+  }
 
-    .campo-email input, .campo-senha input, .campo-nome input {
-        font-size: 1rem;
-    }
+  .campo-email input,
+  .campo-senha input,
+  .campo-nome input {
+    font-size: 1rem;
+  }
 
-    .icone-email, .icone-senha, .icone-nome {
-        width: 30px;
-        height: 30px;
-    }
+  .icone-email,
+  .icone-senha,
+  .icone-nome {
+    width: 30px;
+    height: 30px;
+  }
 }

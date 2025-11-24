@@ -23,7 +23,7 @@ body {
 h1 {
   text-align: center;
   font-size: 3.5rem;
-  color: #43545C;
+  color: #43545c;
   font-family: "Roboto Slab", serif;
 }
 
@@ -44,10 +44,10 @@ h1 {
 /* Botões */
 #link_area .btn {
   position: relative;
-  display: flex;               /* Flexbox para alinhar o conteúdo dentro do botão */
-  flex-direction: column;      /* Organiza o conteúdo em coluna */
-  align-items: center;         /* Centraliza o conteúdo horizontalmente */
-  justify-content: center;     /* Centraliza o conteúdo verticalmente */
+  display: flex; /* Flexbox para alinhar o conteúdo dentro do botão */
+  flex-direction: column; /* Organiza o conteúdo em coluna */
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
   padding: 3%;
   padding-bottom: 16%;
   font-size: 1rem;
@@ -63,7 +63,7 @@ h1 {
   width: 23%;
   min-height: 12rem;
   overflow: hidden;
-  text-align: center;          /* Centraliza o texto no botão */
+  text-align: center; /* Centraliza o texto no botão */
 }
 
 /* Hover nos botões */
@@ -75,7 +75,7 @@ h1 {
 #link_area .btn span {
   font-size: 2rem;
   font-family: "Roboto Slab", serif;
-  color: #43545C;
+  color: #43545c;
 }
 
 /* Imagens */
@@ -91,7 +91,7 @@ h1 {
 #link_area .btn span {
   font-size: 2rem;
   font-family: "Roboto Slab", serif;
-  color: #43545C;
+  color: #43545c;
 }
 
 /* Imagens específicas */
@@ -138,60 +138,56 @@ h1 {
 /* Responsividade */
 @media (max-width: 768px) {
   #link_area {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   #link_area .btn {
-      width: 90%;
-      padding: 10% 12% 14% 12%;
+    width: 90%;
+    padding: 10% 12% 14% 12%;
   }
 
   #link_area .btn span {
-      font-size: 1.75rem;
+    font-size: 1.75rem;
   }
 }
 
 /* Responsividade de imagens */
 @media (max-width: 1116px) {
   .img-relogio {
-      max-width: 100%;
+    max-width: 100%;
   }
 
   .img-frasco {
-      max-width: 40%;
+    max-width: 40%;
   }
 
   .img-prancheta {
-      max-width: 55%;
+    max-width: 55%;
   }
 }
 
 /* A partir de 861px */
 @media (max-width: 861px) {
   .img-geral {
-      display: none; /* Oculta as imagens em telas menores que 861px */
+    display: none; /* Oculta as imagens em telas menores que 861px */
   }
 
   #link_area {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   #link_area .btn {
-      width: 90%;                /* Faz o botão ocupar 90% da largura da tela */
-      display: flex;             /* Usando flexbox para alinhar o conteúdo dentro do botão */
-      justify-content: center;   /* Centraliza o conteúdo verticalmente */
-      align-items: center;       /* Centraliza o conteúdo horizontalmente */
-      text-align: center;        /* Centraliza o texto dentro do botão */
-      height: auto;              /* Deixa a altura automática */
+    width: 90%; /* Faz o botão ocupar 90% da largura da tela */
+    display: flex; /* Usando flexbox para alinhar o conteúdo dentro do botão */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    text-align: center; /* Centraliza o texto dentro do botão */
+    height: auto; /* Deixa a altura automática */
   }
 
   #link_area .btn span {
-      font-size: 1.75rem;         /* Ajuste de tamanho de fonte */
+    font-size: 1.75rem; /* Ajuste de tamanho de fonte */
   }
 }
-
-
-
-
