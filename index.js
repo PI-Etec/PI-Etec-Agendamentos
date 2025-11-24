@@ -64,6 +64,23 @@ app.use((req, res, next) => {
 // A URL deve ser no plural para bater com o que o frontend chama.
 app.use('/agendamentos', agendamentosRouter);
 
+// Adicionar aliases para cobrir frontends que usam caminhos diferentes
+app.use('/api/agendamentos', agendamentosRouter);
+app.use('/routes/agendamentos', agendamentosRouter);
+
+// Rota de debug para inspecionar caminhos registrados (temporária)
+app.get('/__routes', (req, res) => {
+  const routes = [];
+  app._router.stack.forEach((layer) => {
+    if (layer.route && layer.route.path) {
+      routes.push({ path: layer.route.path, methods: layer.route.methods });
+    } else if (layer.name === 'router' && layer.regexp) {
+      routes.push({ mount: layer.regexp.toString() });
+    }
+  });
+  res.json(routes);
+});
+
 // Simple health endpoint for diagnostics
 app.get('/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
 
