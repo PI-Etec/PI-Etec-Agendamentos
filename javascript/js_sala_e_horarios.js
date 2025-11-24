@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (veioDoProfessor) {
           history.back();
         } else {
-          window.location.href = 'tela_professor.html';
+          window.location.href = 'tela_materiais.html';
         }
       } catch (e) {
         console.error(e);

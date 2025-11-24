@@ -46,25 +46,71 @@
                         <th>Material</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>20/11/2025</td>
-                        <td>14:00</td>
-                        <td>Lab 1</td>
-                        <td>joaoalmeida@professor.com</td>
-                        <td>Béquer, Banana, Maçã</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>21/11/2025</td>
-                        <td>09:00</td>
-                        <td>Lab 2</td>
-                        <td>mariasouza@professor.com</td>
-                        <td>Béquer, Banana, Maçã</td>
-                    </tr>
+                <tbody id="agendamentos-tbody">
+                    <!-- Rows will be dynamically populated here -->
                 </tbody>
             </table>
         </div>
     </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tbody = document.getElementById("agendamentos-tbody");
+
+            const tryFetch = async (url) => {
+                try {
+                    console.log('Fetching agendamentos from', url, 'location protocol:', location.protocol);
+                    const response = await fetch(url, { cache: 'no-store' });
+                    if (!response.ok) throw new Error("status " + response.status);
+                    return await response.json();
+                } catch (err) {
+                    console.warn('fetch failed for', url, err);
+                    return null;
+                }
+            };
+
+            const fetchAgendamentos = async () => {
+                // tentativas de endpoint (relativo e fallbacks)
+                let data = await tryFetch('/agendamentos');
+                if (data === null) {
+                    data = await tryFetch('http://127.0.0.1:3000/agendamentos');
+                    if (data === null) {
+                        data = await tryFetch('http://localhost:3000/agendamentos');
+                    }
+                }
+                // Compatibilidade: backend pode retornar array ou { agendamentos }
+                if (Array.isArray(data)) return { agendamentos: data };
+                if (data && data.agendamentos) return { agendamentos: data.agendamentos };
+                return { agendamentos: [] };
+            };
+
+            const renderAgendamentos = ({ agendamentos }) => {
+                tbody.innerHTML = "";
+                if (!agendamentos.length) {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td colspan="6" class="text-center text-muted">Nenhum agendamento encontrado</td>`;
+                    tbody.appendChild(row);
+                    return;
+                }
+
+                agendamentos.forEach((agendamento, index) => {
+                    const materialText = agendamento.material || '';
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${agendamento.data}</td>
+                        <td>${agendamento.hora}</td>
+                        <td>${agendamento.sala}</td>
+                        <td>${agendamento.professor}</td>
+                        <td>${materialText}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            };
+
+            fetchAgendamentos().then(renderAgendamentos).catch((error) => {
+                console.error("Failed to render agendamentos:", error);
+            });
+        });
+    </script>
 </body>
+</html>
