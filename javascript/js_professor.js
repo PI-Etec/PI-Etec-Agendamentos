@@ -1,20 +1,18 @@
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    // ainda lemos os dados do localStorage
+    
     const rawKit = localStorage.getItem('transferToProfessor');
     const combined = rawKit ? JSON.parse(rawKit) : null;
 
     const rawSala = localStorage.getItem('agendamentoSalaHorario');
     const agendamentoSala = rawSala ? JSON.parse(rawSala) : null;
 
-    // guardamos apenas em variáveis globais, sem mostrar nada na tela
     window.transferedKit = combined;
     window.agendamentoSalaHorario = agendamentoSala;
   } catch (e) {
     console.error('Erro ao processar dados na tela do professor:', e);
   }
 
-  // Botão "Agendar" final: envia tudo para o backend
   const btnAgendar = document.getElementById('btnAgendarProfessor');
   if (!btnAgendar) return;
 
@@ -61,12 +59,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       alert('Agendamento completo salvo com sucesso!');
 
-      // limpa "carrinho"
+      
       localStorage.removeItem('transferToProfessor');
       localStorage.removeItem('agendamentoSalaHorario');
-
-      // se quiser, redirecione aqui
-      // window.location.href = 'tela_professor.html';
     } catch (e) {
       console.error(e);
       alert('Falha ao conectar com o servidor ao salvar agendamento.');

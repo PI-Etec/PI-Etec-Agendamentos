@@ -1,7 +1,3 @@
-// Busca os reagentes do servidor e preenche os botões existentes (preserva layout)
-// Script adaptado para popular os botões estáticos no container `#grupo-botoes`.
-// IMPORTANT: use API_BASE para apontar ao backend (porta 3000). Se abrir a página
-// com Live Server (porta 5500), chamadas relativas falharão com 404.
 const API_BASE = 'http://127.0.0.1:3000';
 const container = document.getElementById('grupo-botoes');
 const mensagem = document.getElementById('mensagem');
@@ -25,7 +21,6 @@ async function carregarReagentes() {
     const json = await res.json();
     if (!res.ok) throw new Error(json.message || 'Erro ao buscar reagentes');
     renderReagentes(json.reagentes || []);
-    // após renderizar, aplicar seleções transferidas (se houver)
     applyTransferSelections();
   } catch (err) {
     mensagem.style.color = 'red';
@@ -55,14 +50,14 @@ function renderReagentes(reagentes) {
       buttons.push(btn);
     }
 
-    // Limpar conteúdo e construir estrutura: texto + quantidade
+   
     btn.innerHTML = '';
     const label = document.createElement('span');
-    label.textContent = `${m.reagente}`; // Nome do reagente
+    label.textContent = `${m.reagente}`;
 
     const qty = document.createElement('small');
     qty.style.marginLeft = '6px';
-    qty.textContent = `(${formatQuantidade(m.quantidade)} g)`; // Quantidade com máscara "g"
+    qty.textContent = `(${formatQuantidade(m.quantidade)} g)`;
 
     btn.appendChild(label);
     btn.appendChild(qty);
@@ -79,14 +74,14 @@ function renderReagentes(reagentes) {
       btn.title = '';
     }
 
-    // Substituir listeners antigos (prático: replace with a clone)
+    
     const newBtn = btn.cloneNode(true);
     btn.parentNode.replaceChild(newBtn, btn);
     newBtn.addEventListener('click', () => onClickReagente(m, newBtn));
     buttons[idx] = newBtn;
   });
 
-  // Ocultar botões estáticos além do número de reagentes
+  
   for (let i = reagentes.length; i < buttons.length; i++) {
     const b = buttons[i];
     if (b) b.style.display = 'none';
@@ -116,7 +111,6 @@ async function onClickReagente(reagente, btnEl) {
     mensagem.textContent = 'Quantidade solicitada maior que o disponível.';
     return;
   }
-  // Acumular seleção localmente (enviar ao backend apenas ao confirmar)
   window.selectedItems = window.selectedItems || [];
   const id = reagente._id || reagente.id;
   const existing = window.selectedItems.find(it => it.materialId === id);
@@ -129,8 +123,6 @@ async function onClickReagente(reagente, btnEl) {
       quantidade: q
     });
   }
-
-  // Atualiza visualmente o botão (marca checkbox e adiciona destaque)
   const chk = btnEl.querySelector('input[type=checkbox]');
   if (chk) {
     chk.checked = true;
@@ -140,7 +132,6 @@ async function onClickReagente(reagente, btnEl) {
   btnEl.style.border = '2px solid #28a745';
   btnEl.style.backgroundColor = '#e6ffed';
 
-  // reduzir localmente a quantidade mostrada (sem alterar ainda no servidor)
   const current = Number(btnEl.dataset.quantidade || 0);
   const novoLocal = Math.max(0, current - q);
   btnEl.dataset.quantidade = novoLocal;
@@ -171,24 +162,21 @@ confirmarBtn.addEventListener('click', async () => {
     const materialsRaw = localStorage.getItem('transferSelectionsMaterials');
     const materials = materialsRaw ? JSON.parse(materialsRaw) : [];
 
-    // pedir nome do kit antes de enviar
+    
     const kitName = await showKitNameModal();
     if (kitName === null) {
-      // usuário cancelou
       mensagem.style.color = 'orange';
       mensagem.textContent = 'Confirmação cancelada.';
       return;
     }
 
-    // Save reagents locally as well as backup
+    
     localStorage.setItem('transferSelectionsReagents', JSON.stringify(selections));
 
     const payload = { materials, reagents: selections, name: kitName };
 
-    // build combined object to transfer to professor
+    
     const combined = { name: kitName, materials, reagents: selections };
-
-    // try to save on backend but continue regardless of result
     try {
       console.log('Enviar payload combinado (reagents -> materials):', combined);
       const API_BASE = 'http://127.0.0.1:3000';
@@ -210,28 +198,20 @@ confirmarBtn.addEventListener('click', async () => {
     } catch (e) {
       console.warn('[js_reagentes] erro ao salvar no backend, prosseguindo para professor', e && e.message);
     }
-
-    // store combined selection to be consumed by tela_professor
     try {
       localStorage.setItem('transferToProfessor', JSON.stringify(combined));
     } catch (e) {
       console.error('Erro ao gravar transferToProfessor no localStorage:', e && e.message);
     }
-
-    // limpar seleções locais
     window.selectedItems = [];
     localStorage.removeItem('transferSelectionsMaterials');
     localStorage.removeItem('transferSelectionsReagents');
-
-    // redirecionar para a tela do professor com as informações salvas no localStorage
     window.location.href = 'tela_professor.html';
   } catch (err) {
     mensagem.style.color = 'red';
     mensagem.textContent = 'Erro ao salvar seleção combinada: ' + err.message;
   }
 });
-
-// --- Modal logic (copied from tela_materiais) ---
 const quantModal = document.getElementById('quant-modal');
 const modalTitle = document.getElementById('modal-title');
 const modalAvailable = document.getElementById('modal-available');
@@ -241,7 +221,6 @@ const modalConfirm = document.getElementById('modal-confirm');
 
 function showModalOverlay() {
   quantModal.classList.remove('hidden');
-  // ensure the modal is visible (remove any inline display:none)
   quantModal.style.display = '';
   modalInput.focus();
   modalInput.select();
@@ -249,7 +228,6 @@ function showModalOverlay() {
 
 function hideModalOverlay() {
   quantModal.classList.add('hidden');
-  // hide via inline style as well so it stays hidden regardless of CSS specificity
   quantModal.style.display = 'none';
 }
 
@@ -290,10 +268,8 @@ function showQuantModal(material, max) {
   });
 }
 
-// Aplica seleções salvas por `tela_materiais` via localStorage
 function applyTransferSelections() {
   try {
-    // aceitar chaves compatíveis: 'transferSelectionsMaterials' (nova) ou 'transferSelections' (antiga)
     const raw = localStorage.getItem('transferSelectionsMaterials') || localStorage.getItem('transferSelections');
     if (!raw) return;
     const selections = JSON.parse(raw);
@@ -305,7 +281,6 @@ function applyTransferSelections() {
 
     const buttons = Array.from(container.querySelectorAll('button'));
     selections.forEach(sel => {
-      // localizar botão por dataset.id (preferível) ou por nome
       let btn = buttons.find(b => (b.dataset.id && b.dataset.id === (sel.materialId || '')));
       if (!btn) {
         btn = buttons.find(b => b.textContent && b.textContent.includes(sel.material));
@@ -324,8 +299,6 @@ function applyTransferSelections() {
       btn.classList.add('selected');
       btn.style.border = '2px solid #28a745';
       btn.style.backgroundColor = '#e6ffed';
-
-      // adicionar à seleção atual da página de reagentes para confirmação posterior
       window.selectedItems = window.selectedItems || [];
       window.selectedItems.push({
         materialId: sel.materialId,
@@ -334,11 +307,8 @@ function applyTransferSelections() {
       });
     });
 
-    // mostrar lista de transferências no topo para fácil verificação
     showTransferredList(selections);
 
-    // NÃO removemos `transferSelectionsMaterials` aqui — mantemos no localStorage
-    // para que o botão Confirm consiga recuperá-los quando necessário.
     if (localStorage.getItem('transferSelections')) localStorage.removeItem('transferSelections');
   } catch (e) {
     console.error('Erro ao aplicar transferSelections:', e);
@@ -346,7 +316,7 @@ function applyTransferSelections() {
   }
 }
 
-// Mostra uma lista simples das seleções transferidas para verificação rápida
+
 function showTransferredList(selections) {
   if (!Array.isArray(selections) || !selections.length) return;
   let containerDiv = document.getElementById('transferred-list');
@@ -370,7 +340,7 @@ function showTransferredList(selections) {
   containerDiv.appendChild(ul);
 }
 
-// --- Modal para pedir nome do kit ---
+
 const kitModal = document.getElementById('kit-name-modal');
 const kitInput = document.getElementById('kit-name-input');
 const kitCancel = document.getElementById('kit-name-cancel');

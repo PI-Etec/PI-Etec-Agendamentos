@@ -1,7 +1,3 @@
-
-// Uso esperado: na página HTML ter um container <div id="agendamentosList"></div>
-// e incluir este script com <script src="/javascript/js_visualizar_agendamentos.js"></script>
-
 (async function loadAgendamentos() {
   const container = document.getElementById('agendamentosList');
   if (!container) {
@@ -16,7 +12,7 @@
   }
 
   try {
-    const resp = await fetch('/agendamentos'); // assume rota montada em /agendamentos
+    const resp = await fetch('/agendamentos'); 
     if (!resp.ok) {
       container.innerText = 'Falha ao carregar agendamentos.';
       return;

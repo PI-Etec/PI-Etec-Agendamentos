@@ -47,7 +47,6 @@
     <button type="button" class="btn create-btn">Criar Kit</button>
   </div>
 
-  <!-- Modal invisível por padrão; necessário para entrada de quantidade pelo JS -->
   <div id="quant-modal" class="quant-modal hidden" style="display:none;">
     <div class="quant-modal-content">
       <h3 id="modal-title">Quantidade</h3>
@@ -63,7 +62,6 @@
     </div>
   </div>
 
-  <!-- Modal para nome do kit -->
   <div id="kit-name-modal" class="quant-modal hidden" style="display:none;">
     <div class="quant-modal-content">
       <h3>Nome do Kit</h3>
@@ -79,6 +77,16 @@
   </div>
 
   <script src="../javascript/js_reagentes.js"></script>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 
 
 

@@ -6,7 +6,7 @@ form.addEventListener('submit', async (e) => {
 
   const email = document.getElementById('email').value.trim();
   const senha = document.getElementById('senha').value.trim();
-  msg.textContent = ''; // limpa mensagem anterior
+  msg.textContent = '';
 
   if (!email || !senha) {
     msg.style.color = 'red';
@@ -22,14 +22,13 @@ form.addEventListener('submit', async (e) => {
     });
 
     const data = await res.json();
-    console.log('Resposta do login:', data); // Adicione esta linha para depurar
+    console.log('Resposta do login:', data);
 
     if (res.ok) {
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
       if (data.nome) {
         localStorage.setItem('nomeUsuario', data.nome);
-        // Adicione estas duas linhas para depuração
         console.log('Origem da página de login:', window.location.origin);
         console.log('nomeUsuario salvo no localStorage:', localStorage.getItem('nomeUsuario'));
       }

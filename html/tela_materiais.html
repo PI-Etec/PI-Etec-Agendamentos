@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  <!-- Cabeçalho -->
   <header>
     <div class="header-logo">
       <div class="logo-esquerda">
@@ -34,13 +33,13 @@
     <div id="mensagem" style="margin:10px 0;color:green"></div>
 
     <div class="grupo-botões" id="materiais-container">
-      <!-- Materiais serão renderizados aqui dinamicamente -->
+      
     </div>
 
     <button type="button" class="btn confirm-btn" id="confirmar-selecao">Confirmar</button>
     <button type="button" class="btn back-btn" id="ir" onclick="irParaTelaProfessor()">Voltar</button>
 
-    <!-- Modal custom para entrada de quantidade (substitui prompt) -->
+    
     <div id="quant-modal" class="quant-modal hidden">
       <div class="quant-modal-content">
         <h3 id="modal-title">Quantidade</h3>
@@ -58,6 +57,16 @@
   </main>
 
   <script src="../javascript/js_materiais.js"></script>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 </body>
 
 </html>

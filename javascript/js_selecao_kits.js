@@ -1,6 +1,4 @@
 (async function(){
-  // Tentar usar a origem atual (se a página estiver servida via HTTP).
-  // Se a origem atual não responder ou retornar 404, fazemos fallback para o backend em 127.0.0.1:3000.
   const DEFAULT_BACKEND = 'http://127.0.0.1:3000';
   const ORIGIN = (window.location && window.location.protocol && window.location.protocol !== 'file:') ? window.location.origin : null;
   const container = document.getElementById('kits-container');
@@ -17,14 +15,10 @@
   function renderEmpty(){
     container.innerHTML = '<p class="text-muted">Nenhum kit salvo encontrado.</p>';
   }
-
-  // If the page is opened via file:// the fetch will fail — show hint
   if (window.location.protocol === 'file:') {
     container.innerHTML = '<p class="text-warning">Abra esta página via HTTP (por exemplo <code>http://127.0.0.1:3000/tela_selecao_de_kits.html</code>) para carregar os kits do servidor.</p>';
     return;
   }
-
-  // mostrar estado de carregamento
   container.innerHTML = '<p class="text-muted">Carregando kits...</p>';
 
   async function fetchKitsWithFallback() {
@@ -38,14 +32,13 @@
         const res = await fetch(url, { cache: 'no-store' });
         if (!res.ok) {
           lastErr = new Error('Status ' + res.status + ' from ' + url);
-          // try next candidate
           continue;
         }
         const json = await res.json();
         return { json, url };
       } catch (err) {
         lastErr = err;
-        // try next
+        
       }
     }
     throw lastErr || new Error('Nenhum backend disponível');
@@ -54,17 +47,16 @@
   try{
     const { json, url: usedUrl } = await fetchKitsWithFallback();
     const kits = (json && (Array.isArray(json.kits) ? json.kits : (Array.isArray(json) ? json : []))) || [];
-    // log para debug no console (não mostrar na UI)
+    
     console.debug('js_selecao_kits: fonte usada =', usedUrl, 'json=', json);
     if (!kits.length) return renderEmpty();
 
-    // build selectable list (radio buttons)
+    
     const list = document.createElement('div');
     list.className = 'list-group';
 
     kits.forEach(k => {
       const title = k.name && k.name.trim() ? k.name.trim() : 'Sem nome';
-      // Criar representação inline dos itens entre parênteses: (item — quantidade, ...)
       const itemsInline = (() => {
         const its = Array.isArray(k.items) ? k.items : [];
         if (!its.length) return '';
@@ -98,13 +90,11 @@
         desc.className = 'kit-desc ms-2';
         try {
           const its = Array.isArray(k.items) ? k.items : [];
-          // construir conteúdo com badges para tipo
           const frag = document.createDocumentFragment();
           const open = document.createTextNode('(');
           frag.appendChild(open);
           its.forEach((it, idx) => {
             const typeLabel = (it.type === 'reagente' ? 'reagente' : (it.type === 'material' ? 'material' : 'item'));
-            // montar como: material: nome-quantidade  (ex.: maca-5g) — se quantidade estiver presente
             const qtyPart = (it.quantidade !== undefined && it.quantidade !== null) ? (`-${it.quantidade}`) : '';
             let textValue;
             if (typeLabel === 'item') {
@@ -130,11 +120,8 @@
       list.appendChild(wrapper);
     });
 
-    // renderizar lista
     container.innerHTML = '';
     container.appendChild(list);
-
-    // wire confirm button to send selected kit to professor page
     if (confirmBtn) {
       confirmBtn.addEventListener('click', () => {
         if (!selectedKit) {

@@ -5,8 +5,6 @@ const AgendamentosSchema = new mongoose.Schema({
     horario: String,
     sala: String,
     nome_professor: String,
-
-    // NOVOS CAMPOS
     kitName: { type: String },
     materials: [{
         materialId: String,
