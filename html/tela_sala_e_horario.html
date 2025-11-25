@@ -67,22 +67,69 @@
         
             <h1 class="titulo-horarios">Horários</h1>
             <div class="list-group lista-horarios">
-                <button class="list-group-item list-group-item-action" id="primeiro-da-lista">08:00</button>
-                <button class="list-group-item list-group-item-action">09:00</button>
-                <button class="list-group-item list-group-item-action">10:00</button>
-                <button class="list-group-item list-group-item-action">11:00</button>
-                <button class="list-group-item list-group-item-action">12:00</button>
-                <button class="list-group-item list-group-item-action">13:00</button>
-                <button class="list-group-item list-group-item-action">14:00</button>
-                <button class="list-group-item list-group-item-action">15:00</button>
-                <button class="list-group-item list-group-item-action">16:00</button>
-                <button class="list-group-item list-group-item-action">17:00</button>
-                <button class="list-group-item list-group-item-action">18:00</button>
-                <button class="list-group-item list-group-item-action">19:00</button>
-                <button class="list-group-item list-group-item-action">20:00</button>
-                <button class="list-group-item list-group-item-action">21:00</button>
-                <button class="list-group-item list-group-item-action" id="ultimo-da-lista">22:00</button>
-            </div>
+                <!-- PERÍODO MATUTINO -->
+                <button class="list-group-item list-group-item-action" data-periodo="matutino">
+                  1ª aula(7h10 – 8h00)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="matutino">
+                  2ª aula(8h00 – 8h50)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="matutino">
+                  3ª aula(8h50 – 9h40)
+                </button>
+                <button class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
+                  Intervalo (Matutino)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="matutino">
+                  4ª aula(10h00 – 10h50)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="matutino">
+                  5ª aula(10h50 – 11h40)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="matutino">
+                  6ª aula(11h40 – 12h30)
+                </button>
+        
+                <!-- PERÍODO VESPERTINO -->
+                <button class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
+                  ————— Período Vespertino —————
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="vespertino">
+                  1ª aula(13h00 – 13h50)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="vespertino">
+                  2ª aula(13h50 – 14h40)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="vespertino">
+                  3ª aula(14h40 – 15h30)
+                </button>
+                <button class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
+                  Intervalo (Vespertino)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="vespertino">
+                  4ª aula(15h50 – 16h40)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="vespertino">
+                  5ª aula(16h40 – 17h30)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="vespertino">
+                  6ª aula(17h30 – 18h20)
+                </button>
+        
+                <!-- PERÍODO NOTURNO (MODULAR) -->
+                <button class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
+                  ————— Período Noturno (Modular) —————
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="noturno">
+                  1º bloco(18h50 – 20h44)
+                </button>
+                <button class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
+                  Intervalo (Noturno)
+                </button>
+                <button class="list-group-item list-group-item-action" data-periodo="noturno">
+                  2º bloco(20h58 – 22h50)
+                </button>
+              </div>
         
     
     <!-- Bootstrap JS -->
