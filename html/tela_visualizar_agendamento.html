@@ -62,7 +62,6 @@
             };
 
             const fetchAgendamentos = async () => {
-                // tentativas de endpoint (relativo e fallbacks)
                 let data = await tryFetch('/agendamentos');
                 if (data === null) {
                     data = await tryFetch('http://127.0.0.1:3000/agendamentos');
@@ -70,7 +69,6 @@
                         data = await tryFetch('http://localhost:3000/agendamentos');
                     }
                 }
-                // Compatibilidade: backend pode retornar array ou { agendamentos }
                 if (Array.isArray(data)) return { agendamentos: data };
                 if (data && data.agendamentos) return { agendamentos: data.agendamentos };
                 return { agendamentos: [] };
