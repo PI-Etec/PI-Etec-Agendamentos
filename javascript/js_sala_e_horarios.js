@@ -1,4 +1,3 @@
-// Adicione esta linha no topo do arquivo para depuração
 console.log('Origem da página de agendamento:', window.location.origin);
 console.log('Verificando localStorage na página de agendamento:', localStorage.getItem('nomeUsuario'));
 
@@ -8,30 +7,30 @@ const toIsoDateOnly = (d) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Dropdown salas
+ 
   const dropdownButton = document.getElementById('dropdownMenuButton');
   const dropdownItems = document.querySelectorAll('.dropdown-item');
 
-  // Resumo
+  
   const resumoEl = document.getElementById('agendamentoResumo');
 
-  // Título Horários (mantém sem data)
+  
   const tituloHorarios = document.querySelector('.titulo-horarios');
   if (tituloHorarios) tituloHorarios.textContent = 'Horários';
 
-  // Estado
+  
   const calendarRoot = document.querySelector('.calendar');
   if (!calendarRoot) return;
 
   const state = {
-    view: new Date(),     // mês/ano exibido
-    selected: null,       // data selecionada (Date)
-    today: new Date(),    // hoje
-    room: null,           // sala selecionada
-    time: null            // horário selecionado
+    view: new Date(),     
+    selected: null,       
+    today: new Date(),    
+    room: null,           
+    time: null            
   };
 
-  // Janela permitida: mínimo = hoje + 2 dias, máximo = fim do próximo mês
+  
   const stripTime = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
   const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
   const minDate = stripTime(addDays(state.today, 2));
@@ -69,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Normaliza para ignorar hora
+  
   const toYMD = (d) => [d.getFullYear(), d.getMonth(), d.getDate()];
   const isSameDay = (a, b) => {
     if (!a || !b) return false;
@@ -86,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const year = state.view.getFullYear();
     const month = state.view.getMonth();
 
-    // Limites de navegação por mês
     const minMonth = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
     const maxMonth = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
     const canGoPrev = (year > minMonth.getFullYear()) || (year === minMonth.getFullYear() && month > minMonth.getMonth());
@@ -94,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const firstOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstWeekDay = firstOfMonth.getDay(); // 0=Dom, ..., 6=Sáb
+    const firstWeekDay = firstOfMonth.getDay(); 
     const daysInPrevMonth = new Date(year, month, 0).getDate();
 
     const leading = firstWeekDay;
@@ -186,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // Navegação (respeita desabilitados)
     calendarRoot.querySelectorAll('[data-nav]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -197,8 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
       });
     });
-
-    // Ir para hoje
     const goToday = calendarRoot.querySelector('[data-action="go-today"]');
     if (goToday) {
       goToday.addEventListener('click', () => {
@@ -206,8 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
       });
     }
-
-    // Seleção de dia (somente mês atual e dentro da janela)
     calendarRoot.querySelectorAll('.calendar-body a[data-type="current"]:not(.is-disabled)').forEach(a => {
       a.addEventListener('click', (e) => {
         e.preventDefault();
@@ -221,8 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-  // Seleção de horário
   const timeButtons = document.querySelectorAll('.lista-horarios .list-group-item');
   if (timeButtons.length) {
     timeButtons.forEach(btn => {
@@ -235,11 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Render inicial + resumo
+  
   render();
   updateResumo();
 
-  // Clique do botão Confirmar
+ 
   const btnConfirmar = document.getElementById('btnConfirmarAgendamento');
   if (btnConfirmar) {
     btnConfirmar.addEventListener('click', () => {

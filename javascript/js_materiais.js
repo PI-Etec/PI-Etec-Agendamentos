@@ -1,17 +1,15 @@
 const container = document.getElementById('materiais-container');
 const mensagem = document.getElementById('mensagem');
-
-// formata a quantidade para exibição (adiciona unidade 'un')
 function formatQuantidade(q) {
   const num = Number(q || 0);
-  return `${num} un`; // Alterado para 'un'
+  return `${num} un`; 
 }
 
 async function carregarMateriais() {
   try {
     const res = await fetch('http://localhost:3000/selecionar/materials');
 
-    // Checar content-type antes de tentar parsear como JSON
+   
     const contentType = res.headers.get('content-type') || '';
     if (!contentType.includes('application/json')) {
       const text = await res.text();
@@ -40,7 +38,7 @@ function renderMateriais(materials) {
     btn.className = 'material-btn';
     btn.style.margin = '6px';
 
-    // construir estrutura: nome + quantidade (como em js_reagentes)
+   
     const label = document.createElement('span');
     label.textContent = m.material;
 
@@ -54,14 +52,14 @@ function renderMateriais(materials) {
     btn.dataset.id = m._id || m.id || '';
     btn.dataset.quantidade = m.quantidade;
 
-    // desabilitar botão se não há estoque
+    
     const qtdNum = Number(m.quantidade || 0);
     if (qtdNum <= 0) {
       btn.disabled = true;
       btn.title = 'Sem estoque';
     }
 
-    // substituir listener por clonagem segura para evitar múltiplas binds
+    
     btn.addEventListener('click', () => onClickMaterial(m, btn));
     container.appendChild(btn);
   });
@@ -75,9 +73,9 @@ async function onClickMaterial(material, btnEl) {
     return;
   }
 
-// abrir modal customizado para entrada (mostra unidade 'g' junto ao input)
+
 const entrada = await showQuantModal(material, max);
-if (entrada === null) return; // cancelou
+if (entrada === null) return; 
 
 const q = parseInt(entrada, 10);
   if (Number.isNaN(q) || q <= 0) {
@@ -91,8 +89,6 @@ const q = parseInt(entrada, 10);
     mensagem.textContent = 'Quantidade solicitada maior que o disponível.';
     return;
   }
-
-  // registrar seleção localmente para envio ao confirmar (não decrementamos no backend ainda)
   window.selectedItems = window.selectedItems || [];
   const existing = window.selectedItems.find(it => it.materialId === (material._id || material.id));
   if (existing) {
@@ -104,20 +100,17 @@ const q = parseInt(entrada, 10);
       quantidade: q
     });
   }
-
-  // atualizar dataset localmente para refletir a seleção (apenas visual)
   const current = Number(btnEl.dataset.quantidade || max);
   const novoLocal = Math.max(0, current - q);
   btnEl.dataset.quantidade = novoLocal;
-  // atualizar apenas o pequeno que mostra a quantidade
+
   const small = btnEl.querySelector('small');
   if (small) small.textContent = `(${formatQuantidade(novoLocal)})`;
 
-  // manter o nome visível (se alguém usou textContent anteriormente)
   const labelSpan = btnEl.querySelector('span');
   if (labelSpan) labelSpan.textContent = material.material;
 
-  // desabilitar/ativar botão conforme novo estoque local
+
   if (novoLocal <= 0) {
     btnEl.disabled = true;
     btnEl.title = 'Sem estoque';
@@ -130,10 +123,10 @@ const q = parseInt(entrada, 10);
   mensagem.textContent = `Adicionado ${q} x ${material.material} à seleção local. Clique em Confirmar para finalizar.`;
 }
 
-// carregar na inicialização
+
 carregarMateriais();
 
-// confirmar seleção: enviar todas as seleções locais para o backend
+
 const confirmarBtn = document.getElementById('confirmar-selecao');
 confirmarBtn.addEventListener('click', async () => {
   const selections = window.selectedItems || [];
@@ -147,11 +140,10 @@ confirmarBtn.addEventListener('click', async () => {
   }
 
   try {
-    // salvar as seleções de materiais e redirecionar para tela_reagentes
+    
     localStorage.setItem('transferSelectionsMaterials', JSON.stringify(selections));
     mensagem.style.color = 'green';
     mensagem.textContent = 'Seleções salvas. Redirecionando para Reagentes...';
-    // pequena pausa para mostrar mensagem, depois redireciona
     setTimeout(() => {
       window.location.href = 'tela_reagentes.html';
     }, 300);
@@ -161,7 +153,6 @@ confirmarBtn.addEventListener('click', async () => {
   }
 });
 
-// --- Modal logic ---
 const quantModal = document.getElementById('quant-modal');
 const modalTitle = document.getElementById('modal-title');
 const modalAvailable = document.getElementById('modal-available');

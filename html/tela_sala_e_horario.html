@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala e Horario</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style_sala_e_horario.css">
     <link rel="stylesheet" href="../css/style_cabecalho.css">
@@ -13,7 +12,7 @@
     <script src="../javascript/js_botoes.js" defer></script>
 </head>
 <body>
-    <!-- Cabeçalho -->
+    
     <header>
         <div class="header-logo">
             <div class="logo-esquerda">
@@ -27,12 +26,8 @@
             <img src="../img/etec_logo.png" alt="Logo Etec" class="logo-etec">
           </div>
     </header>
-
-   
-   
-
-    <div class="container">
-        <!-- Dropdown de Salas -->
+      <div class="container">
+        
         <div class="dropdown salas">
             <button type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Salas <i class="bi bi-chevron-down"></i>
@@ -46,28 +41,22 @@
         </div>
 
         <div class="calendar"></div>
-
-        <!-- Resumo do agendamento -->
         <div class="agendamento-resumo" aria-live="polite">
           <span id="agendamentoResumo">Selecione sala, data e horário</span>
           <button id="btnConfirmarAgendamento" type="button" class="btn-confirmar">Confirmar</button>
         </div>
-
-        <!-- SCRIPT PARA CORRIGIR CORS: Redireciona 127.0.0.1 para localhost -->
         <script>
           if (location.hostname === '127.0.0.1') {
             location.href = location.href.replace('127.0.0.1', 'localhost');
           }
         </script>
-        
+
         <script src="../javascript/js_sala_e_horarios.js"></script>
 
       </div>
-        <!-- Título e Lista de Horários -->
-        
             <h1 class="titulo-horarios">Horários</h1>
             <div class="list-group lista-horarios">
-                <!-- PERÍODO MATUTINO -->
+                
                 <button class="list-group-item list-group-item-action" data-periodo="matutino">
                   1ª aula(7h10 – 8h00)
                 </button>
@@ -89,8 +78,6 @@
                 <button class="list-group-item list-group-item-action" data-periodo="matutino">
                   6ª aula(11h40 – 12h30)
                 </button>
-        
-                <!-- PERÍODO VESPERTINO -->
                 <button class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
                   ————— Período Vespertino —————
                 </button>
@@ -115,8 +102,6 @@
                 <button class="list-group-item list-group-item-action" data-periodo="vespertino">
                   6ª aula(17h30 – 18h20)
                 </button>
-        
-                <!-- PERÍODO NOTURNO (MODULAR) -->
                 <button class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">
                   ————— Período Noturno (Modular) —————
                 </button>
@@ -132,8 +117,18 @@
               </div>
         
     
-    <!-- Bootstrap JS -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 </body>
 </html>
 

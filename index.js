@@ -13,7 +13,6 @@ const app = express();
 const path = require('path');
 const http = require('http');
 
-// Use a configuração CORS mais simples. Isso aceita qualquer origem.
 app.use(cors());
 const allowedOrigins = ['http://127.0.0.1:5500', 'http://localhost:5500'];
 
@@ -25,50 +24,25 @@ app.use(cors({
 
 app.use(express.json());
 
-// Servir arquivos estáticos (HTML/CSS/JS) a partir da pasta html
 app.use(express.static(path.join(__dirname, 'html')));
 
-// Servir também outros assets estáticos (CSS, JS e imagens) que ficam fora da pasta `html`
 app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/javascript', express.static(path.join(__dirname, 'javascript')));
 app.use('/img', express.static(path.join(__dirname, 'img')));
 
-// 🔹 Conexão MongoDB
-const uri = process.env.MONGO_URI; // Use a variável correta
+const uri = process.env.MONGO_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('✅ Conectado ao MongoDB Atlas'))
-  .catch(err => console.error('❌ Erro MongoDB:', err.message));
+  .then(() => console.log('Conectado ao MongoDB Atlas'))
+  .catch(err => console.error('Erro MongoDB:', err.message));
 
-// Rotas
+
 app.use('/auth', authRouter);
-
-// rota para selecionar materiais
 app.use('/selecionar', selecionarRouter);
-
-// rotas para reagentes
 app.use('/reagentes', reagentesRouter);
-
-// --- INÍCIO DO TESTE DE DIAGNÓSTICO FINAL ---
-// Este middleware vai rodar para TODAS as requisições que chegarem.
-app.use((req, res, next) => {
-  console.log('====================================');
-  console.log('NOVA REQUISIÇÃO RECEBIDA:');
-  console.log('URL:', req.originalUrl);
-  console.log('Método:', req.method);
-  console.log('Corpo (Body):', req.body);
-  console.log('====================================');
-  next(); // Passa a requisição para a próxima rota
-});
-// --- FIM DO TESTE DE DIAGNÓSTICO FINAL ---
-
-// A URL deve ser no plural para bater com o que o frontend chama.
 app.use('/agendamentos', agendamentosRouter);
-
-// Adicionar aliases para cobrir frontends que usam caminhos diferentes
 app.use('/api/agendamentos', agendamentosRouter);
 app.use('/routes/agendamentos', agendamentosRouter);
 
-// Rota de debug para inspecionar caminhos registrados (temporária)
 app.get('/__routes', (req, res) => {
   const routes = [];
   app._router.stack.forEach((layer) => {
@@ -80,13 +54,10 @@ app.get('/__routes', (req, res) => {
   });
   res.json(routes);
 });
-
-// Simple health endpoint for diagnostics
 app.get('/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
 
 app.get('/', (req, res) => res.send('Servidor rodando!'));
 
-// Middleware de tratamento de erros. Coloque no final, antes do app.listen.
 app.use((err, req, res, next) => {
   console.error('--- ERRO NÃO TRATADO ---');
   console.error(err.stack);
@@ -94,7 +65,6 @@ app.use((err, req, res, next) => {
   res.status(500).send({ error: 'Algo quebrou no servidor!', details: err.message });
 });
 
-// 🔹 Subir servidor após conexão (opcional para segurança)
 const PORT = process.env.PORT || 3000;
 const HOST = '127.0.0.1';
 console.log('>> About to listen:', { host: HOST, port: PORT });
@@ -102,9 +72,8 @@ const server = app.listen(PORT, HOST);
 
 server.on('listening', () => {
   const addr = server.address();
-  console.log(`🚀 Servidor rodando em http://${addr.address}:${addr.port}`);
+  console.log(`Servidor rodando em http://${addr.address}:${addr.port}`);
 
-  // Self-check: try to call the server from the same process after a short delay
   setTimeout(() => {
     const checkUrl = `http://${HOST}:${PORT}/selecionar/materials`;
     console.log('[self-check] attempting', checkUrl);
