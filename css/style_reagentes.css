@@ -165,8 +165,8 @@ input[type="checkbox"]:checked::after {
 
 /* Botão selecionado */
 .grupo-botões button.selected {
-  background-color: #F8FAFD; /* Mesma cor do estado padrão */
-  border: 1px solid #ccc; /* Mesma borda do estado padrão */
+  background-color: #F8FAFD !important; /* Mesma cor do estado padrão */
+  border: 1px solid #ccc !important; /* Mesma borda do estado padrão */
 }
 
 /* Hover effect for buttons */
